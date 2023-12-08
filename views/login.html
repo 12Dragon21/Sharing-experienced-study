@@ -1,0 +1,29 @@
+<!-- views/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập</title>
+</head>
+<body>
+  <h2>Đăng nhập</h2>
+  <form id="loginForm" action="/login" method="post" onsubmit="return handleLogin()">
+    <label for="username">Tên đăng nhập:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Mật khẩu:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Đăng nhập</button>
+  </form>
+
+  <script>
+    function handleLogin() {
+      // Nếu đăng nhập thành công, chuyển hướng đến trang chủ
+      window.location.href = "/home";
+      return false; // Ngăn form submit mặc định
+    }
+  </script>
+</body>
+</html>

@@ -1,29 +1,329 @@
-<!-- views/login.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đăng nhập</title>
-</head>
-<body>
-  <h2>Đăng nhập</h2>
-  <form id="loginForm" action="/login" method="post" onsubmit="return handleLogin()">
-    <label for="username">Tên đăng nhập:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="password">Mật khẩu:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <button type="submit">Đăng nhập</button>
-  </form>
 
-  <script>
-    function handleLogin() {
-      // Nếu đăng nhập thành công, chuyển hướng đến trang chủ
-      window.location.href = "/home";
-      return false; // Ngăn form submit mặc định
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>FreeCAD Forum - User Control Panel - Login</title>
+
+	<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
+
+
+<link href="../assets/css/font-awesome.min.css" rel="stylesheet">
+<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+<link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+
+
+
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=yysK1dbSKq5Aqw6W_WXoHWTvc4kz-WGW6mWSbscGzPKx6UzOdPBlntpWurGNYu_XWQYI4ihEAV9pfeDiEPXz4AYl5KpHDlLmlVUClu_iw2bmE1jAYukiD7RmMYPLlJ3bY0yAMU9wxTBeMPxF_vZ8FQ" charset="UTF-8"></script><style type="text/css">
+    .mention {
+        color: #008ae6;
     }
-  </script>
+</style>
+
+
+<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
+
+
+
+</head>
+<body id="phpbb" class="nojs notouch section-ucp ltr " data-online-text="Online">
+
+
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header" class="page-width">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+
+			<div id="site-description" class="site-description">
+				<a id="logo" class="logo" href="./index.php" title="FreeCAD forum">
+					<img src="./styles/elegance/theme/images/logo.png" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="FreeCAD Forum"/>
+				</a>
+				<p class="sitename">FreeCAD Forum</p>
+				<p>The help and development forum of FreeCAD</p>
+				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+			</div>
+
+															<div id="search-box" class="search-box search-header" role="search">
+				<form action="./search.php" method="get" id="search">
+				<fieldset>
+					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
+					<button class="button button-search" type="submit" title="Search">
+						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
+					</button>
+					<a href="./search.php" class="button button-search-end" title="Advanced search">
+						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
+					</a>
+					
+				</fieldset>
+				</form>
+			</div>
+									
+			</div>
+					</div>
+
+
+				
+
+
+<div class="navbar tabbed not-static" role="navigation">
+	<div class="inner page-width">
+		<div class="nav-tabs" data-current-page="login">
+			<ul class="leftside">
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
+					<div class="dropdown">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<ul class="dropdown-contents" role="menu">
+								
+			<li class="separator"></li>
+													<li>
+								<a href="./search.php?search_id=unanswered" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
+								</a>
+							</li>
+							<li>
+								<a href="./search.php?search_id=active_topics" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
+								</a>
+							</li>
+							<li class="separator"></li>
+							<li>
+								<a href="./search.php" role="menuitem">
+									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>	
+	
+													</ul>
+					</div>
+				</li>
+												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
+					<a class="nav-link" href="./index.php">Forums</a>
+				</li>
+											</ul>
+			<ul class="rightside" role="menu">
+								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
+					<a class="nav-link" href="/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem">
+						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+					</a>
+				</li>
+																									<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="./ucp.php?mode=login&amp;redirect=viewtopic.php?t=81989" title="Login" accesskey="x" role="menuitem">Login</a></li>
+											<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="./ucp.php?mode=register" role="menuitem">Register</a></li>
+																	</ul>
+		</div>
+	</div>
+</div>
+
+<div class="navbar secondary">
+	<ul role="menubar">
+											<li class="small-icon icon-search"><a href="./search.php">Search</a></li>
+														<li class="small-icon icon-login"><a href="./ucp.php?mode=login&amp;redirect=viewtopic.php?t=81989" title="Login">Login</a></li>
+									<li class="small-icon icon-register"><a href="./ucp.php?mode=register">Register</a></li>
+									
+			</ul>
+</div>
+
+	</div>
+
+<div id="wrap" class="page-width">
+
+	
+	<a id="start_here" class="top-anchor"></a>
+	<div id="page-body" class="page-body" role="main">
+		<div class="navbar">
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+			
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>
+
+			
+			
+		</li>
+
+		
+		
+			<li class="rightside responsive-search">
+				<a href="./search.php" title="View the advanced search options" role="menuitem">
+					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
+				</a>
+			</li>
+				<li class="rightside dropdown-container icon-only">
+			<a href="#" class="dropdown-trigger time" title="It is currently Sun Dec 10, 2023 5:39 pm"><i class="fa fa-clock-o"></i></a>
+			<div class="dropdown">
+				<div class="pointer"><div class="pointer-inner"></div></div>
+				<ul class="dropdown-contents">
+					<li>It is currently Sun Dec 10, 2023 5:39 pm</li>
+					<li>All times are <span title="UTC">UTC</span></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>
+
+		
+		
+<form action="./ucp.php?mode=login" method="post" id="login" data-focus="username">
+<div class="panel">
+	<div class="inner">
+
+	<div class="content">
+		<h2 class="login-title">Login</h2>
+
+		<fieldset class="fields1">
+				<dl>
+			<dt><label for="username">Username:</label></dt>
+			<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="" class="inputbox autowidth" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="password">Password:</label></dt>
+			<dd><input type="password" tabindex="2" id="password" name="password" size="25" class="inputbox autowidth" autocomplete="off" /></dd>
+							<dd><a href="/app.php/user/forgot_password">I forgot my password</a></dd>				<dd><a href="./ucp.php?mode=resend_act">Resend activation email</a></dd>					</dl>
+						<dl>
+			<dd><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="4" /> Remember me</label></dd>			<dd><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="5" /> Hide my online status this session</label></dd>
+		</dl>
+		
+		<input type="hidden" name="redirect" value="./ucp.php?mode=login&amp;redirect=viewtopic.php%3Ft%3D81989" />
+<input type="hidden" name="creation_time" value="1702229973" />
+<input type="hidden" name="form_token" value="88700fc43e828d27d21c532cb608ad87be8c80b2" />
+
+
+		
+
+		<dl>
+			<dt>&nbsp;</dt>
+			<dd><input type="hidden" name="sid" value="0a5dd2061a1616c2576f19b41ab0588e" />
+<input type="hidden" name="redirect" value="viewtopic.php?t=81989" />
+<input type="submit" name="login" tabindex="6" value="Login" class="button1" /></dd>
+		</dl>
+		</fieldset>
+	</div>
+
+		</div>
+</div>
+
+
+	<div class="panel">
+		<div class="inner">
+
+		<div class="content">
+			<h3>Register</h3>
+			<p>In order to login you must be registered. Registering takes only a few moments but gives you increased capabilities. The board administrator may also grant additional permissions to registered users. Before you register please ensure you are familiar with our terms of use and related policies. Please ensure you read any forum rules as you navigate around the board.</p>
+			<p><strong><a href="./ucp.php?mode=terms">Terms of use</a> | <a href="./ucp.php?mode=privacy">Privacy policy</a></strong></p>
+			<hr class="dashed" />
+			<p><a href="./ucp.php?mode=register" class="button2">Register</a></p>
+		</div>
+
+		</div>
+	</div>
+
+</form>
+
+			</div>
+
+
+	<div class="navbar" role="navigation">
+	<div class="inner">
+
+	<ul id="nav-footer" class="nav-footer linklist" role="menubar">
+		<li class="breadcrumbs">
+									<span class="crumb"><a href="./index.php" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>FreeCAD forum</span></a></span>					</li>
+		
+				<li class="rightside">All times are <span title="UTC">UTC</span></li>
+							<li class="rightside">
+				<a href="./ucp.php?mode=delete_cookies" data-ajax="true" data-refresh="true" role="menuitem">
+					<i class="icon fa-trash fa-fw" aria-hidden="true"></i><span>Delete cookies</span>
+				</a>
+			</li>
+																<li class="rightside" data-last-responsive="true">
+				<a href="./memberlist.php?mode=contactadmin" role="menuitem">
+					<i class="icon fa-envelope fa-fw" aria-hidden="true"></i><span>Contact us</span>
+				</a>
+			</li>
+			</ul>
+
+	</div>
+</div>
+</div>
+
+<div id="page-footer" class="page-width" role="contentinfo">
+	
+	<div class="copyright">
+				<p class="footer-row">
+			<span class="footer-copyright">Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited</span>
+		</p>
+		<p class="footer-row">
+			<span class="footer-copyright">Style by <a href="https://www.artodia.com/">Arty</a> - phpBB 3.3 by MrGaby</span>
+		</p>
+						<p class="footer-row" role="menu">
+			<a class="footer-link" href="./ucp.php?mode=privacy" title="Privacy" role="menuitem">
+				<span class="footer-link-text">Privacy</span>
+			</a>
+			|
+			<a class="footer-link" href="./ucp.php?mode=terms" title="Terms" role="menuitem">
+				<span class="footer-link-text">Terms</span>
+			</a>
+		</p>
+					</div>
+
+	<div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
+		<div id="darken" class="darken">&nbsp;</div>
+	</div>
+
+	<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
+		<a href="#" class="alert_close">
+		</a>
+		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
+	</div>
+	<div id="phpbb_confirm" class="phpbb_alert">
+		<a href="#" class="alert_close">
+		</a>
+		<div class="alert_text"></div>
+	</div>
+</div>
+
+
+<div>
+	<a id="bottom" class="top-anchor" accesskey="z"></a>
+	</div>
+
+<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version=41"></script>
+<script src="./assets/javascript/core.js?assets_version=41"></script>
+
+	<script src="./assets/cookieconsent/cookieconsent.min.js?assets_version=41"></script>
+	<script>
+	if (typeof window.cookieconsent === "object") {
+		window.addEventListener("load", function(){
+			window.cookieconsent.initialise({
+				"palette": {
+					"popup": {
+						"background": "#0F538A"
+					},
+					"button": {
+						"background": "#E5E5E5"
+					}
+				},
+				"theme": "classic",
+				"content": {
+					"message": "This\u0020website\u0020uses\u0020cookies\u0020to\u0020ensure\u0020you\u0020get\u0020the\u0020best\u0020experience\u0020on\u0020our\u0020website.",
+					"dismiss": "Got\u0020it\u0021",
+					"link": "Learn\u0020more",
+                    "href": "./ucp.php?mode=privacy"
+                }
+            });
+        });
+    }
+	</script>
+
+
+<script src="./styles/elegance/template/forum_fn.js?assets_version=41"></script>
+<script src="./styles/elegance/template/ajax.js?assets_version=41"></script>
+
+
+
 </body>
 </html>

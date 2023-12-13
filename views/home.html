@@ -9,27 +9,19 @@
 <link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
 <link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link href="./assets/cookieconsent/cookieconsent.min.css?assets_version=41" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
 <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=GuWXSAQb8zTi5LGi14D0bvnrvSGArLqYES40mmKNhok9sCxsNLQjp7GqfgAf0UnMvn_GVjhbo5GaAy52As7YQg" charset="UTF-8"></script><style type="text/css">
     .mention {
         color: #008ae6;
     }
 </style>
-
-
 <link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
-
-
-
 </head>
 <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
-
-
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="page-header" class="page-width">
 		<div class="headerbar" role="banner">
 					<div class="inner">
-
 			<div id="site-description" class="site-description">
 				<a id="logo" class="logo" href="./index.php" title="FreeCAD forum">
 					<img src="../styles/elegance/themes/images/logo.png" alt="FreeCAD Forum"/>
@@ -38,7 +30,6 @@
 				<p>The help and development forum of FreeCAD</p>
 				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
 			</div>
-
 				    <div id="search-box" class="search-box search-header" role="search">
 				<form action="./search.php" method="get" id="search">
 				<fieldset>
@@ -48,8 +39,7 @@
 					</button>
 					<a href="./search.php" class="button button-search-end" title="Advanced search">
 						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
-					</a>
-					
+					</a>				
 				</fieldset>
 				</form>
 			</div>
@@ -93,7 +83,7 @@
 											</ul>
 			<ul class="rightside" role="menu">
 								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
-					<a class="nav-link" href="/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
 						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
 					</a>
 				</li>
@@ -121,20 +111,10 @@
 		<a id="start_here" class="top-anchor"></a>
 		<div id="page-body" class="page-body" role="main">
 			<div class="navbar">
-		<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
-					
-			
-			<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
-
-				
-							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>
-
-				
-				
-			</li>
-
-		
-		
+		<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">			
+			<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">				
+							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/home" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>		
+			</li>	
 			<li class="rightside responsive-search">
 				<a href="./search.php" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
@@ -163,7 +143,7 @@
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="./viewforum.php?f=7" data-id="7">Users</a></div></dt>
+						<dt><div class="list-inner"><a href="/viewtopic" data-id="7">Users</a></div></dt>
 												<dd class="lastpost"><span>Last post</span></dd>
 					</dl>
 									</li>
@@ -220,7 +200,7 @@
 									<dl class="row-item forum_read elegant-row">
 				<dt title="No unread posts">
 										<div class="list-inner">
-										<a href="/viewforum" class="forumtitle" data-id="10">Developers corner</a>
+										<a href="./viewforum.php?f=10" class="forumtitle" data-id="10">Developers corner</a>
 						<div class="forum-description">Here's the place for discussion related to coding in FreeCAD, C++ or Python. Design, interfaces and structures.</div>													<div class="forum-statistics">
 					<span class="dfn">Topics</span>: <span class="value">4348</span><span class="comma">, </span>
 					<span class="dfn">Posts</span>: <span class="value">51637</span>
@@ -318,7 +298,7 @@
 
 	<ul id="nav-footer" class="nav-footer linklist" role="menubar">
 		<li class="breadcrumbs">
-									<span class="crumb"><a href="./index.php" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>FreeCAD forum</span></a></span>					</li>
+									<span class="crumb"><a href="/home" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>FreeCAD forum</span></a></span>					</li>
 		
 				<li class="rightside">All times are <span title="UTC">UTC</span></li>
 							<li class="rightside">

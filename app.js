@@ -2,7 +2,14 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+var connectdb = require('./connectdb.js');
+var FAQs = require('./controllers/FAQs.js');
+const CreateFAQ = require('./controllers/FAQs.js');
 
+async function connectDb()
+{
+    await connectdb();
+}
 
 // Sử dụng middleware để đọc dữ liệu từ form
 app.use(express.urlencoded({ extended: true }));
@@ -58,6 +65,9 @@ app.get('/question', (req, res) => {
 app.get('/viewpost', (req, res) => {
   res.render('viewpost');
 });
+
+connectDb();
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

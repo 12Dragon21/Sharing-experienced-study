@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+
+
 // Sử dụng middleware để đọc dữ liệu từ form
 app.use(express.urlencoded({ extended: true }));
 // Sử dụng expressstatic để định tuyến router styles
@@ -11,23 +13,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// Đặt tuyến đường cho đường dẫn gốc
+
+// Tuyến đường cho trang đường dẫn gốc
 app.get('/', (req, res) => {
-  res.redirect('/home'); // Chuyển hướng đến trang home
+  res.render('home');
 });
 
 
-// Tuyến đường cho trang home
+// Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
-  res.render('home');
+  res.redirect('/home'); // Chuyển hướng đến trang home
 });
 
 // Tuyến đường cho trang login
 app.get('/login', (req, res) => {
   res.render('login');
 });
-
-
 // Tuyến đường cho trang register
 app.get('/register', (req, res) => {
   res.render('register');

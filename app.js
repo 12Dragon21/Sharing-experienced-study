@@ -3,8 +3,15 @@ const app = express();
 const path = require('path');
 
 var connectdb = require('./connectdb.js');
-var FAQs = require('./controllers/FAQs.js');
 const CreateFAQ = require('./controllers/FAQs.js');
+const getAllFAQs = require('./controllers/FAQs.js');
+
+async function createSampleFAQs() {
+  await CreateFAQ("What is your product?", "Our product is designed to...");
+  await CreateFAQ("How do I contact support?", "You can contact our support team by...")
+  console.log('Sample FAQs created successfully');
+}
+createSampleFAQs();
 
 async function connectDb()
 {
@@ -57,9 +64,23 @@ app.get('/viewtopic', (req, res) => {
 });
 
 // Tuyến đường cho trang question
-app.get('/question', (req, res) => {
-  res.render('question');
+// Assuming you have your express app and other required modules set up
+
+app.get('/question', async (req, res) => {
+  try {
+    await connectdb();
+    console.log('Connected to the database');
+
+    const faqs = await getAllFAQs();
+    const selectedFAQ = faqs[0]; 
+    res.render('question', { faq: selectedFAQ });
+  } catch (error) {
+    // Handle errors
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
+
 
 // Tuyến đường cho trang viewpost
 app.get('/viewpost', (req, res) => {

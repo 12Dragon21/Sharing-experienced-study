@@ -54,22 +54,6 @@ app.get('/viewtopic', (req, res) => {
   res.render('viewtopic');
 });
 
-// Tuyến đường cho trang question
-// Assuming you have your express app and other required modules set up
-
-app.get('/question', async (req, res) => {
-  try {
-    await connectdb();
-    console.log('Connected to the database');
-    const faqs = await getAllFAQs();
-    const selectedFAQ = faqs[0]; 
-    res.render('question', { faq: selectedFAQ });
-  } catch (error) {
-    // Handle errors
-    console.error('Error:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
 // Tuyến đường cho trang addFAQs
 app.get('/addFAQs', (req, res) => {
   res.render('addFAQs');

@@ -96,15 +96,7 @@ app.get('/question', async (req, res) => {
     console.log('Connected to the database');
 
     const faqs = await getAllFAQs();
-
-    if (faqs.length === 1) {
-      // If there's only one FAQ, render the question view with a single FAQ
-      const selectedFAQ = faqs[0];
-      res.render('question', { faq: selectedFAQ });
-    } else {
-      // If there are multiple FAQs, render the question view with a list of FAQs
-      res.render('question', { faqs });
-    }
+    res.render('question', {faqs});
   } catch (error) {
     // Handle errors
     console.error('Error:', error);

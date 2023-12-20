@@ -14,24 +14,17 @@
     <h1>Frequently Asked Questions</h1>
   </header>
 
-  <div class="faq-list">
-	<% if (faq) { %>
-	  <!-- Render a single FAQ -->
-	  <section>
-		<h2><%= faq.Question %></h2>
-		<p><%= faq.Answer %></p>
-	  </section>
-	<% } else if (faqs && faqs.length > 0) { %>
+  <div class="faq-list" props = "faqs">
 	  <!-- Render a list of FAQs -->
+	  <% if (!faqs.length > 0) {%>
+		<p>No FAQs available.</p>
+	  <%} else{%> 
 	  <% faqs.forEach(function(faq, index) { %>
 		<section id="f<%= index %>">
 		  <h2><%= faq.Question %></h2>
 		  <p><%= faq.Answer %></p>
 		</section>
-	  <% }); %>
-	<% } else { %>
-	  <p>No FAQs available.</p>
-	<% } %>
+	  <% }); }%>
   </div>
   
 

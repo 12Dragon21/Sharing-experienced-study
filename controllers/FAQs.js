@@ -1,19 +1,32 @@
 const FAQs = require('../models/FAQs');
 
-const faqSchema = new mongoose.Schema({
-  question: String,
-  answer: String,
-});
-
-const FAQs = mongoose.model('FAQs', faqSchema);
-// CreateFAQ function now accepts question and answer parameters
-async function CreateFAQ(question, answer) {
-    // Create FAQ in the database
-    await FAQs.create({ question, answer });
-  }
-
-// Function to get all FAQs
 async function getAllFAQs() {
-    return FAQs.find();
+  try {
+    // Retrieve all FAQs from the database
+    const faqs = await FAQs.find();
+    return faqs;
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching FAQs:', error);
+    throw error; // Propagate the error to the calling function
   }
-  module.exports = { CreateFAQ, getAllFAQs };
+}
+
+async function createFAQ(question, answer) {
+  try {
+    // Create a new FAQ
+    const newFAQ = new FAQs({ Question: question, Answer: answer });
+    // Save the new FAQ to the database
+    await newFAQ.save();
+    return newFAQ;
+  } catch (error) {
+    // Handle errors
+    console.error('Error creating FAQ:', error);
+    throw error; // Propagate the error to the calling function
+  }
+}
+
+module.exports = {
+  getAllFAQs,
+  createFAQ,
+};

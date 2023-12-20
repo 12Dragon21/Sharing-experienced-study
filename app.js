@@ -3,16 +3,7 @@ const app = express();
 const path = require('path');
 
 var connectdb = require('./connectdb.js');
-const CreateFAQ = require('./controllers/FAQs.js');
-const getAllFAQs = require('./controllers/FAQs.js');
-
-async function createSampleFAQs() {
-  await CreateFAQ("What is your product?", "Our product is designed to...");
-  await CreateFAQ("How do I contact support?", "You can contact our support team by...")
-  console.log('Sample FAQs created successfully');
-}
-createSampleFAQs();
-
+const { createFAQ, getAllFAQs } = require('./controllers/FAQs');
 async function connectDb()
 {
     await connectdb();
@@ -70,7 +61,6 @@ app.get('/question', async (req, res) => {
   try {
     await connectdb();
     console.log('Connected to the database');
-
     const faqs = await getAllFAQs();
     const selectedFAQ = faqs[0]; 
     res.render('question', { faq: selectedFAQ });
@@ -80,7 +70,47 @@ app.get('/question', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+// Tuyến đường cho trang addFAQs
+app.get('/addFAQs', (req, res) => {
+  res.render('addFAQs');
+});
+// Tuyến đường xử lý việc thêm mới FAQ từ form
+app.post('/addfaq', async (req, res) => {
+  try {
+    await connectdb();
+    console.log('Connected to the database');
 
+    const { question, answer } = req.body;
+    const newFAQ = await createFAQ(question, answer);
+    const faqs = await getAllFAQs();
+    res.render('question', { faqs });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+// Tuyến đường cho trang questions
+app.get('/question', async (req, res) => {
+  try {
+    await connectdb();
+    console.log('Connected to the database');
+
+    const faqs = await getAllFAQs();
+
+    if (faqs.length === 1) {
+      // If there's only one FAQ, render the question view with a single FAQ
+      const selectedFAQ = faqs[0];
+      res.render('question', { faq: selectedFAQ });
+    } else {
+      // If there are multiple FAQs, render the question view with a list of FAQs
+      res.render('question', { faqs });
+    }
+  } catch (error) {
+    // Handle errors
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 // Tuyến đường cho trang viewpost
 app.get('/viewpost', (req, res) => {

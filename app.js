@@ -23,11 +23,9 @@ app.set('view engine', 'html');
 app.get('/', (req, res) => {
   res.render('home');
 });
-
-
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
-  res.redirect('/home'); // Chuyển hướng đến trang home
+  res.sendFile(path.join(__dirname, 'homepage', 'home.html'));
 });
 
 // Tuyến đường cho trang login
@@ -87,14 +85,15 @@ app.get('/question', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
 // Tuyến đường cho trang viewpost
 app.get('/viewpost', (req, res) => {
   res.render('viewpost');
 });
-
+// Tuyến đường cho trang viewprofile
+app.get('/viewprofile', (req, res) => {
+  res.render('viewprofile');
+});
 connectDb();
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

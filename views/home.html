@@ -15,6 +15,12 @@
         color: #008ae6;
     }
 </style>
+<style>
+	.icon img {
+	  width: 15px;
+	  height: 15px;
+	}
+  </style>
 <link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
 </head>
 <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
@@ -35,11 +41,16 @@
 				<fieldset>
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
 					<button class="button button-search" type="submit" title="Search">
-						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
-					</button>
-					<a href="./search.php" class="button button-search-end" title="Advanced search">
-						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
-					</a>				
+						<i class="icon">
+						  <img src="../styles/elegance/themes/images/search-icon.jpg" alt="Search Icon">
+						</i><span class="sr-only">Search</span>
+					  </button>
+					  <a href="./search.php" class="button button-search-end" title="Advanced search">
+						<i class="icon">
+						  <img src="../styles/elegance/themes/images/gears.png" alt="Cog Icon">
+						</i><span class="sr-only">Advanced search</span>
+					  </a>
+							  
 				</fieldset>
 				</form>
 			</div>							
@@ -53,23 +64,22 @@
 					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
 					<div class="dropdown">
 						<div class="pointer"><div class="pointer-inner"></div></div>
-						<ul class="dropdown-contents" role="menu">
-								
+						<ul class="dropdown-contents" role="menu">								
 			<li class="separator"></li>
 													<li>
 								<a href="./search.php?search_id=unanswered" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
+									<i aria-hidden="true"></i><span>Unanswered topics</span>
 								</a>
 							</li>
 							<li>
 								<a href="./search.php?search_id=active_topics" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
+									<i  aria-hidden="true"></i><span>Active topics</span>
 								</a>
 							</li>
 							<li class="separator"></li>
 							<li>
 								<a href="./search.php" role="menuitem">
-									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+									<i aria-hidden="true"></i><span>Search</span>
 								</a>
 							</li>	
 	
@@ -86,18 +96,18 @@
 						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
 					</a>
 				</li>
-																									<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/addFAQs" title="Login" accesskey="x" role="menuitem">Login</a></li>
-											<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/register" role="menuitem">Register</a></li>
-																	</ul>
+							<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/addFAQs" title="Login" accesskey="x" role="menuitem">Login</a></li>
+							<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/register" role="menuitem">Register</a></li>
+			</ul>
 		</div>
 	</div>
 </div>
 
 	<div class="navbar secondary">
 		<ul role="menubar">
-												<li class="small-icon icon-search"><a href="/search">Search</a></li>
-															<li class="small-icon icon-login"><a href="./login" title="Login">Login</a></li>
-										<li class="small-icon icon-register"><a href="/register">Register</a></li>
+			<li><a href="/search">Search</a></li>
+			<li><a href="/login" title="Login">Login</a></li>
+			<li><a href="/register">Register</a></li>
 										
 				</ul>
 	</div>
@@ -136,10 +146,10 @@
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="/viewtopic" data-id="7">Users</a></div></dt>
+						<dt><div class="list-inner"><a href="/viewtopic" data-id="7">Thông báo</a></div></dt>
 												<dd class="lastpost"><span>Last post</span></dd>
 					</dl>
-									</li>
+						</li>
 			</ul>
 			<ul class="topiclist forums">
 					<li class="row forum-3">
@@ -177,7 +187,7 @@
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="/viewforum" data-id="6">Development</a></div></dt>
+						<dt><div class="list-inner"><a href="/viewforum" data-id="6">Góc học tập</a></div></dt>
 												<dd class="lastpost"><span>Last post</span></dd>
 					</dl>
 									</li>
@@ -219,7 +229,7 @@
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="./viewforum.php?f=11" data-id="11">Forums in other languages</a></div></dt>
+						<dt><div class="list-inner"><a href="./viewforum.php?f=11" data-id="11">Tài liệu học tập</a></div></dt>
 												<dd class="lastpost"><span>Last post</span></dd>
 					</dl>
 									</li>

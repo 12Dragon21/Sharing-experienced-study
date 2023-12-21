@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 
 var connectdb = require('./connectdb.js');
-const { createFAQ, getAllFAQs } = require('./controllers/FAQs');
+const { createFAQ, getAllFAQs } = require('./controllers/FAQsController.js');
 async function connectDb()
 {
     await connectdb();
@@ -61,10 +61,8 @@ app.post('/addfaq', async (req, res) => {
   try {
     await connectdb();
     console.log('Connected to the database');
-
-    const { question, answer } = req.body;
-    const newFAQ = await createFAQ(question, answer);
-    const faqs = await getAllFAQs();
+    const newFAQ = await createFAQ(req, res);
+    const faqs = await getAllFAQs(req, res);
     res.render('question', { faqs });
   } catch (error) {
     console.error('Error:', error);

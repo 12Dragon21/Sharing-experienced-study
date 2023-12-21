@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const Account = new Schema({
+const AccountSchema = new Schema({
   Username: String,
   Password: String,
   Email: String,
@@ -10,3 +10,5 @@ const Account = new Schema({
   Phone: String,
   ImageURL: String,
 });
+
+module.exports = mongoose.model("Account", AccountSchema)

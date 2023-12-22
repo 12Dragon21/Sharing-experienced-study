@@ -15,10 +15,10 @@ async function createPost(req, res) {
     const newPost = new PostSchema({
         PostName: req.body.postName,
         PostContent: req.body.postContent,
-        PostLike: req.body.postLike,
-        PostDislike: req.body.postDislike,
-        PostDate: req.body.postDate,
-        PostState: req.body.postState
+        PostLike: 0,
+        PostDislike: 0,
+        PostDate: 0,
+        PostState: 0
     });
     const savedPost = await newPost.save();
     return newPost;

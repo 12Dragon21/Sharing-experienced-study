@@ -18,6 +18,23 @@
 <link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
 <link href="./ext/wolfsblvt/advancedpolls/styles/prosilver/theme/advancedpolls.css?assets_version=41" rel="stylesheet" media="screen">
 </head>
+<script>
+	function clearText(element) {
+		if (element.innerText.trim() === 'Nhập tiêu đề' || element.innerText.trim() === 'Nhập nội dung') {
+			element.innerText = '';
+		}
+	}
+
+	function restoreText(element) {
+		if (element.innerText.trim() === '') {
+			if (element.classList.contains('first')) {
+				element.innerText = 'Nhập tiêu đề';
+			} else {
+				element.innerText = 'Nhập nội dung';
+			}
+		}
+	}
+</script>
 <body id="phpbb" class="nojs notouch section-viewtopic ltr " data-online-text="Online">
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="page-header" class="page-width">
@@ -163,56 +180,21 @@
 						
 						
 		</dl>
-<div class="postbody">
+<form class="postbody" action = "/post" method = "post">
     <div id="post_content306531">
-        <h3 class="first" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
+        <h3 class="first" id="postName" name="postName" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
             Nhập tiêu đề
         </h3>
-
-
-        <p class="author">
-            <a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
-                <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-            </a>
-            <span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured">chrisb</a></strong> &raquo; </span>
-            <time datetime="2019-05-08T07:16:20+00:00">Wed May 08, 2019 7:16 am</time>
-        </p>
-
-        <div class="content" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
+        <div class="content" id="postContent" name="postContent" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
             Nhập nội dung
         </div>
     </div>
-
-    <script>
-        function clearText(element) {
-            if (element.innerText.trim() === 'Nhập tiêu đề' || element.innerText.trim() === 'Nhập nội dung') {
-                element.innerText = '';
-            }
-        }
-
-        function restoreText(element) {
-            if (element.innerText.trim() === '') {
-                if (element.classList.contains('first')) {
-                    element.innerText = 'Nhập tiêu đề';
-                } else {
-                    element.innerText = 'Nhập nội dung';
-                }
-            }
-        }
-    </script>
-</div>
-
-		</div>
-    <div class="jumpbox dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control">
-      <span class="button button-secondary dropdown-trigger dropdown-select">
-        <span>Đăng bài</span>
-      
-      </span>
-    </div>
-			</div>
-     
-			</div>
-</div>
-</div>
+	<div class="jumpbox dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control">
+		<button type = "submit" class="button button-secondary dropdown-trigger dropdown-select">
+		  <span>Đăng bài</span>
+		
+		</button>
+	</div>
+</form>
 </body>
 </html>

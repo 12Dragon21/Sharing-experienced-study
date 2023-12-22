@@ -13,6 +13,13 @@ const {
   deleteAccount,
   checkLogin
 } = require('./controllers/AccountController.js');
+const {
+  getAllPost,
+  createPost,
+  getPost,
+  updatePost,
+  deletePost
+} = require('./controllers/PostController.js');
 
 async function connectDb()
 {
@@ -34,7 +41,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 // Tuyến đường cho trang đường dẫn gốc
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('addPost');
 });
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
@@ -135,7 +142,17 @@ app.post('/login', async (req, res) =>
     res.status(500).send('Internal Server Error');
   }
 });
-
+app.post('/post', async (req, res) =>
+{
+  try {
+    console.log(req.body);
+    //await createPost(req, res);
+    //res.render('home');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 connectDb();
 
 const port = 3000;

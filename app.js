@@ -19,13 +19,16 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 // Tuyến đường cho trang đường dẫn gốc
 app.get('/', (req, res) => {
-  res.render('register');
+  res.render('home');
 });
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'homepage', 'home.html'));
 });
-
+// Tuyến đường cho trang addPost
+app.get('/addPost', (req, res) => {
+  res.render('addPost');
+});
 // Tuyến đường cho trang login
 app.get('/login', (req, res) => {
   res.render('login');

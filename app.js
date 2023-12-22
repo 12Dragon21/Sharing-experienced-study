@@ -40,7 +40,10 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, 'homepage', 'home.html'));
 });
-
+// Tuyến đường cho trang addPost
+app.get('/addPost', (req, res) => {
+  res.render('addPost');
+});
 // Tuyến đường cho trang login
 app.get('/login', (req, res) => {
   res.render('login');

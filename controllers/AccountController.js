@@ -14,11 +14,11 @@ async function createAccount(req, res) {
   try {
     const newAccount = new AccountSchema({
       Username: req.body.username,
-      Password: req.body.password,
+      Password: req.body.new_password,
       Email: req.body.email,
       Role: req.body.role,
       Phone: req.body.phone,
-      ImageURL: req.body.imageurl
+      ImageURL: req.file?.path
     });
     const savedAccount = await newAccount.save();
     return newAccount;
@@ -30,13 +30,35 @@ async function createAccount(req, res) {
 
 async function getAccount (req, res) {
   try {
-    const Account = await AccountSchema.findById(req.params.id);
+    const id = req.cookies.name;
+    const Account = await AccountSchema.findById(id);
     return Account;
   } catch (err) {
     res.status(500).json(err);
   }
 }
 
+async function checkLogin (req, res) {
+  try {
+    const Username = req.body.username;
+    const Account = await AccountSchema.findOne({Username});
+    if (Account == null)
+    {
+      res.status(400).json("Không tồn tại user");
+    }
+    else{
+      const Password = req.body.password;
+      if (Account.Password != Password)
+      {
+        res.status(400).json("Sai password");
+      }
+    }
+    res.cookie("name", Account._id, {maxAge: 3600*1000*24});
+    res.status(200).redirect('/viewprofile');
+  } catch (error) {
+    console.error('Error fetching Accounts:', error);
+  }
+}
 async function updateAccount (req, res) {
   try {
     const Account = await AccountSchema.findById(req.params.id);
@@ -59,5 +81,6 @@ module.exports = {
   createAccount,
   getAccount,
   updateAccount,
-  deleteAccount
+  deleteAccount,
+  checkLogin,
 };

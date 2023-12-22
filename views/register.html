@@ -13,7 +13,7 @@
 
 	<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
 
-<<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
 <link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
 <script></script><style type="text/css">
@@ -142,7 +142,6 @@
 		
 		
 <script>
-
     function change_department(department)
     {
         document.forms['register'].department.value = department;
@@ -150,7 +149,7 @@
 </script>
 
 
-<form id="register" method="post" action="./ucp.php?mode=register">
+<form id="register" enctype="multipart/form-data" action='register' method="post">
 
 <div class="panel">
 	<div class="inner">
@@ -219,7 +218,7 @@
 	<dl>
 	<dt><label>Số điện thoại *</label><br /><span>Nhập số điện thoại của bạn</span></dt>
 	<dd class="captcha">
-		<input type="text" tabindex="8" name="qa_answer" id="answer" size="45"  class="inputbox autowidth" title="Answer" />
+		<input type="text" tabindex="8" name="phone" id="answer" size="45"  class="inputbox autowidth" title="Answer" />
 		<input type="hidden" name="qa_confirm_id" id="qa_confirm_id" value="8cb0a7a230bade32156e5e0958976b8b" />
 	</dd>
 	</dl>

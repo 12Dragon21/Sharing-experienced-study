@@ -1,13 +1,28 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-
+require('dotenv').config();
+const fileUploader = require('./configs/cloudinary.config.js');
 var connectdb = require('./connectdb.js');
 const { createFAQ, getAllFAQs } = require('./controllers/FAQsController.js');
+const {
+  getAllAccount,
+  createAccount,
+  getAccount,
+  updateAccount,
+  deleteAccount,
+  checkLogin
+} = require('./controllers/AccountController.js');
+
 async function connectDb()
 {
     await connectdb();
 }
+
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 // Sử dụng middleware để đọc dữ liệu từ form
 app.use(express.urlencoded({ extended: true }));
@@ -19,7 +34,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 // Tuyến đường cho trang đường dẫn gốc
 app.get('/', (req, res) => {
-  res.render('register');
+  res.render('home');
 });
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
@@ -86,14 +101,40 @@ app.get('/viewpost', (req, res) => {
   res.render('viewpost');
 });
 // Tuyến đường cho trang viewprofile
-app.get('/viewprofile', (req, res) => {
-  res.render('viewprofile');
+app.get('/viewprofile', async (req, res) => {
+  const Account = await getAccount(req, res);
+  const ImageURL = Account.ImageURL;
+  res.render('viewprofile', {ImageURL});
 });
 
 app.get('/register', (req, res) => {
   res.render('register');
 });
+app.post('/register', fileUploader.single('avatar'), async (req, res) =>
+{
+  try {
+    await connectdb();
+    console.log('Connected to the database');
+    console.log(req.file);
+    const newAccount = await createAccount(req, res);
+    res.render('home');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.post('/login', async (req, res) =>
+{
+  try {
+    await checkLogin(req, res);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 connectDb();
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

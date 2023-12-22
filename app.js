@@ -17,11 +17,9 @@ app.use('/styles', express.static(path.join(__dirname, 'styles')));
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-
-
 // Tuyến đường cho trang đường dẫn gốc
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('register');
 });
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
@@ -90,6 +88,10 @@ app.get('/viewpost', (req, res) => {
 // Tuyến đường cho trang viewprofile
 app.get('/viewprofile', (req, res) => {
   res.render('viewprofile');
+});
+
+app.get('/register', (req, res) => {
+  res.render('register');
 });
 connectDb();
 const port = 3000;

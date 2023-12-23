@@ -156,13 +156,15 @@
 						</li>
 			</ul>
 			<!-- Display posts -->
-<form id="postForm" action="/viewpost" method="post">
+<form id="postForm" action="/viewpost" method="get">
 	<ul class="topiclist forums">
 	  <dl class="faq" props="posts">
 		<% if (!posts.length > 0) { %>
 		  <p>No FAQs available.</p>
 		<% } else { %>
 		  <% posts.forEach(function (post, index) { %>
+			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
 			<li class="row forum-3">
 			  <!-- Use data-postid attribute to store the post ID -->
 			  <div class="post-id" data-postid="<%= post._id %>"></div>
@@ -172,6 +174,10 @@
 					<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
 					<div class="forum-statistics">
 					  bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
+					  <br>
+					  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span>
+					  <br>
+					  <span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
 					  <br>
 					  <span class="dfn">Bài đăng</span>: <span class="value">224779</span>
 					</div>

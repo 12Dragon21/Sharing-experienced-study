@@ -40,6 +40,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 // Tuyến đường cho trang đường dẫn gốc
 app.get('/', async (req, res) => {
+  //res.render("adminhome");
   try {
     await connectdb();
     console.log('Connected to the database');
@@ -158,7 +159,7 @@ app.post('/register', fileUploader.single('avatar'), async (req, res) =>
     console.log('Connected to the database');
     console.log(req.file);
     const newAccount = await createAccount(req, res);
-    res.render('home');
+    res.status(200).redirect('/home');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
@@ -174,28 +175,34 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-app.post('/post', async (req, res) =>
+app.post('/addpost', async (req, res) =>
 {
   try {
     console.log(req.body);
-    await createPost(req, res);
-    res.render('home');
+    //await createPost(req, res);
+    res.status(200).redirect('/userhome');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-app.get('/viewpost', (req, res) => {
+app.get('/viewpost', async (req, res) => {
   // Xử lý yêu cầu GET ở đây
   const postId = req.query.postid;
   console.log('Received GET request for post ID:', postId);
-  res.render('viewpost', { postId });
+  const post = await getPost(req, res);
+  console.log(post);
+  res.render('viewpost', { post });
 });
 app.post('/viewpost', async (req, res) => {
   const postId = req.body.postid;
   console.log('Received POST request for post ID:', postId);
   // Xử lý logic POST ở đây
   res.render('viewpost', { postId });
+});
+app.get('/adminhome', (req, res) => {
+  // Xử lý yêu cầu GET ở đây
+  res.render('adminhome');
 });
 connectDb();
 const port = 3000;

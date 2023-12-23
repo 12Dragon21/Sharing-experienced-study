@@ -31,7 +31,7 @@ async function createAccount(req, res) {
 
 async function getAccount (req, res) {
   try {
-    const id = req.cookies.name;
+    const id = req.cookies.account;
     const Account = await AccountSchema.findById(id);
     return Account;
   } catch (err) {
@@ -54,8 +54,8 @@ async function checkLogin (req, res) {
         res.status(400).json("Sai password");
       }
     }
-    res.cookie("name", Account._id, {maxAge: 3600*1000*24});
-    res.status(200).redirect('/viewprofile');
+    res.cookie("account", Account._id, {maxAge: 3600*1000*24});
+    res.status(200).redirect('/userhome');
   } catch (error) {
     console.error('Error fetching Accounts:', error);
   }

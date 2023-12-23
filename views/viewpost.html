@@ -121,13 +121,6 @@
 		</li>
 	</ul>
 </div>
-
-		
-		
-<h2 class="topic-title"><a href="./viewtopic.php?t=36205">Guidelines for videos and tutorials</a></h2>
-<div style="display: none !important;">A place to share learning material: written tutorials, videos, etc.<br /></div>
-
-
 <div class="action-bar bar-top">
 	
 			<a href="./posting.php?mode=reply&amp;t=36205" class="button" title="Post a reply">
@@ -198,56 +191,39 @@
 						
 		</dl>
 
-		<div class="postbody">
-						<div id="post_content306531">
-
-						<h3 class="first">
-						<a href="./viewtopic.php?p=306531#p306531">Guidelines for videos and tutorials</a>
-			</h3>
-
-													<ul class="post-buttons">
-																																									<li>
-							<a href="./posting.php?mode=quote&amp;p=306531" title="Reply with quote" class="button button-icon-only">
-								<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i><span class="sr-only">Quote</span>
-							</a>
-						</li>
-														</ul>
-							
-						<p class="author">
-									<a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
-						<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+		<div class="postbody" props="post">
+			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
+			<div id="post_content306531">
+				<h3 class="first">
+					<%=post.PostName%>
+				</h3>
+				<ul class="post-buttons">
+					<a href="./posting.php?mode=quote&amp;p=306531" title="Reply with quote" class="button button-icon-only">
+						<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i><span class="sr-only">Quote</span>
 					</a>
-								<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured">chrisb</a></strong> &raquo; </span><time datetime="2019-05-08T07:16:20+00:00">Wed May 08, 2019 7:16 am</time>
-			</p>
-			
-			
-			
-			<div class="content">I would like to create a sticky topic in this subforum with some guidelines. Please add (and discuss) further proposals for some general rules, which can be compiled in such a topic.<br>
-<br>
-My first suggestion is
-<ul><li><strong class="text-strong">Mention the FreeCAD version used</strong><br>
-<br>
-Every tutorial should start with clearly stating for which version it was made. Video tutorials should state it in the description or at least within the first 15 seconds.</li>
-</ul></div>
-						</div>
-
-		</div>
-
-		</div>
-				<div class="back2top">
-						<a href="#top" class="top" title="Top">
-				<i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
-				<span class="sr-only">Top</span>
-			</a>
-					</div>
+				</ul>
+				<p class="author">
+					<a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
+					<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+					</a>
+					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured">chrisb</a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
+				</p>
+				<div class="content"><%=post.PostContent%><br></div>
 			</div>
+		</div>
 
+		</div>
+			<div class="back2top">
+				<a href="#top" class="top" title="Top">
+					<i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
+					<span class="sr-only">Top</span>
+				</a>
+			</div>
+			</div>
 				<div id="p306733" class="post has-profile bg1">
-		<div class="inner">
-
-	
-
-	<div class="action-bar bar-bottom">
+			<div class="inner">
+			<div class="action-bar bar-bottom">
 	
 			<a href="./posting.php?mode=reply&amp;t=36205" class="button" title="Post a reply">
 							<span>Post Reply</span> <i class="icon fa-reply fa-fw" aria-hidden="true"></i>

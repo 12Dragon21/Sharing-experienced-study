@@ -19,7 +19,7 @@ async function createPost(req, res) {
         PostContent: req.body.postContent,
         PostLike: 0,
         PostDislike: 0,
-        PostDate: 0,
+        PostDate: new Date(),
         PostState: 0
     });
     const savedPost = await newPost.save();
@@ -32,7 +32,7 @@ async function createPost(req, res) {
 
 async function getPost (req, res) {
   try {
-    const Post = await PostSchema.findById(req.params.id);
+    const Post = await PostSchema.findById(req.query.postid);
     return Post;
   } catch (err) {
     res.status(500).json(err);

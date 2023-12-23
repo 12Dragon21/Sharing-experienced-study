@@ -113,11 +113,21 @@ app.get('/viewpost', (req, res) => {
   console.log(req.body)
   res.render('viewpost');
 });
-// Tuyến đường cho trang viewprofile
 app.get('/viewprofile', async (req, res) => {
-  const Account = await getAccount(req, res);
-  const ImageURL = Account.ImageURL;
-  res.render('viewprofile', {ImageURL});
+  try {
+    const Account = await getAccount(req, res);
+    res.render('viewprofile', {
+      username: Account.Username,
+      email: Account.Email,
+      role: Account.Role,
+      phone: Account.Phone,
+      ImageURL: Account.ImageURL,
+      Years: Account.Years,
+    });
+  } catch (error) {
+    console.error('Error fetching user account:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 app.get('/register', (req, res) => {

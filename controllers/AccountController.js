@@ -18,7 +18,8 @@ async function createAccount(req, res) {
       Email: req.body.email,
       Role: req.body.role,
       Phone: req.body.phone,
-      ImageURL: req.file?.path
+      ImageURL: req.file?.path,
+      Years: req.body.academic_year,
     });
     const savedAccount = await newAccount.save();
     return newAccount;

@@ -1,24 +1,75 @@
-<!-- views/addFAQs.html -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
   <title>Add FAQ</title>
+  <style type="text/css">
+    /* Add your additional styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-width {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: #007acc;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007acc;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body>
-  <h1>Add FAQ</h1>
-  
-  <form action="/addfaq" method="post">
-    <label for="question">Question:</label>
-    <input type="text" id="question" name="question" required>
 
-    <label for="answer">Answer:</label>
-    <textarea id="answer" name="answer" rows="4" required></textarea>
+<body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
+  <div id="wrap" class="page-width">
+    <div id="page-body" class="page-body" role="main">
+      <h1>Add FAQ</h1>
 
-    <button type="submit">Add FAQ</button>
-  </form>
+      <form action="/addfaq" method="post">
+        <label for="question">Question:</label>
+        <input type="text" id="question" name="question" required>
+
+        <label for="answer">Answer:</label>
+        <textarea id="answer" name="answer" rows="4" required></textarea>
+
+        <button type="submit">Add FAQ</button>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>

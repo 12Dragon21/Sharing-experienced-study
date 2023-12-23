@@ -17,99 +17,70 @@
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
 <link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
 <script></script><style type="text/css">
-    .mention {
+     .mention {
         color: #008ae6;
+    }
+	.navbar ul.rightside a {
+    color: #ffffff; /* White text color */
+    padding: 10px; /* Add padding for better spacing */
+}
+
+/* Background color for the FAQs and Register links */
+
+	
+    @media (max-width: 767px) {
+        .responsive-hide {
+            display: inline-block;
+        }
+		
     }
 </style>
 <link rel="stylesheet" media="screen">
 </head>
-<body id="phpbb" class="nojs notouch section-ucp ltr " data-online-text="Online">
+<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="page-header" class="page-width">
 		<div class="headerbar" role="banner">
 					<div class="inner">
 			<div id="site-description" class="site-description">
-				<a id="logo" class="logo" href="./index.php" title="FreeCAD forum">
-					<img src="../styles/elegance/themes/images/logo.png" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="FreeCAD Forum"/>
+				<a id="logo" class="logo" href="./index.php" title="Ứng dụng trao đổi kinh nghiệm học tập">
+					<img src="../styles/elegance/themes/images/uit.jpg" width="150" height="80"/>
 				</a>
-				<p class="sitename">FreeCAD Forum</p>
-				<p>The help and development forum of FreeCAD</p>
-				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+				<p class="sitename">Ứng dụng trao đổi kinh nghệm học tập</p>
+				<p>Ứng dụng trao đổi kinh nghệm học tập</p>
+				<p class="skiplink"><a href="#start_here">Bỏ qua</a></p>
 			</div>
-				<div id="search-box" class="search-box search-header" role="search">
+				    <div id="search-box" class="search-box search-header" role="search">
 				<form action="./search.php" method="get" id="search">
-				<fieldset>
-					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
-					<button class="button button-search" type="submit" title="Search">
-						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
-					</button>
-					<a href="./search.php" class="button button-search-end" title="Advanced search">
-						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
-					</a>				
-				</fieldset>
 				</form>
-			</div>
-									
+			</div>							
 			</div>
 					</div>
 <div class="navbar tabbed not-static" role="navigation">
 	<div class="inner page-width">
-		<div class="nav-tabs" data-current-page="register">
+		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
 				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
-					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
-					<div class="dropdown">
-						<div class="pointer"><div class="pointer-inner"></div></div>
-						<ul class="dropdown-contents" role="menu">
-								
-			<li class="separator"></li>
-													<li>
-								<a href="./search.php?search_id=unanswered" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
-								</a>
-							</li>
-							<li>
-								<a href="./search.php?search_id=active_topics" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
-								</a>
-							</li>
-							<li class="separator"></li>
-							<li>
-								<a href="./search.php" role="menuitem">
-									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
-								</a>
-							</li>	
-	
-													</ul>
-					</div>
-				</li>
-												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
-					<a class="nav-link" href="./index.php">Forums</a>
-				</li>
-											</ul>
-			<ul class="rightside" role="menu">
-								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
-					<a class="nav-link" href="/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem">
-						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
-					</a>
-				</li>
-																									<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="./ucp.php?mode=login&amp;redirect=ucp.php%3Fmode%3Dregister" title="Login" accesskey="x" role="menuitem">Login</a></li>
-											<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="./ucp.php?mode=register" role="menuitem">Register</a></li>
-																	</ul>
+					
+					
+				</ul>
+			<ul class="rightside" >	
+			</ul>
 		</div>
 	</div>
 </div>
 
-<div class="navbar secondary">
-	<ul role="menubar">
-											<li class="small-icon icon-search"><a href="./search.php">Search</a></li>
-														<li class="small-icon icon-login"><a href="./ucp.php?mode=login&amp;redirect=ucp.php%3Fmode%3Dregister" title="Login">Login</a></li>
-									<li class="small-icon icon-register"><a href="./ucp.php?mode=register">Register</a></li>
-									
-			</ul>
-</div>
-
+	<div class="navbar secondary">
+		<ul role="menubar">
+			<li><a href="/search">Search</a></li>
+			<li><a href="/login" title="Login">Login</a></li>
+			<li><a href="/register">Register</a></li>
+			<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">Login</a></li>
+			<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Register</a></li>			
+				</ul>
 	</div>
+
+		</div>
 
 <div id="wrap" class="page-width">
 

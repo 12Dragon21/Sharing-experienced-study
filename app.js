@@ -43,16 +43,38 @@ app.get('/', async (req, res) => {
   try {
     await connectdb();
     console.log('Connected to the database');
-    const posts = await getAllPost(req, res);
-    res.render('home', { posts });
+    const page = parseInt(req.query.page) || 1;
+    const postsPerPage = 5; // Adjust this value as needed
+    const posts = await getAllPost(req, res, page, postsPerPage);
+    res.render('home', { posts, currentPage: page });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-// Đặt tuyến đường cho home
-app.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, 'homepage', 'home.html'));
+
+app.get('/home', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const postsPerPage = 5;
+    const posts = await getAllPost(req, res, page, postsPerPage);
+    res.render('home', { posts, currentPage: page });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/userhome', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const postsPerPage = 5;
+    const posts = await getAllPost(req, res, page, postsPerPage);
+    res.render('userhome', { posts, currentPage: page });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 // Tuyến đường cho trang addPost
 app.get('/addPost', (req, res) => {
@@ -142,10 +164,11 @@ app.post('/register', fileUploader.single('avatar'), async (req, res) =>
     res.status(500).send('Internal Server Error');
   }
 });
-app.post('/login', async (req, res) =>
-{
+app.post('/login', async (req, res) => {
   try {
-    await checkLogin(req, res);
+    // ...
+    // Assuming the login is successful, redirect to userhome
+    res.redirect('/userhome');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
@@ -168,7 +191,6 @@ app.get('/viewpost', (req, res) => {
   console.log('Received GET request for post ID:', postId);
   res.render('viewpost', { postId });
 });
-
 app.post('/viewpost', async (req, res) => {
   const postId = req.body.postid;
   console.log('Received POST request for post ID:', postId);
@@ -176,7 +198,6 @@ app.post('/viewpost', async (req, res) => {
   res.render('viewpost', { postId });
 });
 connectDb();
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

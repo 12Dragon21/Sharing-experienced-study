@@ -14,6 +14,20 @@
     .mention {
         color: #008ae6;
     }
+	.navbar ul.rightside a {
+    color: #ffffff; /* White text color */
+    padding: 10px; /* Add padding for better spacing */
+}
+
+/* Background color for the FAQs and Register links */
+
+	
+    @media (max-width: 767px) {
+        .responsive-hide {
+            display: inline-block;
+        }
+		
+    }
 </style>
 <script>
 	function getPost(postId) {
@@ -80,38 +94,10 @@
 		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
 				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
-					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
-					<div class="dropdown">
-						<div class="pointer"><div class="pointer-inner"></div></div>
-						<ul class="dropdown-contents" role="menu">								
-			<li class="separator"></li>
-													<li>
-								<a href="./search.php?search_id=unanswered" role="menuitem">
-									<i aria-hidden="true"></i><span>Unanswered topics</span>
-								</a>
-							</li>
-							<li>
-								<a href="./search.php?search_id=active_topics" role="menuitem">
-									<i  aria-hidden="true"></i><span>Active topics</span>
-								</a>
-							</li>
-							<li class="separator"></li>
-							<li>
-								<a href="./search.php" role="menuitem">
-									<i aria-hidden="true"></i><span>Search</span>
-								</a>
-							</li>	
-	
-													</ul>
-					</div>
-				</li>
-												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
-					<a class="nav-link" href="./index.php">Forums</a>
-				</li>
-											</ul>
-			<ul class="rightside" role="menu">
-							<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">Login</a></li>
-							<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Register</a></li>
+					
+					
+				</ul>
+			<ul class="rightside" >	
 			</ul>
 		</div>
 	</div>
@@ -122,7 +108,8 @@
 			<li><a href="/search">Search</a></li>
 			<li><a href="/login" title="Login">Login</a></li>
 			<li><a href="/register">Register</a></li>
-										
+			<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">Login</a></li>
+			<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Register</a></li>			
 				</ul>
 	</div>
 
@@ -154,34 +141,47 @@
 					</dl>
 						</li>
 			</ul>
-			<form id="postForm" action="/viewpost" method="post">
-				<ul class="topiclist forums">                
-					<dl class="faq" props="posts">
-						<% if (!posts.length > 0) { %>
-							<p>No FAQs available.</p>
-						<% } else { %>
-							<% posts.forEach(function (post, index) { %>
-								<li class="row forum-3">
-									<!-- Use data-postid attribute to store the post ID -->
-									<div class="post-id" data-postid="<%= post._id %>"></div>
-									<dl class="row-item forum_read elegant-row">
-										<dt title="No unread posts">
-											<div class="list-inner">
-												<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
-												<div class="forum-statistics">
-													bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
-													<br>
-													<span class="dfn">Bài đăng</span>: <span class="value">224779</span>
-												</div>
-											</div>
-										</dt>
-									</dl>
-								</li>
-							<% }); %>
-						<% } %>
-					</dl>
-				</ul>
-			</form>
+			<!-- Display posts -->
+<form id="postForm" action="/viewpost" method="post">
+	<ul class="topiclist forums">
+	  <dl class="faq" props="posts">
+		<% if (!posts.length > 0) { %>
+		  <p>No FAQs available.</p>
+		<% } else { %>
+		  <% posts.forEach(function (post, index) { %>
+			<li class="row forum-3">
+			  <!-- Use data-postid attribute to store the post ID -->
+			  <div class="post-id" data-postid="<%= post._id %>"></div>
+			  <dl class="row-item forum_read elegant-row">
+				<dt title="No unread posts">
+				  <div class="list-inner">
+					<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
+					<div class="forum-statistics">
+					  bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
+					  <br>
+					  <span class="dfn">Bài đăng</span>: <span class="value">224779</span>
+					</div>
+				  </div>
+				</dt>
+			  </dl>
+			</li>
+		  <% }); %>
+		<% } %>
+	  </dl>
+	</ul>
+  </form>
+  
+  <!-- Pagination controls -->
+  <div class="pagination">
+	<% if (currentPage > 1) { %>
+	  <a href="/home?page=<%= currentPage - 1 %>">Trang trước</a>
+	<% } %>
+  
+	<!-- You can dynamically generate page numbers based on the total number of posts -->
+	<span>Trang <%= currentPage %></span>
+  
+	<a href="/home?page=<%= currentPage + 1 %>">Trang sau</a>
+  </div>
 		
 				<div class="forabg category-6 elegant" data-hide-description="1">
 		
@@ -234,9 +234,6 @@
 							<a href="/app.php/user/forgot_password">I forgot my password</a>
 							<span class="responsive-hide">|</span> <label for="autologin">Remember me <input type="checkbox" tabindex="4" name="autologin" id="autologin" /></label>
 						<input type="submit" tabindex="5" name="login" value="Login" class="button2" />
-			<input type="hidden" name="redirect" value="./index.php?" />
-<input type="hidden" name="creation_time" value="1702229438" />
-<input type="hidden" name="form_token" value="853f1e667ad3ddedd3c19c8f7a236ddfa8f60bd1" />
 		</fieldset>
 	</form>
 			</div>

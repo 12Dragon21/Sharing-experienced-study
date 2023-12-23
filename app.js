@@ -108,11 +108,7 @@ app.get('/question', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-// Tuyến đường cho trang viewpost
-app.get('/viewpost', (req, res) => {
-  console.log(req.body);
-  res.render('viewpost');
-});
+
 app.get('/viewprofile', async (req, res) => {
   try {
     const Account = await getAccount(req, res);
@@ -165,6 +161,19 @@ app.post('/post', async (req, res) =>
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
+});
+app.get('/viewpost', (req, res) => {
+  // Xử lý yêu cầu GET ở đây
+  const postId = req.query.postid;
+  console.log('Received GET request for post ID:', postId);
+  res.render('viewpost', { postId });
+});
+
+app.post('/viewpost', async (req, res) => {
+  const postId = req.body.postid;
+  console.log('Received POST request for post ID:', postId);
+  // Xử lý logic POST ở đây
+  res.render('viewpost', { postId });
 });
 connectDb();
 

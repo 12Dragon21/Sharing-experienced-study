@@ -15,6 +15,25 @@
         color: #008ae6;
     }
 </style>
+<script>
+	function getPost(postId) {
+	   console.log('Clicked post ID:', postId);
+	   var form = document.createElement('form');
+	   form.method = 'GET';
+	   form.action = '/viewpost';
+ 
+	   var hiddenPostIdInput = document.createElement("input");
+	   hiddenPostIdInput.type = "hidden";
+	   hiddenPostIdInput.name = "postid";
+	   hiddenPostIdInput.value = postId;
+ 
+	   form.appendChild(hiddenPostIdInput);
+ 
+	   document.body.appendChild(form);
+	   form.submit();
+	}
+ </script>
+
 <style>
 	.icon img {
 	  width: 15px;
@@ -150,42 +169,35 @@
 					</dl>
 						</li>
 			</ul>
-			<form id="postForm" action="/viewpost" method="get">
-				<ul class="topiclist forums">				
+			<form id="postForm" action="/viewpost" method="post">
+				<ul class="topiclist forums">                
 					<dl class="faq" props="posts">
 						<% if (!posts.length > 0) { %>
 							<p>No FAQs available.</p>
 						<% } else { %>
 							<% posts.forEach(function (post, index) { %>
 								<li class="row forum-3">
-									<div id="postid" style="display: none;"><%=post._id%></div>
+									<!-- Use data-postid attribute to store the post ID -->
+									<div class="post-id" data-postid="<%= post._id %>"></div>
 									<dl class="row-item forum_read elegant-row">
 										<dt title="No unread posts">
 											<div class="list-inner">
-												<a class="forumtitle" onclick="getPost()"><%= post.PostName %></a>													
-											<div class="forum-statistics">
-												bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
-												<br>
-											<span class="dfn">Bài đăng</span>: <span class="value">224779</span>
+												<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
+												<div class="forum-statistics">
+													bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
+													<br>
+													<span class="dfn">Bài đăng</span>: <span class="value">224779</span>
+												</div>
+											</div>
 										</dt>
 									</dl>
 								</li>
 							<% }); %>
 						<% } %>
 					</dl>
+				</ul>
 			</form>
-			<script>
-				function getPost() {
-					var postid = document.getElementById("postid").innerText.trim();
-					console.log(postid);
-					var hiddenPostIdInput = document.createElement("input");
-					hiddenPostIdInput.type = "hidden";
-					hiddenPostIdInput.name = "postid";
-					hiddenPostIdInput.value = postid;
-					document.getElementById("postForm").appendChild(hiddenPostIdInput);
-				  	document.getElementById("postForm").submit();
-				}
-			  </script>
+		
 				<div class="forabg category-6 elegant" data-hide-description="1">
 		
 				<div class="forabg category-11 elegant" data-hide-description="1">

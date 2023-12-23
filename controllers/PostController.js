@@ -21,7 +21,7 @@ async function createPost(req, res) {
         PostState: 0
     });
     const savedPost = await newPost.save();
-    return newPost;
+    return savedPost;
   } catch (error) {
     console.error('Error creating Post:', error);
     throw error;

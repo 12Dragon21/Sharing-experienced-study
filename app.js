@@ -146,8 +146,8 @@ app.post('/post', async (req, res) =>
 {
   try {
     console.log(req.body);
-    //await createPost(req, res);
-    //res.render('home');
+    await createPost(req, res);
+    res.render('home');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

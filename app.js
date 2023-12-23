@@ -110,7 +110,7 @@ app.get('/question', async (req, res) => {
 });
 // Tuyến đường cho trang viewpost
 app.get('/viewpost', (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   res.render('viewpost');
 });
 app.get('/viewprofile', async (req, res) => {

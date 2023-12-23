@@ -177,11 +177,12 @@
 			<script>
 				function getPost() {
 					var postid = document.getElementById("postid").innerText.trim();
-					var hiddenPostNameInput = document.createElement("input");
-					hiddenPostNameInput.type = "hidden";
-					hiddenPostNameInput.name = "postName";
-					hiddenPostNameInput.value = postid;
-					document.getElementById("postForm").appendChild(hiddenPostNameInput);
+					console.log(postid);
+					var hiddenPostIdInput = document.createElement("input");
+					hiddenPostIdInput.type = "hidden";
+					hiddenPostIdInput.name = "postid";
+					hiddenPostIdInput.value = postid;
+					document.getElementById("postForm").appendChild(hiddenPostIdInput);
 				  	document.getElementById("postForm").submit();
 				}
 			  </script>

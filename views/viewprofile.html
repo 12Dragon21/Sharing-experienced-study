@@ -1,51 +1,202 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en-gb">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Profile - FreeCAD Forum</title>
-    <!-- Include necessary CSS stylesheets and scripts here -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FreeCAD Forum - FreeCAD forum</title>
+<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
+<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+<link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
+<script></script><style type="text/css">
+    .mention {
+        color: #008ae6;
+    }
+</style>
+<style>
+	.icon img {
+	  width: 15px;
+	  height: 15px;
+	}
+    .avatar-container {
+            float: right;
+            margin-left: 20px; /* Điều chỉnh khoảng cách nếu cần */
+            width: 120px; /* Điều chỉnh kích thước nếu cần */
+            height: 120px;
+            overflow: hidden;
+            position: relative; /* Đặt position là relative để có thể định vị chữ */
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-label {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff; /* Màu nền của chữ */
+            padding: 5px 10px; /* Điều chỉnh khoảng cách của chữ với lề trái và lề phải */
+            border-radius: 5px; /* Bo góc của chữ */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+  </style>
+<link rel="stylesheet" media="screen">
 </head>
-<body>
-    <div props="ImageURL">
-        <img src =  "<%= ImageURL %>">
-    </div>
-    <div id="page-header" class="page-width">
-        <!-- Header content including logo, site description, navigation, etc. -->
-    </div>
+<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header" class="page-width">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+			<div id="site-description" class="site-description">
+				<a id="logo" class="logo" href="./index.php" title="FreeCAD forum">
+					<img src="../styles/elegance/themes/images/logo.png" alt="FreeCAD Forum"/>
+				</a>
+				<p class="sitename">FreeCAD Forum</p>
+				<p>The help and development forum of FreeCAD</p>
+				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+			</div>
+				    <div id="search-box" class="search-box search-header" role="search">
+				<form action="./search.php" method="get" id="search">
+				<fieldset>
+					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
+					<button class="button button-search" type="submit" title="Search">
+						<i class="icon">
+						  <img src="../styles/elegance/themes/images/search-icon.jpg" alt="Search Icon">
+						</i><span class="sr-only">Search</span>
+					  </button>
+					  <a href="./search.php" class="button button-search-end" title="Advanced search">
+						<i class="icon">
+						  <img src="../styles/elegance/themes/images/gears.png" alt="Cog Icon">
+						</i><span class="sr-only">Advanced search</span>
+					  </a>
+							  
+				</fieldset>
+				</form>
+			</div>							
+			</div>
+					</div>
+<div class="navbar tabbed not-static" role="navigation">
+	<div class="inner page-width">
+		<div class="nav-tabs" data-current-page="index">
+			<ul class="leftside">
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
+					<div class="dropdown">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<ul class="dropdown-contents" role="menu">								
+			<li class="separator"></li>
+													<li>
+								<a href="./search.php?search_id=unanswered" role="menuitem">
+									<i aria-hidden="true"></i><span>Unanswered topics</span>
+								</a>
+							</li>
+							<li>
+								<a href="./search.php?search_id=active_topics" role="menuitem">
+									<i  aria-hidden="true"></i><span>Active topics</span>
+								</a>
+							</li>
+							<li class="separator"></li>
+							<li>
+								<a href="./search.php" role="menuitem">
+									<i aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>	
+	
+													</ul>
+					</div>
+				</li>
+												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
+					<a class="nav-link" href="./index.php">Forums</a>
+				</li>
+											</ul>
+			<ul class="rightside" role="menu">
+								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
+						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+					</a>
+				</li>
+							<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/addFAQs" title="Login" accesskey="x" role="menuitem">Login</a></li>
+							<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/register" role="menuitem">Register</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 
-    <div id="page-body" class="page-body" role="main">
-        <div id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks">
-            <!-- Breadcrumbs information -->
-        </div>
+	<div class="navbar secondary">
+		<ul role="menubar">
+			<li><a href="/search">Search</a></li>
+			<li><a href="/login" title="Login">Login</a></li>
+			<li><a href="/register">Register</a></li>
+										
+				</ul>
+	</div>
 
-        <h2 class="topic-title">User Profile</h2>
+		</div>
 
-        <div class="user-profile">
-            <div class="profile-info">
-                <!-- User's profile information (e.g., avatar, username, rank, post count, join date, etc.) -->
+	<div id="wrap" class="page-width">
+
+		
+		<a id="start_here" class="top-anchor"></a>
+		<div id="wrap" class="page-width">
+            <div id="page-body" class="page-body" role="main">
+                <div class="panel">
+                    <div class="inner">
+                        <h2>User Profile</h2>
+    
+                        <fieldset class="fields2">
+                            <div class="avatar-container">
+                                <img src="<%= ImageURL %>" alt="Avatar" />
+                               
+                            </div>
+                            <dl>
+                                <dt><label for="username">Họ và tên:</label></dt>
+                                <dd><span><%= username %></span></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="email">Email:</label></dt>
+                                <dd><span><%= email %></span></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="year">Năm nhập học:</label></dt>
+                                <dd><span><%= Years %></span></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="phone">Số điện thoại:</label></dt>
+                                <dd><span><%= phone %></span></dd>
+                            </dl>
+    
+                            <!-- Add other profile fields as needed -->
+    
+                           
+    
+                        </fieldset>
+                    </div>
+                </div>
+    
+                <!-- Add additional panels for other sections of the profile -->
+    
             </div>
-
-            <div class="profile-posts">
-                <!-- User's posts and other relevant information -->
-            </div>
         </div>
+			
 
-        <!-- Other profile-related content goes here -->
-
-        <div class="back2top">
-            <a href="#top" class="top" title="Top">
-                <i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
-                <span class="sr-only">Top</span>
-            </a>
-        </div>
-    </div>
-
-    <div id="page-footer" class="page-width" role="contentinfo">
-        <!-- Footer content including copyright information, privacy, terms, etc. -->
-    </div>
-
-    <!-- Include necessary scripts at the end of the body -->
+</div>
+				
+				
+			
+		
+				
+	
+			</div>
+	<div class="navbar" role="navigation">
+</div>
+</div>
+<div id="page-footer" class="page-width" role="contentinfo">
+</div>
 </body>
 </html>

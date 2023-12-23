@@ -26,7 +26,6 @@ async function connectDb()
     await connectdb();
 }
 
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
@@ -40,8 +39,16 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 // Tuyến đường cho trang đường dẫn gốc
-app.get('/', (req, res) => {
-  res.render('addPost');
+app.get('/', async (req, res) => {
+  try {
+    await connectdb();
+    console.log('Connected to the database');
+    const posts = await getAllPost(req, res);
+    res.render('home', { posts });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 // Đặt tuyến đường cho home
 app.get('/home', (req, res) => {
@@ -68,11 +75,6 @@ app.get('/search', (req, res) => {
 // Tuyến đường cho trang viewforum
 app.get('/viewforum', (req, res) => {
   res.render('viewforum');
-});
-
-// Tuyến đường cho trang viewtopic
-app.get('/viewtopic', (req, res) => {
-  res.render('viewtopic');
 });
 
 // Tuyến đường cho trang addFAQs
@@ -108,6 +110,7 @@ app.get('/question', async (req, res) => {
 });
 // Tuyến đường cho trang viewpost
 app.get('/viewpost', (req, res) => {
+  console.log(req.body)
   res.render('viewpost');
 });
 // Tuyến đường cho trang viewprofile

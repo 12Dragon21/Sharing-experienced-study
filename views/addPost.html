@@ -50,7 +50,7 @@
 				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
 			</div>
 
-				<div id="search-box" class="search-box search-header" role="search">
+															<div id="search-box" class="search-box search-header" role="search">
 				<form action="./search.php" method="get" id="search">
 				<fieldset>
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
@@ -180,40 +180,21 @@
 						
 						
 		</dl>
-		<form id="postForm" class="postbody" action="/post" method="post">
-			<div id="post_content306531">
-			  <h3 class="first" id="postName" name="postName" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
-				Nhập tiêu đề
-			  </h3>
-			  <div class="content" id="postContent" name="postContent" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
-				Nhập nội dung
-			  </div>
-			</div>
-			<div class="jumpbox dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control">
-			  <button type="button" class="button button-secondary dropdown-trigger dropdown-select" onclick="submitForm()">
-				<span>Đăng bài</span>
-			  </button>
-			</div>
-		  </form>  
-		  <script>
-			function submitForm() {
-			  var postName = document.getElementById("postName").innerText.trim();
-			  var postContent = document.getElementById("postContent").innerText.trim();
-			  var hiddenPostNameInput = document.createElement("input");
-			  hiddenPostNameInput.type = "hidden";
-			  hiddenPostNameInput.name = "postName";
-			  hiddenPostNameInput.value = postName;
-			  document.getElementById("postForm").appendChild(hiddenPostNameInput);
-		  
-			  var hiddenPostContentInput = document.createElement("input");
-			  hiddenPostContentInput.type = "hidden";
-			  hiddenPostContentInput.name = "postContent";
-			  hiddenPostContentInput.value = postContent;
-			  document.getElementById("postForm").appendChild(hiddenPostContentInput);
-		  
-			  // Submit the form
-			  document.getElementById("postForm").submit();
-			}
-		  </script>
+<form class="postbody" action = "/post" method = "post">
+    <div id="post_content306531">
+        <h3 class="first" id="postName" name="postName" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
+            Nhập tiêu đề
+        </h3>
+        <div class="content" id="postContent" name="postContent" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
+            Nhập nội dung
+        </div>
+    </div>
+	<div class="jumpbox dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control">
+		<button type = "submit" class="button button-secondary dropdown-trigger dropdown-select">
+		  <span>Đăng bài</span>
+		
+		</button>
+	</div>
+</form>
 </body>
 </html>

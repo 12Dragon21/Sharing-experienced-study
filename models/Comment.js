@@ -6,8 +6,8 @@ const CommentSchema = new Schema({
   CmtContent: String,
   CmtDate: Date,
   CmtLike: Number,
-  CmtDisLike:Number,
-  PostID: {type: ObjectId, ref: 'Post'}
+  CmtDisLike: Number,
+  PostID: { type: ObjectId, ref: 'Post' },
 });
 
 module.exports = mongoose.model("Comment", CommentSchema)

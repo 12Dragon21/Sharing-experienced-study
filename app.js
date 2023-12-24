@@ -6,6 +6,7 @@ const fileUploader = require('./configs/cloudinary.config.js');
 var connectdb = require('./connectdb.js');
 const { createFAQ, getAllFAQs } = require('./controllers/FAQsController.js');
 const {
+  
   getAllAccount,
   createAccount,
   getAccount,
@@ -18,7 +19,8 @@ const {
   createPost,
   getPost,
   updatePost,
-  deletePost
+  deletePost,
+  getPostWithUser
 } = require('./controllers/PostController.js');
 
 async function connectDb()
@@ -203,6 +205,16 @@ app.post('/viewpost', async (req, res) => {
 app.get('/adminhome', (req, res) => {
   // Xử lý yêu cầu GET ở đây
   res.render('adminhome');
+});
+
+app.post('/addcomment', async (req, res) => {
+  try {
+    const newComment = await createComment(req, res);
+    res.redirect(`/viewpost?postid=${req.body.postId}`);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 connectDb();
 const port = 3000;

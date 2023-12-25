@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 async function getAllPost(req, res, page = 1, postsPerPage = 5) {
   try {
     const skip = (page - 1) * postsPerPage;
+    const abc = await PostSchema.find();
     const Posts = await PostSchema.find().skip(skip).limit(postsPerPage);
+    console.log(abc);
     return Posts;
   } catch (error) {
     console.error('Error fetching Posts:', error);
@@ -14,6 +16,7 @@ async function getAllPost(req, res, page = 1, postsPerPage = 5) {
 
 async function createPost(req, res) {
   try {
+    console.log(req.body);
     const newPost = new PostSchema({
         PostName: req.body.postName,
         PostContent: req.body.postContent,

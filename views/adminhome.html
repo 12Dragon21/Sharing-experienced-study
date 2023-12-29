@@ -10,7 +10,7 @@
 <link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
 <link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
-<script ></script><style type="text/css">
+<script></script><style type="text/css">
     .mention {
         color: #008ae6;
     }
@@ -29,6 +29,32 @@
 		
     }
 </style>
+<script>
+	function getPost(postId) {
+	   console.log('Clicked post ID:', postId);
+	   var form = document.createElement('form');
+	   form.method = 'GET';
+	   form.action = '/viewpost';
+ 
+	   var hiddenPostIdInput = document.createElement("input");
+	   hiddenPostIdInput.type = "hidden";
+	   hiddenPostIdInput.name = "postid";
+	   hiddenPostIdInput.value = postId;
+ 
+	   form.appendChild(hiddenPostIdInput);
+ 
+	   document.body.appendChild(form);
+	   form.submit();
+	}
+ </script>
+
+<style>
+	.icon img {
+	  width: 15px;
+	  height: 15px;
+	}
+  </style>
+<link rel="stylesheet" media="screen">
 </head>
 <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
 	<a id="top" class="top-anchor" accesskey="t"></a>
@@ -97,23 +123,13 @@
 			<div class="navbar">
 		<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">			
 			<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">				
-							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/home" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>		
+							<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/home" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Ứng dụng trao đổi kinh nghiệm học tập</span></a><meta itemprop="position" content="1" /></span>		
 			</li>	
 			<li class="rightside responsive-search">
 				<a href="./search.php" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
 				</a>
 			</li>
-				<li class="rightside dropdown-container icon-only">
-			<a href="#" class="dropdown-trigger time" title="It is currently Sun Dec 10, 2023 5:30 pm"><i class="fa fa-clock-o"></i></a>
-			<div class="dropdown">
-				<div class="pointer"><div class="pointer-inner"></div></div>
-				<ul class="dropdown-contents">
-					<li>It is currently Sun Dec 10, 2023 5:30 pm</li>
-					<li>All times are <span title="UTC">UTC</span></li>
-				</ul>
-			</div>
-		</li>
 	</ul>
 </div>
 				<div class="forabg category-7 elegant" data-hide-description="1">
@@ -121,91 +137,65 @@
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="/viewtopic" data-id="7">Users</a></div></dt>
-												<dd class="lastpost"><span>Last post</span></dd>
+						<dt><div class="list-inner"><a data-id="7">Hỏi đáp</a></div></dt>
 					</dl>
-									</li>
+						</li>
 			</ul>
-			<ul class="topiclist forums">
-					<li class="row forum-3">
-									<dl class="row-item forum_read elegant-row">
+			<!-- Display posts -->
+<form id="postForm" action="/viewpost" method="post">
+	<ul class="topiclist forums">
+	  <dl class="faq" props="posts">
+		<% if (!posts.length > 0) { %>
+		  <p>No FAQs available.</p>
+		<% } else { %>
+		  <% posts.forEach(function (post, index) { %>
+			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
+			<li class="row forum-3">
+			  <!-- Use data-postid attribute to store the post ID -->
+			  <div class="post-id" data-postid="<%= post._id %>"></div>
+			  <dl class="row-item forum_read elegant-row">
 				<dt title="No unread posts">
-										<div class="list-inner">
-																		<a href="/viewforum" class="forumtitle" data-id="3">Help on using FreeCAD</a>
-						<div class="forum-description">Post here for help on using FreeCAD's graphical user interface (GUI).</div>													<div class="forum-statistics">
-					<span class="dfn">Topics</span>: <span class="value">27407</span><span class="comma">, </span>
-					<span class="dfn">Posts</span>: <span class="value">224779</span>
-				</div>
-						
-												
-																										<div class="forum-lastpost" style="display: none;">
-								<span><strong>Last post:</strong> <a href="./viewtopic.php?p=724709#p724709" title="Help with rub rail extrusion" class="lastsubject">Help with rub rail extrusion</a></span>
-								<span>by <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>, Sun Dec 10, 2023 4:40 pm</span>
-							</div>
-																		</div>
+				  <div class="list-inner">
+					<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
+					<div class="forum-statistics">
+					  bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
+					  <br>
+					  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span>
+					  <br>
+					  <span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
+					</div>
+				  </div>
 				</dt>
-														<dd class="lastpost">
-						<span>
-							
-															<dfn>Last post</dfn>
-																										<a href="./viewtopic.php?p=724709#p724709" title="Help with rub rail extrusion" class="lastsubject">Help with rub rail extrusion</a> <br />
-																	by <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>																	<a href="./viewtopic.php?p=724709#p724709" title="View the latest post">
-										<i class="icon fa-external-link-square fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">View the latest post</span>
-									</a>
-																<br /><time datetime="2023-12-10T16:40:49+00:00">Sun Dec 10, 2023 4:40 pm</time>
-													</span>
-					</dd>
-							</dl>
-					</li>		
+			  </dl>
+			</li>
+		  <% }); %>
+		<% } %>
+	  </dl>
+	</ul>
+  </form>
+  
+  <!-- Pagination controls -->
+  <div class="pagination">
+	<% if (currentPage > 1) { %>
+	  <a href="/home?page=<%= currentPage - 1 %>">Trang trước</a>
+	<% } %>
+  
+	<!-- You can dynamically generate page numbers based on the total number of posts -->
+	<span>Trang <%= currentPage %></span>
+  
+	<a href="/home?page=<%= currentPage + 1 %>">Trang sau</a>
+  </div>
+		
 				<div class="forabg category-6 elegant" data-hide-description="1">
-			<div class="inner">
-			<ul class="topiclist">
-				<li class="header">
-										<dl class="row-item">
-						<dt><div class="list-inner"><a href="/viewforum" data-id="6">Development</a></div></dt>
-												<dd class="lastpost"><span>Last post</span></dd>
-					</dl>
-									</li>
-			</ul>
-			<ul class="topiclist forums">
-	
-					<li class="row forum-10">
-									<dl class="row-item forum_read elegant-row">
-				<dt title="No unread posts">
-										<div class="list-inner">
-										<a href="./viewforum.php?f=10" class="forumtitle" data-id="10">Developers corner</a>
-						<div class="forum-description">Here's the place for discussion related to coding in FreeCAD, C++ or Python. Design, interfaces and structures.</div>													<div class="forum-statistics">
-					<span class="dfn">Topics</span>: <span class="value">4348</span><span class="comma">, </span>
-					<span class="dfn">Posts</span>: <span class="value">51637</span>
-				</div>											
-																										<div class="forum-lastpost" style="display: none;">
-								<span><strong>Last post:</strong> <a href="./viewtopic.php?p=724595#p724595" title="Re: Rendering workflow using Blender" class="lastsubject">Re: Rendering workflow using …</a></span>
-								<span>by <a href="./memberlist.php?mode=viewprofile&amp;u=4119" class="username">prrvchr</a>, Sun Dec 10, 2023 8:00 am</span>
-							</div>
-																		</div>
-				</dt>
-														<dd class="lastpost">
-						<span>						
-															<dfn>Last post</dfn>
-																										<a href="./viewtopic.php?p=724595#p724595" title="Re: Rendering workflow using Blender" class="lastsubject">Re: Rendering workflow using …</a> <br />
-																	by <a href="./memberlist.php?mode=viewprofile&amp;u=4119" class="username">prrvchr</a>																	<a href="./viewtopic.php?p=724595#p724595" title="View the latest post">
-										<i class="icon fa-external-link-square fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">View the latest post</span>
-									</a>
-																<br /><time datetime="2023-12-10T08:00:04+00:00">Sun Dec 10, 2023 8:00 am</time>
-													</span>
-					</dd>
-							</dl>
-					</li>
-				</ul>
-			</div>
-		</div>	
+		
 				<div class="forabg category-11 elegant" data-hide-description="1">
 			<div class="inner">
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a href="./viewforum.php?f=11" data-id="11">Forums in other languages</a></div></dt>
-												<dd class="lastpost"><span>Last post</span></dd>
+						<dt><div class="list-inner"><a href="./viewforum.php?f=11" data-id="11">Tài liệu học tập</a></div></dt>
+												<dd class="lastpost"><span>Gần nhất</span></dd>
 					</dl>
 									</li>
 			</ul>
@@ -214,22 +204,21 @@
 									<dl class="row-item forum_read elegant-row">
 				<dt title="No unread posts">
 										<div class="list-inner">
-											<a href="./viewforum.php?f=12" class="forumtitle" data-id="12">Forum français</a>
-						<div class="forum-description">Forum destiné aux questions et discussions en français</div>													<div class="forum-statistics">
-					<span class="dfn">Topics</span>: <span class="value">4652</span><span class="comma">, </span>
-					<span class="dfn">Posts</span>: <span class="value">47108</span>
+											<a href="./viewforum.php?f=12" class="forumtitle" data-id="12">Tài liệu học tập</a>
+						<div class="forum-description">Nơi lưu trữ tài liệu học tập</div>													<div class="forum-statistics">
+					<span class="dfn">Chủ đề</span>: <span class="value">4652</span><span class="comma">, </span>
+					<span class="dfn">Chủ đề</span>: <span class="value">47108</span>
 				</div>
 																					<div class="forum-lastpost" style="display: none;">
-								<span><strong>Last post:</strong> <a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a></span>
+								<span><strong>Gần nhất:</strong> <a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a></span>
 								<span>by <a href="./memberlist.php?mode=viewprofile&amp;u=47904" class="username">Ribo</a>, Sun Dec 10, 2023 4:41 pm</span>
 							</div>
 																		</div>
 				</dt>
 														<dd class="lastpost">
 						<span>
-							
-															<dfn>Last post</dfn>
-																										<a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a> <br />
+															<dfn>Gần nhất</dfn>
+																	   <a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a> <br />
 																	by <a href="./memberlist.php?mode=viewprofile&amp;u=47904" class="username">Ribo</a>																	<a href="./viewtopic.php?p=724710#p724710" title="View the latest post">
 										<i class="icon fa-external-link-square fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">View the latest post</span>
 									</a>
@@ -241,123 +230,21 @@
 				</ul>
 			</div>
 		</div>
-	<form method="post" action="./ucp.php?mode=login" class="headerspace">
-	<h3><a href="./ucp.php?mode=login&amp;redirect=index.php">Login</a>&nbsp; &bull; &nbsp;<a href="./ucp.php?mode=register">Register</a></h3>
+	<form method="post" action="login" class="headerspace">
+	<h3><a href="./ucp.php?mode=login&amp;redirect=index.php">Login</a>&nbsp; &bull; &nbsp;<a href="/register">Register</a></h3>
 		<fieldset class="quick-login">
 			<label for="username"><span>Username:</span> <input type="text" tabindex="1" name="username" id="username" size="10" class="inputbox" title="Username" /></label>
 			<label for="password"><span>Password:</span> <input type="password" tabindex="2" name="password" id="password" size="10" class="inputbox" title="Password" autocomplete="off" /></label>
 							<a href="/app.php/user/forgot_password">I forgot my password</a>
-										<span class="responsive-hide">|</span> <label for="autologin">Remember me <input type="checkbox" tabindex="4" name="autologin" id="autologin" /></label>
+							<span class="responsive-hide">|</span> <label for="autologin">Remember me <input type="checkbox" tabindex="4" name="autologin" id="autologin" /></label>
 						<input type="submit" tabindex="5" name="login" value="Login" class="button2" />
-			<input type="hidden" name="redirect" value="./index.php?" />
-<input type="hidden" name="creation_time" value="1702229438" />
-<input type="hidden" name="form_token" value="853f1e667ad3ddedd3c19c8f7a236ddfa8f60bd1" />
 		</fieldset>
 	</form>
-	<div class="stat-block online-list">
-		<h3>Who is online</h3>		<p>
-						In total there are <strong>242</strong> users online :: 20 registered, 0 hidden and 222 guests (based on users active over the past 5 minutes)<br />Most users ever online was <strong>1551</strong> on Sun Oct 15, 2023 5:42 pm<br /> 
-								</p>
-	</div>
-	<div class="stat-block statistics">
-		<h3>Statistics</h3>
-		<p>
-						Total posts <strong>684831</strong> &bull; Total topics <strong>57388</strong> &bull; Total members <strong>50648</strong> &bull; Our newest member <strong><a href="./memberlist.php?mode=viewprofile&amp;u=62046" class="username">CaptainSimbo</a></strong>
-					</p>
-	</div>
 			</div>
 	<div class="navbar" role="navigation">
-	<div class="inner">
-
-	<ul id="nav-footer" class="nav-footer linklist" role="menubar">
-		<li class="breadcrumbs">
-									<span class="crumb"><a href="/home" data-navbar-reference="index"><i class="icon fa-home fa-fw" aria-hidden="true"></i><span>FreeCAD forum</span></a></span>					</li>
-		
-				<li class="rightside">All times are <span title="UTC">UTC</span></li>
-							<li class="rightside">
-				<a href="./ucp.php?mode=delete_cookies" data-ajax="true" data-refresh="true" role="menuitem">
-					<i class="icon fa-trash fa-fw" aria-hidden="true"></i><span>Delete cookies</span>
-				</a>
-			</li>
-					<li class="rightside" data-last-responsive="true">
-				<a href="./memberlist.php?mode=contactadmin" role="menuitem">
-					<i class="icon fa-envelope fa-fw" aria-hidden="true"></i><span>Contact us</span>
-				</a>
-			</li>
-			</ul>
-	</div>
 </div>
 </div>
-
 <div id="page-footer" class="page-width" role="contentinfo">
-	
-	<div class="copyright">
-				<p class="footer-row">
-			<span class="footer-copyright">Powered by <a href="https://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Limited</span>
-		</p>
-		<p class="footer-row">
-			<span class="footer-copyright">Style by <a href="https://www.artodia.com/">Arty</a> - phpBB 3.3 by MrGaby</span>
-		</p>
-						<p class="footer-row" role="menu">
-			<a class="footer-link" href="./ucp.php?mode=privacy" title="Privacy" role="menuitem">
-				<span class="footer-link-text">Privacy</span>
-			</a>
-			|
-			<a class="footer-link" href="./ucp.php?mode=terms" title="Terms" role="menuitem">
-				<span class="footer-link-text">Terms</span>
-			</a>
-		</p>
-					</div>
-
-	<div id="darkenwrapper" class="darkenwrapper" data-ajax-error-title="AJAX error" data-ajax-error-text="Something went wrong when processing your request." data-ajax-error-text-abort="User aborted request." data-ajax-error-text-timeout="Your request timed out; please try again." data-ajax-error-text-parsererror="Something went wrong with the request and the server returned an invalid reply.">
-		<div id="darken" class="darken">&nbsp;</div>
-	</div>
-
-	<div id="phpbb_alert" class="phpbb_alert" data-l-err="Error" data-l-timeout-processing-req="Request timed out.">
-		<a href="#" class="alert_close">
-		</a>
-		<h3 class="alert_title">&nbsp;</h3><p class="alert_text"></p>
-	</div>
-	<div id="phpbb_confirm" class="phpbb_alert">
-		<a href="#" class="alert_close">
-		</a>
-		<div class="alert_text"></div>
-	</div>
 </div>
-
-
-<div>
-	<a id="bottom" class="top-anchor" accesskey="z"></a>
-	</div>
-
-<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version=41"></script>
-<script src="./assets/javascript/core.js?assets_version=41"></script>
-
-	<script src="./assets/cookieconsent/cookieconsent.min.js?assets_version=41"></script>
-	<script>
-	if (typeof window.cookieconsent === "object") {
-		window.addEventListener("load", function(){
-			window.cookieconsent.initialise({
-				"palette": {
-					"popup": {
-						"background": "#0F538A"
-					},
-					"button": {
-						"background": "#E5E5E5"
-					}
-				},
-				"theme": "classic",
-				"content": {
-					"message": "This\u0020website\u0020uses\u0020cookies\u0020to\u0020ensure\u0020you\u0020get\u0020the\u0020best\u0020experience\u0020on\u0020our\u0020website.",
-					"dismiss": "Got\u0020it\u0021",
-					"link": "Learn\u0020more",
-                    "href": "./ucp.php?mode=privacy"
-                }
-            });
-        });
-    }
-	</script>
-<script src="./styles/elegance/template/forum_fn.js"></script>
-<script src="./styles/elegance/template/ajax.js"></script>
 </body>
 </html>

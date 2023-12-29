@@ -7,35 +7,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FreeCAD Forum - FreeCAD forum</title>
 <link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
-<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iJUqy4IxN7tN6twshN6/zZUJZQqFvE+9/RSJoZ+K2b2StqBQ1AB" crossorigin="anonymous">
 <script></script><style type="text/css">
      .mention {
         color: #008ae6;
     }
 	.navbar ul.rightside a {
-    color: #ffffff; /* White text color */
-    padding: 10px; /* Add padding for better spacing */
+    color: #ffffff;
+    padding: 10px;
 }
-
-/* Background color for the FAQs and Register links */
-
-	
-    @media (max-width: 767px) {
-        .responsive-hide {
-            display: inline-block;
-        }
-		
-    }
+.navbar.secondary a img {
+    width: 10px; /* Điều chỉnh chiều rộng của hình ảnh */
+    height: 10px; /* Điều chỉnh chiều cao của hình ảnh */
+    margin-right: 2px; /* Khoảng cách giữa hình ảnh và văn bản */
+  }
+.tab.faq img {
+    margin-top: -5px;
+  }Ư
 	.navbar ul.rightside a {
     color: #ffffff; /* White text color */
     padding: 10px; /* Add padding for better spacing */
-}
-
-/* Background color for the FAQs and Register links */
-
-	
+}	
     @media (max-width: 767px) {
         .responsive-hide {
             display: inline-block;
@@ -61,7 +54,6 @@
 	   form.submit();
 	}
  </script>
-
 <style>
 	.icon img {
 	  width: 15px;
@@ -89,7 +81,7 @@
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
 					<button class="button button-search" type="submit" title="Search">
 						<i class="icon">
-						  <img src="../styles/elegance/themes/images/search-icon.png" alt="Search Icon">
+						  <img src="../styles/elegance/themes/images/search.png" alt="Search Icon">
 						</i><span class="sr-only">Search</span>
 					  </button>
 					  <a href="./search.php" class="button button-search-end" title="Advanced search">
@@ -107,11 +99,26 @@
 	<div class="inner page-width">
 		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
-				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
-					
-					
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">		
 				</ul>
 			<ul class="rightside" >	
+				<li class="tab faq">
+					<a href="/question" rel="help" title="Question">
+						<img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
+					</a>
+				</li>
+				
+				<li class="tab faq">
+					<a href="/logout" rel="help" title="Logout">
+						<img src="../styles/elegance/themes/images/LOGOUT.png" alt="Logout Icon" width="10" height="10" /><span></span>
+					</a>
+				</li>
+				
+				<li class="tab faq">
+					<a href="/notification" rel="help" title="Thông báo">
+						<img src="../styles/elegance/themes/images/notification.png" alt="Notification Icon" width="10" height="10" /><span></span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -119,11 +126,11 @@
 
 	<div class="navbar secondary">
 		<ul role="menubar">
-			<li><a href="/search">Search</a></li>
-			<li><a href="/login" title="Login">Login</a></li>
-			<li><a href="/register">Register</a></li>
-			<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">Login</a></li>
-			<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Register</a></li>			
+			<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
+			<li><a href="/login" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Login</a></li>
+			<li><a href="/register"><img src="../styles/elegance/themes/images/register.png" alt="Register">Register</a></li>
+		  </ul>
+	
 				</ul>
 	</div>
 
@@ -155,7 +162,6 @@
 					</dl>
 						</li>
 			</ul>
-			<!-- Display posts -->
 <form id="postForm" action="/viewpost" method="get">
 	<ul class="topiclist forums">
 	  <dl class="faq" props="posts">
@@ -166,7 +172,6 @@
 			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
 			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
 			<li class="row forum-3">
-			  <!-- Use data-postid attribute to store the post ID -->
 			  <div class="post-id" data-postid="<%= post._id %>"></div>
 			  <dl class="row-item forum_read elegant-row">
 				<dt title="No unread posts">
@@ -175,11 +180,7 @@
 					<div class="forum-statistics">
 					  bởi <a href="./memberlist.php?mode=viewprofile&amp;u=57799" class="username">Muhjeepstuff</a>
 					  <br>
-					  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span>
-					  <br>
-					  <span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
-					  <br>
-					  <span class="dfn">Bài đăng</span>: <span class="value">224779</span>
+					  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span><span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
 					</div>
 				  </div>
 				</dt>
@@ -193,13 +194,10 @@
   <a href="/addPost" class="button" title="Add a new post">
     <span>Add Post</span> <i class="icon fa-plus fa-fw" aria-hidden="true"></i>
 </a>
-  <!-- Pagination controls -->
   <div class="pagination">
 	<% if (currentPage > 1) { %>
 	  <a href="/userhome?page=<%= currentPage - 1 %>">Trang trước</a>
 	<% } %>
-  
-	<!-- You can dynamically generate page numbers based on the total number of posts -->
 	<span>Trang <%= currentPage %></span>
   
 	<a href="/userhome?page=<%= currentPage + 1 %>">Trang sau</a>
@@ -227,7 +225,7 @@
 					<span class="dfn">Chủ đề</span>: <span class="value">4652</span><span class="comma">, </span>
 					<span class="dfn">Chủ đề</span>: <span class="value">47108</span>
 				</div>
-																					<div class="forum-lastpost" style="display: none;">
+						<div class="forum-lastpost" style="display: none;">
 								<span><strong>Gần nhất:</strong> <a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a></span>
 								<span>by <a href="./memberlist.php?mode=viewprofile&amp;u=47904" class="username">Ribo</a>, Sun Dec 10, 2023 4:41 pm</span>
 							</div>

@@ -50,7 +50,7 @@
 				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
 			</div>
 
-															<div id="search-box" class="search-box search-header" role="search">
+				<div id="search-box" class="search-box search-header" role="search">
 				<form action="./search.php" method="get" id="search">
 				<fieldset>
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
@@ -194,8 +194,8 @@
 				<span>Đăng bài</span>
 			  </button>
 			</div>
-		  </form>  
-		  <script>
+		  </form>
+  		  <script>
 			function submitForm() {
 			  var postName = document.getElementById("postName").innerText.trim();
 			  var postContent = document.getElementById("postContent").innerText.trim();
@@ -204,13 +204,13 @@
 			  hiddenPostNameInput.name = "postName";
 			  hiddenPostNameInput.value = postName;
 			  document.getElementById("postForm").appendChild(hiddenPostNameInput);
-
+		  
 			  var hiddenPostContentInput = document.createElement("input");
 			  hiddenPostContentInput.type = "hidden";
 			  hiddenPostContentInput.name = "postContent";
 			  hiddenPostContentInput.value = postContent;
 			  document.getElementById("postForm").appendChild(hiddenPostContentInput);
-
+		  
 			  // Submit the form
 			  document.getElementById("postForm").submit();
 			}

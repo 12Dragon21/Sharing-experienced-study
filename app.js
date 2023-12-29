@@ -169,9 +169,7 @@ app.post('/register', fileUploader.single('avatar'), async (req, res) =>
 });
 app.post('/login', async (req, res) => {
   try {
-    // ...
-    // Assuming the login is successful, redirect to userhome
-    res.redirect('/userhome');
+    checkLogin(req, res);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
@@ -181,7 +179,7 @@ app.post('/addpost', async (req, res) =>
 {
   try {
     console.log(req.body);
-    //await createPost(req, res);
+    await createPost(req, res);
     res.status(200).redirect('/userhome');
   } catch (error) {
     console.error('Error:', error);

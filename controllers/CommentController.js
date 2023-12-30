@@ -13,11 +13,11 @@
   async function createComment(req, res) {
     try {
       const newComment = new CommentSchema({
-        CmtContent: req.body.cmtContent,
+        CmtContent: req.query.message,
         CmtDate: new Date(),
         CmtLike: 0,
         CmtDisLike: 0,
-        PostID: req.body.postId,
+        PostID: req.query.postid,
       });
       const savedComment = await newComment.save();
       return savedComment;

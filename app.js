@@ -12,7 +12,8 @@ const {
   getAccount,
   updateAccount,
   deleteAccount,
-  checkLogin
+  checkLogin,
+  getAccountbyId
 } = require('./controllers/AccountController.js');
 const {
   getAllPost,
@@ -22,6 +23,15 @@ const {
   deletePost,
   getPostWithUser
 } = require('./controllers/PostController.js');
+const {
+  getAllAccountPost,
+  createAccountPost,
+  getAccountPost,
+  updateAccountPost,
+  deleteAccountPost,
+  getIdOwnPost,
+  getAmountPostByAccountId
+} = require('./controllers/AccountPostController.js');
 const {createComment} = require('./controllers/CommentController.js');
 async function connectDb()
 {
@@ -177,8 +187,10 @@ app.get('/viewpost', async (req, res) => {
   const postId = req.query.postid;
   console.log('Received GET request for post ID:', postId);
   const post = await getPost(req, res);
-  console.log(post);
-  res.render('viewpost', { post });
+  const accountId = await getIdOwnPost(req, res);
+  const account = await getAccountbyId(accountId);
+  const amount = await getAmountPostByAccountId(accountId);
+  res.render('viewpost', { post, account, amount });
 });
 app.post('/viewpost', async (req, res) => {
   const postId = req.body.postid;
@@ -194,22 +206,29 @@ app.post('/addpost', async (req, res) =>
 {
   try {
     console.log(req.body);
-    await createPost(req, res);
+    console.log(req.cookies.account);
+    newPost = await createPost(req, res);
+    await createAccountPost(req, res, newPost);
     res.status(200).redirect('/userhome');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-app.post('/addcomment', async (req, res) => {
+app.get('/addcomment', async (req, res) => {
   try {
-    console.log(req.body);  
+    console.log(req.query);  
     await createComment(req, res);
-    res.redirect(`/viewpost?postid=${req.body.postId}`);
+    const post = await getPost(req, res);
+    res.render('viewpost', { post });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
+});
+app.get('/viewdocument', async (req, res) => {
+  // Xử lý yêu cầu GET ở đây
+  res.render('viewdocument');
 });
 connectDb();
 const port = 3000;

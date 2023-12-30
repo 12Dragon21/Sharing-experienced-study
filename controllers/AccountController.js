@@ -39,6 +39,14 @@ async function getAccount (req, res) {
   }
 }
 
+async function getAccountbyId (id) {
+  try {
+    const Account = await AccountSchema.findById(id);
+    return Account;
+  } catch (err) {
+  }
+}
+
 async function checkLogin (req, res) {
   try {
     const Username = req.body.username;
@@ -84,4 +92,5 @@ module.exports = {
   updateAccount,
   deleteAccount,
   checkLogin,
+  getAccountbyId
 };

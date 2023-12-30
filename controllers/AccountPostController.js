@@ -10,12 +10,15 @@ async function getAllAccountPost(req, res) {
   }
 }
 
-async function createAccountPost(req, res) {
+async function createAccountPost(req, res, newPost) {
   try {
     const newAccountPost = new AccountPostSchema({
-        AnmContent: req.body.anmContent,
-        AnmDate: req.body.anmdate,
-        AnmState: req.body.anmstate
+      APLike: 0,
+      APDislike: 0,
+      APFollow: 0,
+      APState: 0,
+      AccountID: req.cookies.account,
+      PostID: newPost._id,
     });
     const savedAccountPost = await newAccountPost.save();
     return newAccountPost;
@@ -31,6 +34,23 @@ async function getAccountPost (req, res) {
     return AccountPost;
   } catch (err) {
     res.status(500).json(err);
+  }
+}
+
+async function getIdOwnPost (req, res) {
+  try {
+    const AccountPost = await AccountPostSchema.findOne({PostID:req.query.postid, APState:0});
+    return AccountPost.AccountID;
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
+
+async function getAmountPostByAccountId (accountId) {
+  try {
+    const Amount = await AccountPostSchema.countDocuments({AccountID: accountId});
+    return Amount;
+  } catch (err) {
   }
 }
 
@@ -56,5 +76,7 @@ module.exports = {
   createAccountPost,
   getAccountPost,
   updateAccountPost,
-  deleteAccountPost
+  deleteAccountPost,
+  getIdOwnPost,
+  getAmountPostByAccountId
 };

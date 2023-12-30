@@ -22,7 +22,7 @@ const {
   deletePost,
   getPostWithUser
 } = require('./controllers/PostController.js');
-
+const {createComment} = require('./controllers/CommentController.js');
 async function connectDb()
 {
     await connectdb();
@@ -32,22 +32,18 @@ const cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
 
-// Sử dụng middleware để đọc dữ liệu từ form
 app.use(express.urlencoded({ extended: true }));
-// Sử dụng expressstatic để định tuyến router styles
 app.use('/styles', express.static(path.join(__dirname, 'styles')));
-// Đặt middleware để sử dụng thư mục views cho các tệp HTML
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-// Tuyến đường cho trang đường dẫn gốc
+
 app.get('/', async (req, res) => {
-  //res.render("adminhome");
   try {
     await connectdb();
     console.log('Connected to the database');
     const page = parseInt(req.query.page) || 1;
-    const postsPerPage = 5; // Adjust this value as needed
+    const postsPerPage = 5; 
     const posts = await getAllPost(req, res, page, postsPerPage);
     res.render('home', { posts, currentPage: page });
   } catch (error) {
@@ -175,17 +171,7 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-app.post('/addpost', async (req, res) =>
-{
-  try {
-    console.log(req.body);
-    await createPost(req, res);
-    res.status(200).redirect('/userhome');
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
+
 app.get('/viewpost', async (req, res) => {
   // Xử lý yêu cầu GET ở đây
   const postId = req.query.postid;
@@ -204,10 +190,21 @@ app.get('/adminhome', (req, res) => {
   // Xử lý yêu cầu GET ở đây
   res.render('adminhome');
 });
-
+app.post('/addpost', async (req, res) =>
+{
+  try {
+    console.log(req.body);
+    await createPost(req, res);
+    res.status(200).redirect('/userhome');
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 app.post('/addcomment', async (req, res) => {
   try {
-    const newComment = await createComment(req, res);
+    console.log(req.body);  
+    await createComment(req, res);
     res.redirect(`/viewpost?postid=${req.body.postId}`);
   } catch (error) {
     console.error('Error:', error);

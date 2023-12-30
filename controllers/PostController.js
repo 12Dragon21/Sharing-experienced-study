@@ -42,12 +42,30 @@ async function getPost (req, res) {
   }
 }
 
-async function updatePost (req, res) {
+async function updatePost(req, res) {
   try {
-    const Post = await PostSchema.findById(req.params.id);
-    await Post.updateOne({ $set: req.body });
-  } catch (err) {
-    res.status(500).json(err);
+    const postId = req.params.id;
+
+    // Check if postId is undefined or not a valid ObjectId
+    if (!postId || !mongoose.Types.ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: 'Invalid post ID' });
+    }
+
+    const post = await PostSchema.findById(postId);
+
+    // Check if the post with the given ID exists
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Update the post
+    await post.updateOne({ $set: req.body });
+
+    // Respond with the updated post or a success message
+    return res.status(200).json({ message: 'Post updated successfully' });
+  } catch (error) {
+    console.error('Error updating post:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 

@@ -5,20 +5,65 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<title>Guidelines for videos and tutorials - FreeCAD Forum</title>
-	<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">			<link rel="alternate" type="application/atom+xml" title="Feed - Forum - Tutorials and videos" href="/app.php/feed/forum/36">	<link rel="alternate" type="application/atom+xml" title="Feed - Topic - Guidelines for videos and tutorials" href="/app.php/feed/topic/36205">	
-	<link rel="canonical" href="https://forum.freecad.org/viewtopic.php?t=36205">
-<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+<title>FreeCAD Forum - FreeCAD forum</title>
+<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=ed3fyPkYQThoS-oHhdLDfFd4oEUeAIaL__StE_dWC0Os8J7wHHfVFQOLTDJiPTsAhGqHoTc3Zj6ROP5zfZg2Sl-yvYAVt7f96U_VzvUKMME" charset="UTF-8"></script><style type="text/css">
-    .mention {
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iJUqy4IxN7tN6twshN6/zZUJZQqFvE+9/RSJoZ+K2b2StqBQ1AB" crossorigin="anonymous">
+<script></script><style type="text/css">
+     .mention {
         color: #008ae6;
     }
 	.navbar ul.rightside a {
+    color: #ffffff;
+    padding: 10px;
+}
+.reply-container {
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: flex-end;
+}
+
+#reply-form {
+  width: 100%;
+  box-sizing: border-box;
+   text-align: right;
+}
+
+#reply-content {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+button[type="submit"] {
+  background-color: #005a9e;;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #005a9e;
+}
+.navbar.secondary a img {
+    width: 10px; 
+    height: 10px; 
+    margin-right: 2px; 
+  }
+.tab.faq img {
+    margin-top: -5px;
+  }Ư
+	.navbar ul.rightside a {
     color: #ffffff; 
-    padding: 10px; 
+    padding: 10px;
 }	
     @media (max-width: 767px) {
         .responsive-hide {
@@ -27,8 +72,40 @@
 		
     }
 </style>
-<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
-<link href="./ext/wolfsblvt/advancedpolls/styles/prosilver/theme/advancedpolls.css?assets_version=41" rel="stylesheet" media="screen">
+<script>
+	function getPost(postId) {
+	   console.log('Clicked post ID:', postId);
+	   var form = document.createElement('form');
+	   form.method = 'GET';
+	   form.action = '/viewpost';
+ 
+	   var hiddenPostIdInput = document.createElement("input");
+	   hiddenPostIdInput.type = "hidden";
+	   hiddenPostIdInput.name = "postid";
+	   hiddenPostIdInput.value = postId;
+	   form.appendChild(hiddenPostIdInput);
+	   document.body.appendChild(form);
+	   form.submit();
+	}
+ </script>
+ <script>
+    function likePost() {
+        // Add your logic for handling a like here
+        alert('Liked!');
+    }
+
+    function dislikePost() {
+        // Add your logic for handling a dislike here
+        alert('Disliked!');
+    }
+</script>
+<style>
+	.icon img {
+	  width: 15px;
+	  height: 15px;
+	}
+  </style>
+<link rel="stylesheet" media="screen">
 </head>
 <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
 	<a id="top" class="top-anchor" accesskey="t"></a>
@@ -45,7 +122,11 @@
 			</div>
 				    <div id="search-box" class="search-box search-header" role="search">
 				<form action="./search.php" method="get" id="search">
+				<fieldset>
+						  
+				</fieldset>
 				</form>
+				
 			</div>							
 			</div>
 					</div>
@@ -53,25 +134,26 @@
 	<div class="inner page-width">
 		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
-				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
-					
-					
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">		
 				</ul>
 			<ul class="rightside" >	
+				<li class="tab faq">
+					<a href="/question" rel="help" title="Question">
+						<img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
 </div>
-
 	<div class="navbar secondary">
 		<ul role="menubar">
-			<li><a href="/search">Search</a></li>
-			<li><a href="/login" title="Login">Login</a></li>
-			<li><a href="/register">Register</a></li>
-			<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">FAQs</a></li>
-			<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Add FAQ</a></li>			
+			<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
+			<li><a href="/login" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Login</a></li>
+			<li><a href="/register"><img src="../styles/elegance/themes/images/register.png" alt="Register">Register</a></li>
 				</ul>
 	</div>
+
 		</div>
 <div id="wrap" class="page-width">
 	<a id="start_here" class="top-anchor"></a>
@@ -99,9 +181,6 @@
 	</ul>
 </div>
 <div class="action-bar bar-top">
-			<a href="./posting.php?mode=reply&amp;t=36205" class="button" title="Post a reply">
-							<span>Post Reply</span> <i class="icon fa-reply fa-fw" aria-hidden="true"></i>
-					</a>	
 			<div class="dropdown-container dropdown-button-control topic-tools">
 		</div>
 	</div>
@@ -138,8 +217,14 @@
 				</p>
 				<div class="content"><%=post.PostContent%><br></div>
 			</div>
+			
 		</div>
+		  <div class="like-dislike-buttons">
+        <button class="like-button" onclick="likePost()">Like</button>
+        <button class="dislike-button" onclick="dislikePost()">Dislike</button>
+    </div>
 		</div>
+		
 		<div id="p728756" class="post has-profile bg1">
 			<div class="inner">
 	
@@ -158,13 +243,9 @@
 				<h3 >
 					<a href="./viewtopic.php?p=728756#p728756">Re: New user needs help cutting corners</a>
 				</h3>
-					<ul class="post-buttons">																																			<li>
-						<a href="./posting.php?mode=quote&amp;p=728756" title="Reply with quote" class="button button-icon-only">
-							<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i> Reply with quote
-						</a>
+					<ul class="post-buttons">																																			<li>					
 							</li>
-					</ul>
-								
+					</ul>						
 					<p class="author">
 						<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
 							<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
@@ -206,7 +287,6 @@
 						</div>
 					</div>
 				</dd>
-					
 			</dl>
 			<div class="postbody">
 				<div id="post_content728762">
@@ -216,47 +296,27 @@
 	</h3>
 
 											<ul class="post-buttons">
-												<a href="./posting.php?mode=quote&amp;p=728756" title="Reply with quote" class="button button-icon-only">
-													<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i> Reply with quote
-												</a>
-
 				</li>
-												</ul>
-					
+												</ul>				
 				<p class="author">
 							<a class="unread" href="./viewtopic.php?p=728762#p728762" title="Post">
 				<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
 			</a>
 						<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=36484" class="username">edwilliams16</a></strong> &raquo; </span><time datetime="2023-12-29T01:15:07+00:00">Fri Dec 29, 2023 1:15 am</time>
 	</p>
-	
-	
-	
-	<div class="content"><blockquote cite="./viewtopic.php?p=728752#p728752"><div><cite><a href="./memberlist.php?mode=viewprofile&amp;u=62341">jray8</a> wrote: <a href="./viewtopic.php?p=728752#p728752" data-post-id="728752" onclick="if(document.getElementById(hash.substr(1)))href=hash">↑</a><span class="responsive-hide">Thu Dec 28, 2023 10:16 pm</span></cite>
-
-</div></blockquote>
-
+	<div class="content">
 Assuming you are using Part Design, you can do it with Pads and Pockets from the XY-Plane. Padding up the first sketch gives the hex part. Then I pad down to make the rectangle with a through hole, and finally a pocket to remove the corners.  I make use of the external geometry tool in Sketcher to tie together the circle radii.  
 <div class="inline-attachment">
-	
-
 		<dl class="file">
 	<dt class="attach-image"><img src="./download/file.php?id=248017" class="postimage" alt="Screenshot 2023-12-28 at 3.08.35 PM.png" onclick="viewableArea(this);" /></dt>
-				<dd>Screenshot 2023-12-28 at 3.08.35 PM.png (64.29 KiB) Viewed 14 times</dd>
+				
 </dl>
-
-
 	</div></div>
-
-	
 					<dl class="attachbox">
 			<dt>
 				Attachments
 			</dt>
 									<dd>
-	
-
-
 		<dl class="file">
 	<dt><span class="imageset icon_topic_attach"></span> <a class="postlink" href="./download/file.php?id=248016">hexpost.FCStd</a></dt>
 				<dd>(35.92 KiB) Not downloaded yet</dd>
@@ -264,11 +324,7 @@ Assuming you are using Part Design, you can do it with Pads and Pockets from the
 
 	</dd>
 							</dl>
-	
-							
-							
 				</div>
-
 </div>
 
 </div>
@@ -279,21 +335,22 @@ Assuming you are using Part Design, you can do it with Pads and Pockets from the
 	</a>
 			</div>
 	</div>
-
-		
-
-
-
-				<div id="p306733" class="post has-profile bg1">
-			<div class="inner">
-			<div class="action-bar bar-bottom">
-
-	</div>
-			</div>
 </div>
-</div>
-<a href="./posting.php?mode=reply&amp;t=36205" class="button" title="Post a reply">
-	<span>Post Reply</span> <i class="icon fa-reply fa-fw" aria-hidden="true"></i>
-</a>
+<div class="reply-container">
+	<h2>Phản hồi</h2>
+	<form action="/addcomment" method="post" id="comment-form" enctype="multipart/form-data">
+	  <fieldset>
+		<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>
+		<label for="image-upload">Upload Image:</label>
+		<input type="file" id="image-upload" name="image" accept="image/*">
+
+		<!-- Add document upload field -->
+		<label for="document-upload">Upload Document:</label>
+		<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx">
+		<button type="submit">Submit Reply</button>
+	  </fieldset>
+	</form>
+  </div>		
 </body>
+
 </html>

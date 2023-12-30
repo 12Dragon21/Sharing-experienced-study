@@ -17,6 +17,16 @@
     color: #ffffff;
     padding: 10px;
 }
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    right: 0;
+    top: 30px; /* Adjust as needed */
+    z-index: 1000;
+}
 .navbar.secondary a img {
     width: 10px; /* Điều chỉnh chiều rộng của hình ảnh */
     height: 10px; /* Điều chỉnh chiều cao của hình ảnh */
@@ -53,6 +63,41 @@
 	   document.body.appendChild(form);
 	   form.submit();
 	}
+ </script>
+ <script>
+	document.addEventListener('DOMContentLoaded', function () {
+    var notificationDropdown = document.getElementById('notificationDropdown');
+    var notificationContainer = document.getElementById('notificationContainer');
+
+    // Add dummy notifications for testing
+    var notifications = [
+        'Notification 1',
+        'Notification 2',
+        'Notification 3'
+    ];
+
+    // Function to populate the dropdown with notifications
+    function populateNotifications() {
+        // Clear existing notifications
+        notificationContainer.innerHTML = '';
+
+        // Add new notifications
+        notifications.forEach(function (notification) {
+            var notificationElement = document.createElement('div');
+            notificationElement.textContent = notification;
+            notificationContainer.appendChild(notificationElement);
+        });
+    }
+
+    // Toggle the visibility of the dropdown when the link is clicked
+    notificationDropdown.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Populate and toggle the visibility of the dropdown
+        populateNotifications();
+        notificationContainer.style.display = (notificationContainer.style.display === 'none') ? 'block' : 'none';
+    });
+});
  </script>
 <style>
 	.icon img {
@@ -114,10 +159,13 @@
 					</a>
 				</li>
 				
-				<li class="tab faq">
-					<a href="/notification" rel="help" title="Thông báo">
+				<li class="tab faq" id="notificationDropdown">
+					<a href="#" rel="help" title="Thông báo">
 						<img src="../styles/elegance/themes/images/notification.png" alt="Notification Icon" width="10" height="10" /><span></span>
 					</a>
+					<div id="notificationContainer" class="notification-dropdown">
+						<!-- Notifications will be dynamically added here -->
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -126,12 +174,12 @@
 
 	<div class="navbar secondary">
 		<ul role="menubar">
-			<li><a href="/search">Search</a></li>
-			<li><a href="/login" title="Login">Login</a></li>
-			<li><a href="/register">Register</a></li>
-			<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">Login</a></li>
-			<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Register</a></li>			
-				</ul>
+			<div class="navbar secondary">
+				<ul role="menubar">
+					<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
+					<li><a href="/viewprofile" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Your profile</a></li>
+					
+			</div>
 	</div>
 
 		</div>

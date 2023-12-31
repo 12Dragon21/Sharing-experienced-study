@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 require('dotenv').config();
-const fileUploader = require('./configs/cloudinary.config.js');
+const imageUploader = require('./configs/cloudinary.config.js');
+const documentUploader = require('./configs/cloudinaryDocument.config.js');
 var connectdb = require('./connectdb.js');
 const { createFAQ, getAllFAQs } = require('./controllers/FAQsController.js');
 const {
@@ -46,6 +47,13 @@ const {
   deleteAccountComment,
   getAllAccountCommentWithPostId
 } = require('./controllers/AccountCommentController.js');
+const {
+  getAllDocument,
+  createDocument,
+  getDocument,
+  updateDocument,
+  deleteDocument
+} = require('./controllers/DocumentController.js');
 async function connectDb()
 {
     await connectdb();
@@ -78,7 +86,7 @@ app.get('/', async (req, res) => {
 app.get('/home', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const postsPerPage = 5;
+    const postsPerPage = 8;
     const posts = await getAllPost(req, res, page, postsPerPage);
     res.render('home', { posts, currentPage: page });
   } catch (error) {
@@ -173,7 +181,7 @@ app.get('/viewprofile', async (req, res) => {
 app.get('/register', (req, res) => {
   res.render('register');
 });
-app.post('/register', fileUploader.single('avatar'), async (req, res) =>
+app.post('/register', imageUploader.single('avatar'), async (req, res) =>
 {
   try {
     await connectdb();
@@ -247,7 +255,8 @@ app.get('/addcomment', async (req, res) => {
 });
 app.get('/viewdocument', async (req, res) => {
   // Xử lý yêu cầu GET ở đây
-  res.render('viewdocument');
+  const documents = await getAllDocument();
+  res.render('viewdocument', {documents});
 });
 app.get('/changeprofile', async (req, res) => {
   try {
@@ -277,6 +286,19 @@ app.post('/saveprofile', async (req, res) => {
     res.status(200).redirect('/viewprofile');
   } catch (error) {
     console.error('Error updating user profile:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.post('/document', documentUploader.single('document'), async (req, res) =>
+{
+  try {
+    await connectdb();
+    console.log('Connected to the database');
+    const newDocument = await createDocument(req, res);
+    console.log(newDocument);
+    res.status(200).redirect('/home');
+  } catch (error) {
+    console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });

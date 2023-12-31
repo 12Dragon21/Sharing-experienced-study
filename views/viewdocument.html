@@ -1,357 +1,88 @@
-
 <!DOCTYPE html>
-<html dir="ltr" lang="en-gb">
+<html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FreeCAD Forum - FreeCAD forum</title>
-<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
-<link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iJUqy4IxN7tN6twshN6/zZUJZQqFvE+9/RSJoZ+K2b2StqBQ1AB" crossorigin="anonymous">
-<script></script><style type="text/css">
-     .mention {
-        color: #008ae6;
-    }
-	.navbar ul.rightside a {
-    color: #ffffff;
-    padding: 10px;
-}
-.reply-container {
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: flex-end;
-}
-
-#reply-form {
-  width: 100%;
-  box-sizing: border-box;
-   text-align: right;
-}
-
-#reply-content {
-  width: 100%;
-  box-sizing: border-box;
-  resize: none;
-  margin-bottom: 15px;
-}
-
-button[type="submit"] {
-  background-color: #005a9e;;
-  color: #ffffff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button[type="submit"]:hover {
-  background-color: #005a9e;
-}
-.navbar.secondary a img {
-    width: 10px; 
-    height: 10px; 
-    margin-right: 2px; 
-  }
-.tab.faq img {
-    margin-top: -5px;
-  }Ư
-	.navbar ul.rightside a {
-    color: #ffffff; 
-    padding: 10px;
-}	
-    @media (max-width: 767px) {
-        .responsive-hide {
-            display: inline-block;
-        }
-		
-    }
-</style>
-<script>
-	function getPost(postId) {
-	   console.log('Clicked post ID:', postId);
-	   var form = document.createElement('form');
-	   form.method = 'GET';
-	   form.action = '/addcomment';
- 
-	   var hiddenPostIdInput = document.createElement("input");
-	   hiddenPostIdInput.type = "hidden";
-	   hiddenPostIdInput.name = "postid";
-	   hiddenPostIdInput.value = postId;
-	   form.appendChild(hiddenPostIdInput);
-	   document.body.appendChild(form);
-	   form.submit();
-	}
- </script>
- <script>
-    function likePost() {
-        // Add your logic for handling a like here
-        alert('Liked!');
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+  <title>Add FAQ</title>
+  <style type="text/css">
+    /* Add your additional styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
     }
 
-    function dislikePost() {
-        // Add your logic for handling a dislike here
-        alert('Disliked!');
+    .page-width {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-</script>
-<style>
-	.icon img {
-	  width: 15px;
-	  height: 15px;
-	}
+
+    h1 {
+      color: #007acc;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007acc;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
   </style>
-<link rel="stylesheet" media="screen">
 </head>
-<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
-	<a id="top" class="top-anchor" accesskey="t"></a>
-	<div id="page-header" class="page-width">
-		<div class="headerbar" role="banner">
-					<div class="inner">
-			<div id="site-description" class="site-description">
-				<a id="logo" class="logo" href="./index.php" title="Ứng dụng trao đổi kinh nghiệm học tập">
-					<img src="../styles/elegance/themes/images/uit.jpg" width="150" height="80"/>
-				</a>
-				<p class="sitename">Ứng dụng trao đổi kinh nghệm học tập</p>
-				<p>Ứng dụng trao đổi kinh nghệm học tập</p>
-				<p class="skiplink"><a href="#start_here">Bỏ qua</a></p>
-			</div>
-				    <div id="search-box" class="search-box search-header" role="search">
-				<form action="./search.php" method="get" id="search">
-				<fieldset>
-						  
-				</fieldset>
-				</form>
-				
-			</div>							
-			</div>
-					</div>
-<div class="navbar tabbed not-static" role="navigation">
-	<div class="inner page-width">
-		<div class="nav-tabs" data-current-page="index">
-			<ul class="leftside">
-				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">		
-				</ul>
-			<ul class="rightside" >	
-				<li class="tab faq">
-					<a href="/question" rel="help" title="Question">
-						<img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-	<div class="navbar secondary">
-		<ul role="menubar">
-			<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
-			<li><a href="/login" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Login</a></li>
-			<li><a href="/register"><img src="../styles/elegance/themes/images/register.png" alt="Register">Register</a></li>
-				</ul>
-	</div>
-
-		</div>
-<div id="wrap" class="page-width">
-	<a id="start_here" class="top-anchor"></a>
-	<div id="page-body" class="page-body" role="main">
-		<div class="navbar">
-	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">	
-		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">		
-						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>		
-		</li>	
-			<li class="rightside responsive-search">
-				<a href="./search.php" title="View the advanced search options" role="menuitem">
-					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
-				</a>
-			</li>
-				<li class="rightside dropdown-container icon-only">
-			<a href="#" class="dropdown-trigger time" title="It is currently Wed Dec 13, 2023 3:43 am"><i class="fa fa-clock-o"></i></a>
-			<div class="dropdown">
-				<div class="pointer"><div class="pointer-inner"></div></div>
-				<ul class="dropdown-contents">
-					<li>It is currently Wed Dec 13, 2023 3:43 am</li>
-					<li>All times are <span title="UTC">UTC</span></li>
-				</ul>
-			</div>
-		</li>
-	</ul>
-</div>
-<div class="action-bar bar-top">
-			<div class="dropdown-container dropdown-button-control topic-tools">
-		</div>
-	</div>
-		</div>
-			<div id="p306531" class="post has-profile bg2">
-		<div class="inner" props="account, post, amount">
-
-		<dl class="postprofile" id="profile306531">
-			<dt class="has-profile-rank no-avatar">
-				<div class="avatar-container">
-				</div>
-					<a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
-			</dt>
-		<dd class="profile-rank">Veteran</dd>			
-		<dd class="profile-posts"><strong>Posts:</strong><%=amount%></dd>		<dd class="profile-joined"><strong>Joined:</strong> Tue Mar 17, 2015 9:14 am</dd>						
-		</dl>
-		<div class="postbody">
-			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
-			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
-			<div id="post_content306531">
-				<h3 class="first">
-					<%=post.PostName%>
-				</h3>
-				<ul class="post-buttons">
-					<a href="./posting.php?mode=quote&amp;p=306531" title="Reply with quote" class="button button-icon-only">
-						<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i><span class="sr-only">Quote</span>
-					</a>
-				</ul>
-				<p class="author">
-					<a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
-					<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-					</a>
-					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
-				</p>
-				<div class="content"><%=post.PostContent%><br></div>
-			</div>
-			
-		</div>
-		  <div class="like-dislike-buttons">
-        <button class="like-button" onclick="likePost()">Like</button>
-        <button class="dislike-button" onclick="dislikePost()">Dislike</button>
-    </div>
-		</div>
+<div id="p728756" class="post has-profile bg1" props="documents">
+	<% documents.forEach(function (document, index) { %>
 		
-		<div id="p728756" class="post has-profile bg1">
-			<div class="inner">
-	
-			<dl class="postprofile" id="profile728756">
-				<dt class="has-profile-rank no-avatar">
-					<div class="avatar-container">
-																				</div>
-									<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username">freedman</a>							</dt>
-	
-							<dd class="profile-rank">Veteran</dd>			
-			<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=19098&amp;sr=posts">3254</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> Thu Mar 22, 2018 3:02 am</dd>		
-												<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Washington State, USA</dd>						
-			</dl>
-			<div class="postbody">
-				<div id="post_content728756">
-				<h3 >
-					<a href="./viewtopic.php?p=728756#p728756">Re: New user needs help cutting corners</a>
-				</h3>
-					<ul class="post-buttons">																																			<li>					
-							</li>
-					</ul>						
-					<p class="author">
-						<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
-							<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-						</a>
-						<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username">freedman</a></strong> &raquo; </span><time datetime="2023-12-28T23:32:46+00:00">Thu Dec 28, 2023 11:32 pm</time>
-				</p>
-				<div class="content">The best way is to sketch the rectangle from the end and then you can add the radius. This presumes you want it rounded the entire length.</div>	</div>
-			</div>
-			</div>
-			<br>
-		<div id="p728762" class="post has-profile bg2 online">
-			<div class="inner">
-	
-			<dl class="postprofile" id="profile728762">
-				<dt class="has-profile-rank no-avatar">
-					<div class="avatar-container">
-																				</div>
-									<a href="./memberlist.php?mode=viewprofile&amp;u=36484" class="username">edwilliams16</a>							</dt>
-	
-							<dd class="profile-rank">Veteran</dd>			
-			<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=36484&amp;sr=posts">2776</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> Thu Sep 24, 2020 10:31 pm</dd>		
-			
-																	<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Hawaii</dd>
-								
-								<dd class="profile-contact">
-					<strong>Contact:</strong>
-					<div class="dropdown-container dropdown-right dropdown-down">
-						<a href="#" class="dropdown-trigger" title="Contact edwilliams16">
-							<i class="icon fa-commenting-o fa-fw icon-lg" aria-hidden="true"></i><span class="sr-only">Contact edwilliams16</span>
-						</a>
-						<div class="dropdown">
-							<div class="pointer"><div class="pointer-inner"></div></div>
-							<div class="dropdown-contents contact-icons">
-																																									<div>
-																		<a href="http://edwilliams.org" title="Website" class="last-cell">
-											<span class="contact-icon phpbb_website-icon">Website</span>									</a>
-																		</div>
-																						</div>
-						</div>
-					</div>
-				</dd>
-			</dl>
-			<div class="postbody">
-				<div id="post_content728762">
-
-				<h3 >
-				<a href="./viewtopic.php?p=728762#p728762">Re: New user needs help cutting corners</a>
-	</h3>
-
-											<ul class="post-buttons">
-				</li>
-												</ul>				
-				<p class="author">
-							<a class="unread" href="./viewtopic.php?p=728762#p728762" title="Post">
-				<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-			</a>
-						<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=36484" class="username">edwilliams16</a></strong> &raquo; </span><time datetime="2023-12-29T01:15:07+00:00">Fri Dec 29, 2023 1:15 am</time>
-	</p>
-	<div class="content">
-Assuming you are using Part Design, you can do it with Pads and Pockets from the XY-Plane. Padding up the first sketch gives the hex part. Then I pad down to make the rectangle with a through hole, and finally a pocket to remove the corners.  I make use of the external geometry tool in Sketcher to tie together the circle radii.  
-<div class="inline-attachment">
-		<dl class="file">
-	<dt class="attach-image"><img src="./download/file.php?id=248017" class="postimage" alt="Screenshot 2023-12-28 at 3.08.35 PM.png" onclick="viewableArea(this);" /></dt>
-				
-</dl>
-	</div></div>
-					<dl class="attachbox">
-			<dt>
-				Attachments
-			</dt>
-									<dd>
-		<dl class="file">
-	<dt><span class="imageset icon_topic_attach"></span> <a class="postlink" href="./download/file.php?id=248016">hexpost.FCStd</a></dt>
-				<dd>(35.92 KiB) Not downloaded yet</dd>
-</dl>
-
-	</dd>
-							</dl>
-				</div>
-</div>
-
-</div>
-		<div class="back2top">
-				<a href="#top" class="top" title="Top">
-		<i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
-		<span class="sr-only">Top</span>
-	</a>
-			</div>
+	<div class="inner">
+	<div class="postbody">
+		<div id="post_content728756">
+			<h3 >
+				<a href="<%=document.DcmPath%>" frameborder="0"><%=document.DcmName%></a>
+			</h3>
+		</div>
 	</div>
+	</div>	
+	<br>
+	<%});%>
 </div>
-<div class="reply-container">
-	<h2>Phản hồi</h2>
-	<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">
-	  <fieldset>
-		<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>
-		<label for="image-upload">Upload Image:</label>
-		<input type="file" id="image-upload" name="image" accept="image/*">
-
-		<!-- Add document upload field -->
-		<label for="document-upload">Upload Document:</label>
-		<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx">
-		<button type="submit" onclick="getPost('<%=post._id%>')">Submit Reply</button>
-		<input name="postid" value="<%=post._id%>">
-	  </fieldset>
-	</form>
-  </div>		
+<body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
+  <div id="wrap" class="page-width">
+    <div id="page-body" class="page-body" role="main">
+      <h1>Add Document</h1>
+      <form id="comment-form" enctype="multipart/form-data" action="/document" method="post">
+		<fieldset>
+		<textarea id="reply-content" name="name" rows="4" cols="50" required></textarea>
+		  <!-- Add document upload field -->
+		  <label for="document-upload">Upload Document:</label>
+		  <input type="file" id="document" name="document" accept=" .doc, .docx, .txt">
+		  <button type="submit">Submit Reply</button>
+		</fieldset>
+	  </form>
+    </div>
+  </div>
 </body>
 
 </html>

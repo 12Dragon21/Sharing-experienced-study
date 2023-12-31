@@ -13,10 +13,11 @@ async function getAllDocument(req, res) {
 async function createDocument(req, res) {
   try {
     const newDocument = new DocumentSchema({
-        DcmType: req.body.dcmType,
-        DcmDownload: req.body.dcmDownload,
-        DcmDate: req.body.dcmDate,
-        DcmPath: req.body.dcmPath
+        DcmName: req.body.name,
+        DcmType: 0,
+        DcmDownload: 0,
+        DcmDate: new Date(),
+        DcmPath: req.file.path
     });
     const savedDocument = await newDocument.save();
     return newDocument;

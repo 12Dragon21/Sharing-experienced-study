@@ -178,7 +178,7 @@
                         <h2>User Profile</h2>  
                         <fieldset class="fields2">
                                  <div class="avatar-container" onclick="openAvatarModal()">
-                                <img src="<%= ImageURL %>" alt="Avatar" />
+                                    <img src="<%= ImageURL %>" alt="Avatar" />
                                 <label for="imageUpload" class="edit-avatar-link">Change Avatar</label>
                             </div>
                             
@@ -224,38 +224,39 @@
     
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $('.save-changes-button').click(function () {
-          var username = $('#username').val();
-          var email = $('#emailValue').val();
-          var phone = $('#phoneValue').val();
-          var academicYear = $('#yearValue').val(); 
-          $.ajax({
-            url: '/saveprofile',
-            method: 'POST',
-            data: {
-              username: username,
-              email: email,
-              phone: phone,
-              academicYear: academicYear,
-            },
-            success: function (response) {
-              if (response.success) {
-                alert(response.message);
-                window.location.href = '/viewprofile';
-              } else {
-                alert('Save failed: ' + response.message);
-              }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              console.error('AJAX Error:', textStatus, errorThrown);
-              alert('An error occurred. Please check the console for details.');
-            },
-          });
-        });
+<script>
+  $(document).ready(function () {
+    $('.save-changes-button').click(function () {
+      var username = $('#username').val();
+      var email = $('#emailValue').val();
+      var phone = $('#phoneValue').val();
+      var academicYear = $('#yearValue').val();
+      $.ajax({
+        url: '/saveprofile',
+        method: 'POST',
+        data: {
+          username: username,
+          email: email,
+          phone: phone,
+          academicYear: academicYear,
+        },
+        success: function (response) {
+          if (response.success) {
+            alert(response.message);
+            window.location.href = '/viewprofile';
+          } else {
+            window.location.href = '/viewprofile';
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          // Display an error message
+          console.error('AJAX Error:', textStatus, errorThrown);
+          alert('An error occurred. Please check the console for details.');
+        },
       });
-    </script>
+    });
+  });
+</script>
     
 </body>
 </html>

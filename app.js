@@ -255,9 +255,10 @@ app.get('/changeprofile', async (req, res) => {
     res.render('changeprofile', {
       username: Account.Username,
       email: Account.Email,
+      role: Account.Role,
       phone: Account.Phone,
-      academicYear: Account.Years,
-      imageURL: Account.ImageURL,
+      ImageURL: Account.ImageURL,
+      Years: Account.Years,
     });
   } catch (error) {
     console.error('Error fetching user account:', error);
@@ -276,7 +277,7 @@ app.post('/saveprofile', async (req, res) => {
     await updateAccount(accountId, updatedProfile);
     res.status(200).redirect('/viewprofile');
   } catch (error) {
-    console.error('Error updating user profile:', error);
+    res.status(200).redirect('/viewprofile');
     res.status(500).send('Internal Server Error');
   }
 });

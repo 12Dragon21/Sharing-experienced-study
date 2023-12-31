@@ -220,7 +220,10 @@ app.get('/addcomment', async (req, res) => {
     console.log(req.query);  
     await createComment(req, res);
     const post = await getPost(req, res);
-    res.render('viewpost', { post });
+    const accountId = await getIdOwnPost(req, res);
+    const account = await getAccountbyId(accountId);
+    const amount = await getAmountPostByAccountId(accountId);
+    res.render('viewpost', { post, account, amount });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

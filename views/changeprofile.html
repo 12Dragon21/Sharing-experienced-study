@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FreeCAD Forum - FreeCAD forum</title>
+    <link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">
+    <link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">                    
+    <link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+    <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+    <link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
+    <style type="text/css">
+        .mention {
+            color: #008ae6;
+        }
+        .navbar ul.rightside a {
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        @media (max-width: 767px) {
+            .responsive-hide {
+                display: inline-block;
+            }
+        }
+    </style>
+    <style>
+        .icon img {
+            width: 15px;
+            height: 15px;
+        }
+        .avatar-container {
+            float: right;
+            margin-left: 20px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-label {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Added styles for the Save Changes button and Edit links */
+        .save-changes-container {
+            text-align: right;
+            padding-top: 20px;
+        }
+
+        .save-changes-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-link {
+            color: #008ae6;
+            cursor: pointer;
+        }
+
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        /* Additional styles for the Edit link above the avatar */
+        .edit-avatar-link {
+            color: #008ae6;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* Additional styles for the file input */
+        #imageUpload {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #008ae6;
+            color: #fff;
+            border: 1px solid #0077cc;
+            border-radius: 4px;
+        }
+    </style>
+    <link rel="stylesheet" media="screen">
+    
+</head>
+<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+    <a id="top" class="top-anchor" accesskey="t"></a>
+    <div id="page-header" class="page-width">
+        <div class="headerbar" role="banner">
+            <div class="inner">
+                <div id="site-description" class="site-description">
+                    <a id="logo" class="logo" href="./index.php" title="Ứng dụng trao đổi kinh nghiệm học tập">
+                        <img src="../styles/elegance/themes/images/uit.jpg" width="150" height="80"/>
+                    </a>
+                    <p class="sitename">Ứng dụng trao đổi kinh nghệm học tập</p>
+                    <p>Ứng dụng trao đổi kinh nghệm học tập</p>
+                    <p class="skiplink"><a href="#start_here">Bỏ qua</a></p>
+                </div>
+                <div id="search-box" class="search-box search-header" role="search">
+                    <form action="./search.php" method="get" id="search">
+                    </form>
+                    
+                </div>                            
+            </div>
+        </div>
+        <div class="navbar tabbed not-static" role="navigation">
+            <div class="inner page-width">
+                <div class="nav-tabs" data-current-page="index">
+                    <ul class="leftside">
+                        <li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+                            
+                        </ul>
+                    <ul class="rightside" >    
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar secondary">
+            <ul role="menubar">
+                <li><a href="/search">Search</a></li>
+                <li><a href="/login" title="Login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/question" title="question" accesskey="x" role="menuitem">FAQs</a></li>
+                <li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/addFAQs" role="menuitem">Add FAQ</a></li>            
+            </ul>
+        </div>
+    </div>
+
+    <div id="wrap" class="page-width">
+        <a id="start_here" class="top-anchor"></a>
+        <div id="wrap" class="page-width">
+            <div id="page-body" class="page-body" role="main">
+                <div class="panel">
+                    <div class="inner">
+                        <h2>User Profile</h2>  
+                        <fieldset class="fields2">
+                                 <div class="avatar-container" onclick="openAvatarModal()">
+                                <img src="<%= ImageURL %>" alt="Avatar" />
+                                <label for="imageUpload" class="edit-avatar-link">Change Avatar</label>
+                            </div>
+                            
+                            <input type="file" id="imageUpload" accept="image/*" onchange="previewImage()" />
+                           
+                            <dl>
+                            <dl>
+                                <dt><label for="username">Tên tài khoản:</label></dt>
+                                <dd> <input type="text" id="username" name="username" value="<%= username %>" required></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="email">Email:</label></dt>
+                                <dd><input type="text" id="emailValue" name="email" value="<%= email %>" required></span></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="year">Năm nhập học:</label></dt>
+                                <dd><input type="text" id="yearValue" name="years" value="<%= Years %>" required></span></dd>
+                            </dl>
+                            <dl>
+                                <dt><label for="phone">Số điện thoại:</label></dt>
+                                <dd><input type="text" id="phoneValue" name="phone" value="<%= phone %>" required></span></dd>
+                            </dl>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+                <div class="modal" id="editModal" data-fieldId="" data-label="">
+                    <label for="editField"></label>
+                    <input type="text" id="editField" placeholder="" />
+                    <button onclick="saveEdit()">Lưu</button>
+                </div>
+                <div class="save-changes-container">
+                    <button class="save-changes-button" onclick="saveChanges()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar" role="navigation"></div>
+    </div>
+    <div id="page-footer" class="page-width" role="contentinfo"></div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('.save-changes-button').click(function () {
+          var username = $('#username').val();
+          var email = $('#emailValue').val();
+          var phone = $('#phoneValue').val();
+          var academicYear = $('#yearValue').val(); 
+          $.ajax({
+            url: '/saveprofile',
+            method: 'POST',
+            data: {
+              username: username,
+              email: email,
+              phone: phone,
+              academicYear: academicYear,
+            },
+            success: function (response) {
+              if (response.success) {
+                alert(response.message);
+                window.location.href = '/viewprofile';
+              } else {
+                alert('Save failed: ' + response.message);
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.error('AJAX Error:', textStatus, errorThrown);
+              alert('An error occurred. Please check the console for details.');
+            },
+          });
+        });
+      });
+    </script>
+    
+</body>
+</html>

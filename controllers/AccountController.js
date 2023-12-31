@@ -68,12 +68,12 @@ async function checkLogin (req, res) {
     console.error('Error fetching Accounts:', error);
   }
 }
-async function updateAccount (req, res) {
+async function updateAccount(id, updatedProfile) {
   try {
-    const Account = await AccountSchema.findById(req.params.id);
-    await Account.updateOne({ $set: req.body });
+    await AccountSchema.findByIdAndUpdate(id, { $set: updatedProfile });
   } catch (err) {
-    res.status(500).json(err);
+    console.error('Error updating account:', err);
+    throw err;
   }
 }
 

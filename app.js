@@ -249,6 +249,37 @@ app.get('/viewdocument', async (req, res) => {
   // Xử lý yêu cầu GET ở đây
   res.render('viewdocument');
 });
+app.get('/changeprofile', async (req, res) => {
+  try {
+    const Account = await getAccount(req, res);
+    res.render('changeprofile', {
+      username: Account.Username,
+      email: Account.Email,
+      phone: Account.Phone,
+      academicYear: Account.Years,
+      imageURL: Account.ImageURL,
+    });
+  } catch (error) {
+    console.error('Error fetching user account:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+app.post('/saveprofile', async (req, res) => {
+  try {
+    const accountId = req.cookies.account;
+    const updatedProfile = {
+      Username: req.body.username,
+      Email: req.body.email,
+      Phone: req.body.phone,
+      Years: req.body.academicYear,
+    };
+    await updateAccount(accountId, updatedProfile);
+    res.status(200).redirect('/viewprofile');
+  } catch (error) {
+    console.error('Error updating user profile:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 connectDb();
 const port = 3000;
 app.listen(port, () => {

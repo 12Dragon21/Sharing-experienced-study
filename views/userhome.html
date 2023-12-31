@@ -17,6 +17,16 @@
     color: #ffffff;
     padding: 10px;
 }
+.notification-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    right: 0;
+    top: 30px; /* Adjust as needed */
+    z-index: 1000;
+}
 .navbar.secondary a img {
     width: 10px; /* Điều chỉnh chiều rộng của hình ảnh */
     height: 10px; /* Điều chỉnh chiều cao của hình ảnh */
@@ -53,6 +63,41 @@
 	   document.body.appendChild(form);
 	   form.submit();
 	}
+ </script>
+ <script>
+	document.addEventListener('DOMContentLoaded', function () {
+    var notificationDropdown = document.getElementById('notificationDropdown');
+    var notificationContainer = document.getElementById('notificationContainer');
+
+    // Add dummy notifications for testing
+    var notifications = [
+        'Notification 1',
+        'Notification 2',
+        'Notification 3'
+    ];
+
+    // Function to populate the dropdown with notifications
+    function populateNotifications() {
+        // Clear existing notifications
+        notificationContainer.innerHTML = '';
+
+        // Add new notifications
+        notifications.forEach(function (notification) {
+            var notificationElement = document.createElement('div');
+            notificationElement.textContent = notification;
+            notificationContainer.appendChild(notificationElement);
+        });
+    }
+
+    // Toggle the visibility of the dropdown when the link is clicked
+    notificationDropdown.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        // Populate and toggle the visibility of the dropdown
+        populateNotifications();
+        notificationContainer.style.display = (notificationContainer.style.display === 'none') ? 'block' : 'none';
+    });
+});
  </script>
 <style>
 	.icon img {
@@ -107,6 +152,21 @@
 						<img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
 					</a>
 				</li>
+				
+				<li class="tab faq">
+					<a href="/logout" rel="help" title="Logout">
+						<img src="../styles/elegance/themes/images/LOGOUT.png" alt="Logout Icon" width="10" height="10" /><span></span>
+					</a>
+				</li>
+				
+				<li class="tab faq" id="notificationDropdown">
+					<a href="#" rel="help" title="Thông báo">
+						<img src="../styles/elegance/themes/images/notification.png" alt="Notification Icon" width="10" height="10" /><span></span>
+					</a>
+					<div id="notificationContainer" class="notification-dropdown">
+						<!-- Notifications will be dynamically added here -->
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -114,10 +174,12 @@
 
 	<div class="navbar secondary">
 		<ul role="menubar">
-			<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
-			<li><a href="/login" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Login</a></li>
-			<li><a href="/register"><img src="../styles/elegance/themes/images/register.png" alt="Register">Register</a></li>
-				</ul>
+			<div class="navbar secondary">
+				<ul role="menubar">
+					<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
+					<li><a href="/viewprofile" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Your profile</a></li>
+					<li><a href="/changeprofile" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Your profile</a></li>
+			</div>
 	</div>
 
 		</div>
@@ -148,55 +210,53 @@
 					</dl>
 						</li>
 			</ul>
-			<!-- Display posts -->
-			<form id="postForm" action="/viewpost" method="get">
-				<ul class="topiclist forums">
-				  <dl class="faq" props="posts">
-					<% if (!posts.length > 0) { %>
-					  <p>No FAQs available.</p>
-					<% } else { %>
-					  <% posts.forEach(function (post, index) { %>
-						<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
-						var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
-						<li class="row forum-3">
-						  <div class="post-id" data-postid="<%= post._id %>"></div>
-						  <dl class="row-item forum_read elegant-row">
-							<dt title="No unread posts">
-							  <div class="list-inner">
-								<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
-								<div class="forum-statistics">
-								  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span><span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
-								</div>
-							  </div>
-							</dt>
-						  </dl>
-						</li>
-					  <% }); %>
-					<% } %>
-				  </dl>
-				</ul>
-			  </form>
-  
-  <!-- Pagination controls -->
+<form id="postForm" action="/viewpost" method="get">
+	<ul class="topiclist forums">
+	  <dl class="faq" props="posts">
+		<% if (!posts.length > 0) { %>
+		  <p>No FAQs available.</p>
+		<% } else { %>
+		  <% posts.forEach(function (post, index) { %>
+			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
+			<li class="row forum-3">
+			  <div class="post-id" data-postid="<%= post._id %>"></div>
+			  <dl class="row-item forum_read elegant-row">
+				<dt title="No unread posts">
+				  <div class="list-inner">
+					<a class="forumtitle" onclick="getPost('<%= post._id %>')"><%= post.PostName %></a>
+					<div class="forum-statistics">
+					  <span class="dfn">Vào ngày</span>: <span class="value"><%= date%></span><span class="dfn">Vào lúc</span>: <span class="value"><%= time%></span>
+					</div>
+				  </div>
+				</dt>
+			  </dl>
+			</li>
+		  <% }); %>
+		<% } %>
+	  </dl>
+	</ul>
+  </form>
+  <a href="/addPost" class="button" title="Add a new post">
+    <span>Add Post</span> <i class="icon fa-plus fa-fw" aria-hidden="true"></i>
+</a>
   <div class="pagination">
 	<% if (currentPage > 1) { %>
-	  <a href="/home?page=<%= currentPage - 1 %>">Trang trước</a>
+	  <a href="/userhome?page=<%= currentPage - 1 %>">Trang trước</a>
 	<% } %>
-  
-	<!-- You can dynamically generate page numbers based on the total number of posts -->
 	<span>Trang <%= currentPage %></span>
   
-	<a href="/home?page=<%= currentPage + 1 %>">Trang sau</a>
+	<a href="/userhome?page=<%= currentPage + 1 %>">Trang sau</a>
   </div>
 		
 				<div class="forabg category-6 elegant" data-hide-description="1">
 		
 				<div class="forabg category-11 elegant" data-hide-description="1">
-			<form class="inner" action="/viewdocument" method="get">
+			<div class="inner">
 			<ul class="topiclist">
 				<li class="header">
 										<dl class="row-item">
-						<dt><div class="list-inner"><a data-id="11">Tài liệu học tập</a></div></dt>
+						<dt><div class="list-inner"><a href="./viewforum.php?f=11" data-id="11">Tài liệu học tập</a></div></dt>
 												<dd class="lastpost"><span>Gần nhất</span></dd>
 					</dl>
 									</li>
@@ -206,12 +266,12 @@
 									<dl class="row-item forum_read elegant-row">
 				<dt title="No unread posts">
 										<div class="list-inner">
-											<a type="submit" class="forumtitle" data-id="12">Tài liệu học tập</a>
+											<a href="./viewforum.php?f=12" class="forumtitle" data-id="12">Tài liệu học tập</a>
 						<div class="forum-description">Nơi lưu trữ tài liệu học tập</div>													<div class="forum-statistics">
 					<span class="dfn">Chủ đề</span>: <span class="value">4652</span><span class="comma">, </span>
 					<span class="dfn">Chủ đề</span>: <span class="value">47108</span>
 				</div>
-																					<div class="forum-lastpost" style="display: none;">
+						<div class="forum-lastpost" style="display: none;">
 								<span><strong>Gần nhất:</strong> <a href="./viewtopic.php?p=724710#p724710" title="Re: division d'une arête pour travailler avec additive pipe OU Gordon + lien avec les esquisses" class="lastsubject">Re: division d'une arête pour…</a></span>
 								<span>by <a href="./memberlist.php?mode=viewprofile&amp;u=47904" class="username">Ribo</a>, Sun Dec 10, 2023 4:41 pm</span>
 							</div>
@@ -230,7 +290,7 @@
 							</dl>
 					</li>
 				</ul>
-			</form>
+			</div>
 		</div>
 			</div>
 	<div class="navbar" role="navigation">

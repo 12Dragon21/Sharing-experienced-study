@@ -10,14 +10,26 @@ async function getAllAccountComment(req, res) {
   }
 }
 
-async function createAccountComment(req, res) {
+async function getAllAccountCommentWithPostId(req, res, postid) {
+  try {
+    const AccountComments = await AccountCommentSchema.find().populate({
+      path: 'CommentID',
+      match: {PostID: postid}
+    }).populate("AccountID");
+    return AccountComments;
+  } catch (error) {
+    console.error('Error fetching AccountComments:', error);
+  }
+}
+
+async function createAccountComment(req, res, newComment) {
   try {
     const newAccountComment = new AccountCommentSchema({
-      ACLike: req.body.acLike,
-      ACDislike: req.body.acDislike,
-      ACState: req.body.acState,
-      AccountID: req.body.accountID,
-      CommentID: req.body.commentID,
+      ACLike: 0,
+      ACDislike: 0,
+      ACState: 0,
+      AccountID: req.cookies.account,
+      CommentID: newComment._id,
     });
     const savedAccountComment = await newAccountComment.save();
     return newAccountComment;
@@ -58,5 +70,6 @@ module.exports = {
   createAccountComment,
   getAccountComment,
   updateAccountComment,
-  deleteAccountComment
+  deleteAccountComment,
+  getAllAccountCommentWithPostId
 };

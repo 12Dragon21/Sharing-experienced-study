@@ -223,120 +223,58 @@ button[type="submit"]:hover {
 		  <div class="like-dislike-buttons">
         <button class="like-button" onclick="likePost()">Like</button>
         <button class="dislike-button" onclick="dislikePost()">Dislike</button>
-    </div>
+    	</div>
 		</div>
 		
-		<div id="p728756" class="post has-profile bg1">
+		<div id="p728756" class="post has-profile bg1" props="accountcomments, post">
+			<% accountcomments.forEach(function (accountcomment, index) { %>
+				<%var date = accountcomment.CommentID.CmtDate.getDate()+'-'+(accountcomment.CommentID.CmtDate.getMonth()+1)+'-'+accountcomment.CommentID.CmtDate.getFullYear();
+				var time = accountcomment.CommentID.CmtDate.getHours() + ":" + accountcomment.CommentID.CmtDate.getMinutes() + ":" + accountcomment.CommentID.CmtDate.getSeconds();%>
 			<div class="inner">
-	
 			<dl class="postprofile" id="profile728756">
 				<dt class="has-profile-rank no-avatar">
 					<div class="avatar-container">
-																				</div>
-									<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username">freedman</a>							</dt>
-	
-							<dd class="profile-rank">Veteran</dd>			
-			<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=19098&amp;sr=posts">3254</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> Thu Mar 22, 2018 3:02 am</dd>		
-												<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Washington State, USA</dd>						
+						<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+					</div>
+					<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
+				</dt>
+				<dd class="profile-rank">Veteran</dd>			
+				<dd class="profile-posts">
+					<strong>Posts:</strong>
+					<a href="./search.php?author_id=19098&amp;sr=posts">3254</a>
+				</dd>
+				<dd class="profile-joined">
+					<strong>Joined:</strong> Thu Mar 22, 2018 3:02 am
+				</dd>		
+				<dd class="profile-custom-field profile-phpbb_location">
+					<strong>Location:</strong> Washington State, USA
+				</dd>						
 			</dl>
 			<div class="postbody">
 				<div id="post_content728756">
-				<h3 >
-					<a href="./viewtopic.php?p=728756#p728756">Re: New user needs help cutting corners</a>
-				</h3>
-					<ul class="post-buttons">																																			<li>					
-							</li>
-					</ul>						
-					<p class="author">
-						<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
-							<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-						</a>
-						<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username">freedman</a></strong> &raquo; </span><time datetime="2023-12-28T23:32:46+00:00">Thu Dec 28, 2023 11:32 pm</time>
-				</p>
-				<div class="content">The best way is to sketch the rectangle from the end and then you can add the radius. This presumes you want it rounded the entire length.</div>	</div>
+					<h3 >
+						<a href="./viewtopic.php?p=728756#p728756">Re: <%=post.PostName%></a>
+					</h3>
+						<ul class="post-buttons">
+						</ul>						
+						<p class="author">
+							<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
+								<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true">
+								</i>
+								<span class="sr-only">Post</span>
+							</a>
+							<span class="responsive-hide">bởi
+								<strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a></strong> &raquo;
+							</span>
+							<time>Vào lúc <%=time%> ngày <%=date%></time>
+						</p>
+					<div class="content"><%=accountcomment.CommentID.CmtContent%></div>
+				</div>
 			</div>
 			</div>
 			<br>
-		<div id="p728762" class="post has-profile bg2 online">
-			<div class="inner">
-	
-			<dl class="postprofile" id="profile728762">
-				<dt class="has-profile-rank no-avatar">
-					<div class="avatar-container">
-																				</div>
-									<a href="./memberlist.php?mode=viewprofile&amp;u=36484" class="username">edwilliams16</a>							</dt>
-	
-							<dd class="profile-rank">Veteran</dd>			
-			<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=36484&amp;sr=posts">2776</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> Thu Sep 24, 2020 10:31 pm</dd>		
-			
-																	<dd class="profile-custom-field profile-phpbb_location"><strong>Location:</strong> Hawaii</dd>
-								
-								<dd class="profile-contact">
-					<strong>Contact:</strong>
-					<div class="dropdown-container dropdown-right dropdown-down">
-						<a href="#" class="dropdown-trigger" title="Contact edwilliams16">
-							<i class="icon fa-commenting-o fa-fw icon-lg" aria-hidden="true"></i><span class="sr-only">Contact edwilliams16</span>
-						</a>
-						<div class="dropdown">
-							<div class="pointer"><div class="pointer-inner"></div></div>
-							<div class="dropdown-contents contact-icons">
-																																									<div>
-																		<a href="http://edwilliams.org" title="Website" class="last-cell">
-											<span class="contact-icon phpbb_website-icon">Website</span>									</a>
-																		</div>
-																						</div>
-						</div>
-					</div>
-				</dd>
-			</dl>
-			<div class="postbody">
-				<div id="post_content728762">
-
-				<h3 >
-				<a href="./viewtopic.php?p=728762#p728762">Re: New user needs help cutting corners</a>
-	</h3>
-
-											<ul class="post-buttons">
-				</li>
-												</ul>				
-				<p class="author">
-							<a class="unread" href="./viewtopic.php?p=728762#p728762" title="Post">
-				<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-			</a>
-						<span class="responsive-hide">by <strong><a href="./memberlist.php?mode=viewprofile&amp;u=36484" class="username">edwilliams16</a></strong> &raquo; </span><time datetime="2023-12-29T01:15:07+00:00">Fri Dec 29, 2023 1:15 am</time>
-	</p>
-	<div class="content">
-Assuming you are using Part Design, you can do it with Pads and Pockets from the XY-Plane. Padding up the first sketch gives the hex part. Then I pad down to make the rectangle with a through hole, and finally a pocket to remove the corners.  I make use of the external geometry tool in Sketcher to tie together the circle radii.  
-<div class="inline-attachment">
-		<dl class="file">
-	<dt class="attach-image"><img src="./download/file.php?id=248017" class="postimage" alt="Screenshot 2023-12-28 at 3.08.35 PM.png" onclick="viewableArea(this);" /></dt>
-				
-</dl>
-	</div></div>
-					<dl class="attachbox">
-			<dt>
-				Attachments
-			</dt>
-									<dd>
-		<dl class="file">
-	<dt><span class="imageset icon_topic_attach"></span> <a class="postlink" href="./download/file.php?id=248016">hexpost.FCStd</a></dt>
-				<dd>(35.92 KiB) Not downloaded yet</dd>
-</dl>
-
-	</dd>
-							</dl>
-				</div>
-</div>
-
-</div>
-		<div class="back2top">
-				<a href="#top" class="top" title="Top">
-		<i class="icon fa-chevron-circle-up fa-fw icon-gray" aria-hidden="true"></i>
-		<span class="sr-only">Top</span>
-	</a>
-			</div>
-	</div>
-</div>
+			<%});%>
+		</div>
 <div class="reply-container">
 	<h2>Phản hồi</h2>
 	<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">

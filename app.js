@@ -6,7 +6,6 @@ const fileUploader = require('./configs/cloudinary.config.js');
 var connectdb = require('./connectdb.js');
 const { createFAQ, getAllFAQs } = require('./controllers/FAQsController.js');
 const {
-  
   getAllAccount,
   createAccount,
   getAccount,
@@ -32,7 +31,21 @@ const {
   getIdOwnPost,
   getAmountPostByAccountId
 } = require('./controllers/AccountPostController.js');
-const {createComment} = require('./controllers/CommentController.js');
+const {
+  getAllComment,
+  createComment,
+  getComment,
+  updateComment,
+  deleteComment,
+} = require('./controllers/CommentController.js');
+const {
+  getAllAccountComment,
+  createAccountComment,
+  getAccountComment,
+  updateAccountComment,
+  deleteAccountComment,
+  getAllAccountCommentWithPostId
+} = require('./controllers/AccountCommentController.js');
 async function connectDb()
 {
     await connectdb();
@@ -190,7 +203,8 @@ app.get('/viewpost', async (req, res) => {
   const accountId = await getIdOwnPost(req, res);
   const account = await getAccountbyId(accountId);
   const amount = await getAmountPostByAccountId(accountId);
-  res.render('viewpost', { post, account, amount });
+  const accountcomments = await getAllAccountCommentWithPostId(req, res, post._id);
+  res.render('viewpost', { post, account, amount, accountcomments });
 });
 app.post('/viewpost', async (req, res) => {
   const postId = req.body.postid;
@@ -218,12 +232,14 @@ app.post('/addpost', async (req, res) =>
 app.get('/addcomment', async (req, res) => {
   try {
     console.log(req.query);  
-    await createComment(req, res);
+    const newComment = await createComment(req, res);
+    await createAccountComment(req, res, newComment);
     const post = await getPost(req, res);
     const accountId = await getIdOwnPost(req, res);
     const account = await getAccountbyId(accountId);
     const amount = await getAmountPostByAccountId(accountId);
-    res.render('viewpost', { post, account, amount });
+    const accountcomments = await getAllAccountCommentWithPostId(req, res, post._id);
+    res.render('viewpost', { post, account, amount, accountcomments});
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

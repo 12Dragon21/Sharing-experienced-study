@@ -191,6 +191,7 @@ button[type="submit"]:hover {
 		<dl class="postprofile" id="profile306531">
 			<dt class="has-profile-rank no-avatar">
 				<div class="avatar-container">
+					<img src="<%=account.ImageURL%>" alt="Avatar" class="avatar-container"/>
 				</div>
 					<a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
 			</dt>
@@ -348,7 +349,7 @@ Assuming you are using Part Design, you can do it with Pads and Pockets from the
 		<label for="document-upload">Upload Document:</label>
 		<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx">
 		<button type="submit" onclick="getPost('<%=post._id%>')">Submit Reply</button>
-		<input name="postid" value="<%=post._id%>">
+		<input name="postid" value="<%=post._id%>" hidden>
 	  </fieldset>
 	</form>
   </div>		

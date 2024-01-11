@@ -1,88 +1,232 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
+  <!DOCTYPE html>
+  <html dir="ltr" lang="en-gb">
+  <head>
+  <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FreeCAD Forum - FreeCAD forum</title>
+  <link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
   <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-  <title>Add FAQ</title>
-  <style type="text/css">
-    /* Add your additional styles here */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      margin: 0;
-      padding: 0;
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iJUqy4IxN7tN6twshN6/zZUJZQqFvE+9/RSJoZ+K2b2StqBQ1AB" crossorigin="anonymous">
+  <script></script><style type="text/css">
+      .mention {
+          color: #008ae6;
+      }
+    .navbar ul.rightside a {
+      color: #ffffff;
+      padding: 10px;
+  }
+  .notification-dropdown {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      right: 0;
+      top: 30px; /* Adjust as needed */
+      z-index: 1000;
+  }
+  .navbar.secondary a img {
+      width: 10px; /* Điều chỉnh chiều rộng của hình ảnh */
+      height: 10px; /* Điều chỉnh chiều cao của hình ảnh */
+      margin-right: 2px; /* Khoảng cách giữa hình ảnh và văn bản */
     }
-
-    .page-width {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      color: #007acc;
-    }
-
-    form {
-      margin-top: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #333;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #007acc;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
+  .tab.faq img {
+      margin-top: -5px;
+    }Ư
+    .navbar ul.rightside a {
+      color: #ffffff; /* White text color */
+      padding: 10px; /* Add padding for better spacing */
+  }	
+      @media (max-width: 767px) {
+          .responsive-hide {
+              display: inline-block;
+          }
+      
+      }
   </style>
-</head>
-<div id="p728756" class="post has-profile bg1" props="documents">
-	<% documents.forEach(function (document, index) { %>
-		
-	<div class="inner">
-	<div class="postbody">
-		<div id="post_content728756">
-			<h3 >
-				<a href="<%=document.DcmPath%>" frameborder="0"><%=document.DcmName%></a>
-			</h3>
-		</div>
-	</div>
-	</div>	
-	<br>
-	<%});%>
-</div>
-<body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
-  <div id="wrap" class="page-width">
-    <div id="page-body" class="page-body" role="main">
-      <h1>Add Document</h1>
-      <form id="comment-form" enctype="multipart/form-data" action="/document" method="post">
-		<fieldset>
-		<textarea id="reply-content" name="name" rows="4" cols="50" required></textarea>
-		  <!-- Add document upload field -->
-		  <label for="document-upload">Upload Document:</label>
-		  <input type="file" id="document" name="document" accept=" .doc, .docx, .txt">
-		  <button type="submit">Submit Reply</button>
-		</fieldset>
-	  </form>
+  <script>
+    function getPost(postId) {
+      console.log('Clicked post ID:', postId);
+      var form = document.createElement('form');
+      form.method = 'GET';
+      form.action = '/viewpost';
+  
+      var hiddenPostIdInput = document.createElement("input");
+      hiddenPostIdInput.type = "hidden";
+      hiddenPostIdInput.name = "postid";
+      hiddenPostIdInput.value = postId;
+  
+      form.appendChild(hiddenPostIdInput);
+  
+      document.body.appendChild(form);
+      form.submit();
+    }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var notificationDropdown = document.getElementById('notificationDropdown');
+      var notificationContainer = document.getElementById('notificationContainer');
+
+      // Add dummy notifications for testing
+      var notifications = [
+          'Notification 1',
+          'Notification 2',
+          'Notification 3'
+      ];
+
+      // Function to populate the dropdown with notifications
+      function populateNotifications() {
+          // Clear existing notifications
+          notificationContainer.innerHTML = '';
+
+          // Add new notifications
+          notifications.forEach(function (notification) {
+              var notificationElement = document.createElement('div');
+              notificationElement.textContent = notification;
+              notificationContainer.appendChild(notificationElement);
+          });
+      }
+
+      // Toggle the visibility of the dropdown when the link is clicked
+      notificationDropdown.addEventListener('click', function (event) {
+          event.preventDefault(); // Prevent the default link behavior
+
+          // Populate and toggle the visibility of the dropdown
+          populateNotifications();
+          notificationContainer.style.display = (notificationContainer.style.display === 'none') ? 'block' : 'none';
+      });
+  });
+  </script>
+  <style>
+    .icon img {
+      width: 15px;
+      height: 15px;
+    }
+    </style>
+  <link rel="stylesheet" media="screen">
+  </head>
+  <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+    <a id="top" class="top-anchor" accesskey="t"></a>
+    <div id="page-header" class="page-width">
+      <div class="headerbar" role="banner">
+            <div class="inner">
+        <div id="site-description" class="site-description">
+          <a id="logo" class="logo" href="./index.php" title="Ứng dụng trao đổi kinh nghiệm học tập">
+            <img src="../styles/elegance/themes/images/uit.jpg" width="150" height="80"/>
+          </a>
+          <p class="sitename">Ứng dụng trao đổi kinh nghệm học tập</p>
+          <p>Ứng dụng trao đổi kinh nghệm học tập</p>
+          <p class="skiplink"><a href="#start_here">Bỏ qua</a></p>
+        </div>
+              <div id="search-box" class="search-box search-header" role="search">
+          <form action="./search.php" method="get" id="search">
+          <fieldset>
+            <input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
+            <button class="button button-search" type="submit" title="Search">
+              <i class="icon">
+                <img src="../styles/elegance/themes/images/search.png" alt="Search Icon">
+              </i><span class="sr-only">Search</span>
+              </button>
+              <a href="./search.php" class="button button-search-end" title="Advanced search">
+              <i class="icon">
+                <img src="../styles/elegance/themes/images/ava-search.png" alt="Cog Icon">
+              </i><span class="sr-only">Advanced search</span>
+              </a>
+                  
+          </fieldset>
+          </form>
+        </div>							
+        </div>
+            </div>
+  <div class="navbar tabbed not-static" role="navigation">
+    <div class="inner page-width">
+      <div class="nav-tabs" data-current-page="index">
+        <ul class="leftside">
+          <li id="quick-links" class="quick-links tab responsive-menu dropdown-container">		
+          </ul>
+        <ul class="rightside" >	
+          <li class="tab faq">
+            <a href="/question" rel="help" title="Question">
+              <img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
+            </a>
+          </li>
+          
+          <li class="tab faq">
+            <a href="/logout" rel="help" title="Logout">
+              <img src="../styles/elegance/themes/images/LOGOUT.png" alt="Logout Icon" width="10" height="10" /><span></span>
+            </a>
+          </li>
+          
+          <li class="tab faq" id="notificationDropdown">
+            <a href="#" rel="help" title="Thông báo">
+              <img src="../styles/elegance/themes/images/notification.png" alt="Notification Icon" width="10" height="10" /><span></span>
+            </a>
+            <div id="notificationContainer" class="notification-dropdown">
+              <!-- Notifications will be dynamically added here -->
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-</body>
 
-</html>
+    <div class="navbar secondary">
+      <ul role="menubar">
+        <div class="navbar secondary">
+          <ul role="menubar">
+            <li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
+            <li><a href="/viewprofile" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Your profile</a></li>
+            <li><a href="/changeprofile" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Your profile</a></li>
+        </div>
+    </div>
+
+      </div>
+
+  <body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
+    <div id="wrap" class="page-width">
+      <div id="page-body" class="page-body" role="main">
+        
+        <!-- Add the document container div with a similar structure to the post div -->
+        <div class="inner" props="account, documents, amount">
+          
+          <div id="document-container" class="post has-profile bg1" props="documents">
+            
+            <% documents.forEach(function (document, index) { %>
+              <div class="inner">
+                <dl class="postprofile" id="profile306531">
+                  <dt class="has-profile-rank no-avatar">
+                    <div class="avatar-container">
+                      
+                    </div>
+                                  
+                  </dt>
+                <dd class="profile-rank">Veteran</dd>			
+              
+                </dl>
+                <div class="postbody">
+                  <div id="post_content<%= index %>">
+                    <h3>
+                      <a href="<%=document.DcmPath%>" frameborder="0"><%=document.DcmName%></a>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <br>
+            <% }); %>
+          </div>
+        </div>0
+        <form id="document-form" enctype="multipart/form-data" action="/document" method="post">
+          <fieldset>
+            <textarea id="document-content" name="name" rows="4" cols="50" required></textarea>
+            <label for="document-upload">Upload Document:</label>
+            <input type="file" id="document" name="document" accept=".doc, .docx, .txt">
+            <button type="submit">Submit Document</button>
+          </fieldset>
+        </form>
+        
+      </div>
+    </div>
+  </body>
+  </html>

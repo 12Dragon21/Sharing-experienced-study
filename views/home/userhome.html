@@ -152,10 +152,11 @@
 			<div class="inner">
 			<ul class="topiclist">
 				<li class="header">
-										<dl class="row-item">
-						<dt><div class="list-inner"><a>Hỏi đáp</a></div></dt>
-												
-					</dl>
+					
+					<div class="list-inner qa-link" onclick="navigateToAddPost()">
+						<a>Hỏi đáp</a>
+						<i class="fa fa-plus-circle" onclick="navigateToAddPost()"></i>
+					</div>
 									</li>
 			</ul>
 			<form id="postForm" action="/viewpost" method="get">

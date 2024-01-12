@@ -73,11 +73,55 @@ async function deletePost (req, res) {
     res.status(500).json(err);
   }
 }
+async function likePost(req, res) {
+  try {
+    const postId = req.params.id;
+    const post = await PostSchema.findById(postId);
 
+    // Check if the post with the given ID exists
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Update the like count
+    post.PostLike += 1;
+    await post.save();
+
+    // Respond with the updated post
+    return res.status(200).json({ message: 'Post liked successfully', post });
+  } catch (error) {
+    console.error('Error liking post:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+async function dislikePost(req, res) {
+  try {
+    const postId = req.params.id;
+    const post = await PostSchema.findById(postId);
+
+    // Check if the post with the given ID exists
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Update the dislike count
+    post.PostDislike += 1;
+    await post.save();
+
+    // Respond with the updated post
+    return res.status(200).json({ message: 'Post disliked successfully', post });
+  } catch (error) {
+    console.error('Error disliking post:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
 module.exports = {
   getAllPost,
   createPost,
   getPost,
   updatePost,
-  deletePost
+  deletePost,
+  likePost,
+  dislikePost,
 };

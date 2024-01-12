@@ -1,63 +1,108 @@
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en-gb">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">			<link rel="alternate" type="application/atom+xml" title="Feed - Forum - Tutorials and videos" href="/app.php/feed/forum/36">	<link rel="alternate" type="application/atom+xml" title="Feed - Topic - Guidelines for videos and tutorials" href="/app.php/feed/topic/36205">	
-	<link rel="canonical" href="https://forum.freecad.org/viewtopic.php?t=36205">
-<link href="../assets/css/cookiesconsent/cookieconsent.min.css" rel="stylesheet">
+
+<title>Forum</title>
+
+
+
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link href="./assets/cookieconsent/cookieconsent.min.css" rel="stylesheet">
-<script></script><style type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="./assets/css/font-awesome.min.css?assets_version=41" rel="stylesheet">
+<link href="./styles/elegance/theme/stylesheet.css?assets_version=41" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css?assets_version=41" rel="stylesheet">				
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lymOwHGVHVQPhxOo897DE49OmRZu6x3vNPPBEPs_1SxQoqrzUuJGtjJL75NZDEhSNXTwKaP_KsVNTRvqLvS-UA" charset="UTF-8"></script>
+<style type="text/css">
     .mention {
         color: #008ae6;
     }
-</style>
-<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
-<link href="./ext/wolfsblvt/advancedpolls/styles/prosilver/theme/advancedpolls.css?assets_version=41" rel="stylesheet" media="screen">
-</head>
-<script>
-	function clearText(element) {
-		if (element.innerText.trim() === 'Nhập tiêu đề' || element.innerText.trim() === 'Nhập nội dung') {
-			element.innerText = '';
-		}
-	}
+	.reply-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
 
-	function restoreText(element) {
-		if (element.innerText.trim() === '') {
-			if (element.classList.contains('first')) {
-				element.innerText = 'Nhập tiêu đề';
-			} else {
-				element.innerText = 'Nhập nội dung';
-			}
-		}
-	}
-</script>
-<body id="phpbb" class="nojs notouch section-viewtopic ltr " data-online-text="Online">
+.reply-container h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+#comment-form {
+    margin-top: 15px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.file-upload {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+</style>
+
+
+<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
+
+
+
+</head>
+<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+
+
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="page-header" class="page-width">
 		<div class="headerbar" role="banner">
 					<div class="inner">
 
 			<div id="site-description" class="site-description">
-				<a id="logo" class="logo" href="./index.php" title="FreeCAD forum">
-					<img src="./styles/elegance/theme/images/logo.png" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="FreeCAD Forum"/>
+				<a id="logo" class="logo" href="/userhome" title="forum">
+					<img src="../styles/elegance/themes/images/uit.jpg" width="120" height="80" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="Forum"/>
 				</a>
-				<p class="sitename">FreeCAD Forum</p>
-				<p>The help and development forum of FreeCAD</p>
-				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+				<p class="sitename">Forum</p>
+				<p>forum </p>
+				<p class="skiplink"><a href="/userhome">Skip to content</a></p>
 			</div>
 
-				<div id="search-box" class="search-box search-header" role="search">
-				<form action="./search.php" method="get" id="search">
+															<div id="search-box" class="search-box search-header" role="search">
+				<form action="/search" method="get" id="search">
 				<fieldset>
 					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
 					<button class="button button-search" type="submit" title="Search">
 						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
 					</button>
-					<a href="./search.php" class="button button-search-end" title="Advanced search">
+					<a href="/search" class="button button-search-end" title="Advanced search">
 						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
 					</a>
 					
@@ -67,9 +112,14 @@
 									
 			</div>
 					</div>
+
+
+				
+
+
 <div class="navbar tabbed not-static" role="navigation">
 	<div class="inner page-width">
-		<div class="nav-tabs" data-current-page="viewtopic">
+		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
 				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
 					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
@@ -79,18 +129,17 @@
 								
 			<li class="separator"></li>
 													<li>
-								<a href="./search.php?search_id=unanswered" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
+								<a href="/viewprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Your Profile</span>
+								</a>
+								<a href="/changeprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Update Profile</span>
 								</a>
 							</li>
-							<li>
-								<a href="./search.php?search_id=active_topics" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
-								</a>
-							</li>
+
 							<li class="separator"></li>
 							<li>
-								<a href="./search.php" role="menuitem">
+								<a href="/search" role="menuitem">
 									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
 								</a>
 							</li>	
@@ -99,17 +148,16 @@
 					</div>
 				</li>
 												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
-					<a class="nav-link" href="./index.php">Forums</a>
+					<a class="nav-link" href="/userhome">Forums</a>
 				</li>
 											</ul>
 			<ul class="rightside" role="menu">
 								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
-					<a class="nav-link" href="/app.php/help/faq" rel="help" title="Frequently Asked Questions" role="menuitem">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
 						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
 					</a>
 				</li>
-																									<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="./ucp.php?mode=login&amp;redirect=viewtopic.php%3Ft%3D36205" title="Login" accesskey="x" role="menuitem">Login</a></li>
-											<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="./ucp.php?mode=register" role="menuitem">Register</a></li>
+					<li class="tab logout"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/home" title="Login" accesskey="x" role="menuitem">Logout</a></li>
 																	</ul>
 		</div>
 	</div>
@@ -117,9 +165,7 @@
 
 <div class="navbar secondary">
 	<ul role="menubar">
-											<li class="small-icon icon-search"><a href="./search.php">Search</a></li>
-														<li class="small-icon icon-login"><a href="./ucp.php?mode=login&amp;redirect=viewtopic.php%3Ft%3D36205" title="Login">Login</a></li>
-									<li class="small-icon icon-register"><a href="./ucp.php?mode=register">Register</a></li>
+
 									
 			</ul>
 </div>
@@ -138,33 +184,19 @@
 		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
 
 			
-						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/userhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Forum</span></a><meta itemprop="position" content="1" /></span>
 
-									
-						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope data-forum-id="7"><a itemprop="item" href="./viewforum.php?f=7"><span itemprop="name">Users</span></a><meta itemprop="position" content="2" /></span>
-												
-						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope data-forum-id="36"><a itemprop="item" href="./viewforum.php?f=36"><span itemprop="name">Tutorials and videos</span></a><meta itemprop="position" content="3" /></span>
-						
+			
 			
 		</li>
 
 		
 		
 			<li class="rightside responsive-search">
-				<a href="./search.php" title="View the advanced search options" role="menuitem">
+				<a href="/search" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
 				</a>
 			</li>
-				<li class="rightside dropdown-container icon-only">
-			<a href="#" class="dropdown-trigger time" title="It is currently Wed Dec 13, 2023 3:43 am"><i class="fa fa-clock-o"></i></a>
-			<div class="dropdown">
-				<div class="pointer"><div class="pointer-inner"></div></div>
-				<ul class="dropdown-contents">
-					<li>It is currently Wed Dec 13, 2023 3:43 am</li>
-					<li>All times are <span title="UTC">UTC</span></li>
-				</ul>
-			</div>
-		</li>
 	</ul>
 </div>
 			<div id="p306531" class="post has-profile bg2">
@@ -214,6 +246,9 @@
 			  // Submit the form
 			  document.getElementById("postForm").submit();
 			}
+			function navigateToAddPost() {
+    window.location.href = '/addPost'; // Redirect to the addPost route
+}
 		  </script>
 </body>
 </html>

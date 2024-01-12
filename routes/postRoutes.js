@@ -20,7 +20,9 @@ const {
   getPost,
   updatePost,
   deletePost,
-  getPostWithUser
+  getPostWithUser,
+  likePost,
+  dislikePost,
 } = require('../controllers/PostController.js');
 
 const {
@@ -41,7 +43,6 @@ const {
   deleteAccountComment,
   getAllAccountCommentWithPostId
 } = require('../controllers/AccountCommentController.js');
-
 router.get('/viewpost', async (req, res) => {
   // Xử lý yêu cầu GET ở đây
   const postId = req.query.postid;
@@ -51,6 +52,7 @@ router.get('/viewpost', async (req, res) => {
   const account = await getAccountbyId(accountId);
   const amount = await getAmountPostByAccountId(accountId);
   const accountcomments = await getAllAccountCommentWithPostId(req, res, post._id);
+
   res.render('post/viewpost', { post, account, amount, accountcomments });
 });
 
@@ -71,11 +73,12 @@ router.post('/addpost', async (req, res) => {
     console.log(req.cookies.account);
     newPost = await createPost(req, res);
     await createAccountPost(req, res, newPost);
-    res.status(200).redirect('/home/userhome');
+    res.status(200).redirect('userhome');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-
+router.post('/like/:id', likePost);
+router.post('/dislike/:id', dislikePost);
 module.exports = router;

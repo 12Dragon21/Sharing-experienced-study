@@ -60,17 +60,28 @@ input[type="file"] {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #008ae6;
     color: #fff;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-
-button:hover {
-    background-color: #45a049;
+.like-button, .dislike-button {
+    color: #008ae6; 
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    background: none; 
 }
+
+.like-count, .dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
 </style>
 
 
@@ -215,7 +226,7 @@ button:hover {
 				</div>
 					<a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
 			</dt>
-		<dd class="profile-rank">Veteran</dd>			
+		<dd class="profile-rank">Thành viên </dd>			
 		<dd class="profile-posts"><strong>Posts:</strong><%=amount%></dd>		<dd class="profile-joined"><strong>Joined:</strong> Tue Mar 17, 2015 9:14 am</dd>						
 		</dl>
 		<div class="postbody">
@@ -237,56 +248,69 @@ button:hover {
 					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
 				</p>
 				<div class="content"><%=post.PostContent%><br></div>
+				<button class="like-button" onclick="likePost('<%= post._id %>')">
+					<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Like
+					<span class="like-count"><%= post.PostLike %></span>
+				  </button>
+				  
+				  <button class="dislike-button" onclick="dislikePost('<%= post._id %>')">
+					<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i> Dislike
+					<span class="dislike-count"><%= post.PostDislike %></span>
+				  </button>
 			</div>
 			
 		</div>
-			<button class="like-button" onclick="likePost()">
-			<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i>
-  			</button>
-  			<button class="dislike-button" onclick="dislikePost()">
-			<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i>
-			 </button>
 		</div>	
 		
 		<div id="p728756" class="post has-profile bg1" props="accountcomments, post">
 			<% accountcomments.forEach(function (accountcomment, index) { %>
-				<%var date = accountcomment.CommentID.CmtDate.getDate()+'-'+(accountcomment.CommentID.CmtDate.getMonth()+1)+'-'+accountcomment.CommentID.CmtDate.getFullYear();
-				var time = accountcomment.CommentID.CmtDate.getHours() + ":" + accountcomment.CommentID.CmtDate.getMinutes() + ":" + accountcomment.CommentID.CmtDate.getSeconds();%>
-			<div class="inner">
-			<dl class="postprofile" id="profile728756">
-				<dt class="has-profile-rank no-avatar">
-					<div class="avatar-container">
-						<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+				<% if (accountcomment && accountcomment.CommentID && accountcomment.CommentID.CmtDate) { %>
+					<% var date = accountcomment.CommentID.CmtDate.getDate() + '-' + (accountcomment.CommentID.CmtDate.getMonth() + 1) + '-' + accountcomment.CommentID.CmtDate.getFullYear(); %>
+					<% var time = accountcomment.CommentID.CmtDate.getHours() + ":" + accountcomment.CommentID.CmtDate.getMinutes() + ":" + accountcomment.CommentID.CmtDate.getSeconds(); %>
+					<div class="inner">
+						<dl class="postprofile" id="profile728756">
+							<dt class="has-profile-rank no-avatar">
+								<div class="avatar-container">
+									<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container" />
+								</div>
+								<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
+							</dt>
+							<dd class="profile-rank">Thành viên</dd>
+						</dl>
+						<div class="postbody">
+							<div id="post_content728756">
+								<h3>
+									<a href="./viewtopic.php?p=728756#p728756">Re: <%=post.PostName%></a>
+								</h3>
+								<ul class="post-buttons">
+								</ul>
+								<p class="author">
+									<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
+										<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true">
+										</i>
+										<span class="sr-only">Post</span>
+									</a>
+									<span class="responsive-hide">bởi
+										<strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a></strong> &raquo;
+									</span>
+									<time>Vào lúc <%=time%> ngày <%=date%></time>
+								</p>
+								<div class="content"><%=accountcomment.CommentID.CmtContent%></div>
+								<button class="like-button" onclick="likePost()">
+									<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Like
+									<span class="like-count">25</span>
+								</button>
+			
+								<button class="dislike-button" onclick="dislikePost()">
+									<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i> Dislike
+									<span class="dislike-count">10</span>
+								</button>
+							</div>
+						</div>
 					</div>
-					<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
-				</dt>
-				<dd class="profile-rank">Thành viên</dd>			
-						
-			</dl>
-			<div class="postbody">
-				<div id="post_content728756">
-					<h3 >
-						<a href="./viewtopic.php?p=728756#p728756">Re: <%=post.PostName%></a>
-					</h3>
-						<ul class="post-buttons">
-						</ul>						
-						<p class="author">
-							<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
-								<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true">
-								</i>
-								<span class="sr-only">Post</span>
-							</a>
-							<span class="responsive-hide">bởi
-								<strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a></strong> &raquo;
-							</span>
-							<time>Vào lúc <%=time%> ngày <%=date%></time>
-						</p>
-					<div class="content"><%=accountcomment.CommentID.CmtContent%></div>
-				</div>
-			</div>
-			</div>
-			<br>
-			<%});%>
+				<% } %>
+			<% }); %>
+			
 		</div>
 		<div class="reply-container">
 			<h2>Phản hồi</h2>
@@ -308,6 +332,57 @@ button:hover {
 				</fieldset>
 			</form>
 		</div>		
+		<script>
+			function likePost(postId) {
+  fetch(`/like/${postId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Update the UI with the new like count
+    const likeCountElement = document.querySelector(`#like-count-${postId}`);
+    likeCountElement.textContent = data.post.PostLike;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Handle error or display a message to the user
+  });
+}
+
+function dislikePost(postId) {
+  // Send a request to your server to handle the dislike action
+  fetch(`/dislike/${postId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Update the UI with the new dislike count
+    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
+    dislikeCountElement.textContent = data.post.PostDislike;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // Handle error or display a message to the user
+  });
+}
+
+		</script>
 </body>
 
 </html>

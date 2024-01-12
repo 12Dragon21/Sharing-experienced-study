@@ -5,8 +5,8 @@ const ObjectId = Schema.ObjectId;
 const PostSchema = new Schema({
   PostName: String,
   PostContent: String,
-  PostLike: Number,
-  PostDislike: Number,
+  PostLike: { type: Number, default: 0 },
+  PostDislike: { type: Number, default: 0 },
   PostDate: Date,
   PostState: Number,
 });

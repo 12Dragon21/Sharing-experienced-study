@@ -5,179 +5,199 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FreeCAD Forum - FreeCAD forum</title>
-<link rel="alternate" type="application/atom+xml" title="Feed - FreeCAD Forum" href="/app.php/feed">		<link rel="alternate" type="application/atom+xml" title="Feed - All forums" href="/app.php/feed/forums">					
+
+<title>Forum</title>
+
+
+
 <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iJUqy4IxN7tN6twshN6/zZUJZQqFvE+9/RSJoZ+K2b2StqBQ1AB" crossorigin="anonymous">
-<script></script><style type="text/css">
-     .mention {
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="./assets/css/font-awesome.min.css?assets_version=41" rel="stylesheet">
+<link href="./styles/elegance/theme/stylesheet.css?assets_version=41" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css?assets_version=41" rel="stylesheet">				
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lymOwHGVHVQPhxOo897DE49OmRZu6x3vNPPBEPs_1SxQoqrzUuJGtjJL75NZDEhSNXTwKaP_KsVNTRvqLvS-UA" charset="UTF-8"></script>
+<style type="text/css">
+    .mention {
         color: #008ae6;
     }
-	.navbar ul.rightside a {
-    color: #ffffff;
+	.reply-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.reply-container h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+#comment-form {
+    margin-top: 15px;
+}
+
+textarea {
+    width: 100%;
     padding: 10px;
-}
-.reply-container {
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: flex-end;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-#reply-form {
-  width: 100%;
-  box-sizing: border-box;
-   text-align: right;
+.file-upload {
+    margin-bottom: 15px;
 }
 
-#reply-content {
-  width: 100%;
-  box-sizing: border-box;
-  resize: none;
-  margin-bottom: 15px;
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
-button[type="submit"] {
-  background-color: #005a9e;;
-  color: #ffffff;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+input[type="file"] {
+    margin-top: 5px;
 }
 
-button[type="submit"]:hover {
-  background-color: #005a9e;
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
-.navbar.secondary a img {
-    width: 10px; 
-    height: 10px; 
-    margin-right: 2px; 
-  }
-.tab.faq img {
-    margin-top: -5px;
-  }Ư
-	.navbar ul.rightside a {
-    color: #ffffff; 
-    padding: 10px;
-}	
-    @media (max-width: 767px) {
-        .responsive-hide {
-            display: inline-block;
-        }
-		
-    }
+
+button:hover {
+    background-color: #45a049;
+}
 </style>
-<script>
-	function getPost(postId) {
-	   console.log('Clicked post ID:', postId);
-	   var form = document.createElement('form');
-	   form.method = 'GET';
-	   form.action = '/addcomment';
- 
-	   var hiddenPostIdInput = document.createElement("input");
-	   hiddenPostIdInput.type = "hidden";
-	   hiddenPostIdInput.name = "postid";
-	   hiddenPostIdInput.value = postId;
-	   form.appendChild(hiddenPostIdInput);
-	   document.body.appendChild(form);
-	   form.submit();
-	}
- </script>
- <script>
-    function likePost() {
-        // Add your logic for handling a like here
-        alert('Liked!');
-    }
 
-    function dislikePost() {
-        // Add your logic for handling a dislike here
-        alert('Disliked!');
-    }
-</script>
-<style>
-	.icon img {
-	  width: 15px;
-	  height: 15px;
-	}
-  </style>
-<link rel="stylesheet" media="screen">
+
+<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
+
+
+
 </head>
 <body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+
+
 	<a id="top" class="top-anchor" accesskey="t"></a>
 	<div id="page-header" class="page-width">
 		<div class="headerbar" role="banner">
 					<div class="inner">
+
 			<div id="site-description" class="site-description">
-				<a id="logo" class="logo" href="./index.php" title="Ứng dụng trao đổi kinh nghiệm học tập">
-					<img src="../styles/elegance/themes/images/uit.jpg" width="150" height="80"/>
+				<a id="logo" class="logo" href="/userhome" title="forum">
+					<img src="../styles/elegance/themes/images/uit.jpg" width="120" height="80" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="Forum"/>
 				</a>
-				<p class="sitename">Ứng dụng trao đổi kinh nghệm học tập</p>
-				<p>Ứng dụng trao đổi kinh nghệm học tập</p>
-				<p class="skiplink"><a href="#start_here">Bỏ qua</a></p>
+				<p class="sitename">Forum</p>
+				<p>forum </p>
+				<p class="skiplink"><a href="/userhome">Skip to content</a></p>
 			</div>
-				    <div id="search-box" class="search-box search-header" role="search">
-				<form action="./search.php" method="get" id="search">
+
+															<div id="search-box" class="search-box search-header" role="search">
+				<form action="/search" method="get" id="search">
 				<fieldset>
-						  
+					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
+					<button class="button button-search" type="submit" title="Search">
+						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
+					</button>
+					<a href="/search" class="button button-search-end" title="Advanced search">
+						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
+					</a>
+					
 				</fieldset>
 				</form>
-				
-			</div>							
+			</div>
+									
 			</div>
 					</div>
+
+
+				
+
+
 <div class="navbar tabbed not-static" role="navigation">
 	<div class="inner page-width">
 		<div class="nav-tabs" data-current-page="index">
 			<ul class="leftside">
-				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">		
-				</ul>
-			<ul class="rightside" >	
-				<li class="tab faq">
-					<a href="/question" rel="help" title="Question">
-						<img src="../styles/elegance/themes/images/FAQ.png" alt="FAQ Icon" width="10" height="10"  /><span></span>
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
+					<div class="dropdown">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<ul class="dropdown-contents" role="menu">
+								
+			<li class="separator"></li>
+													<li>
+								<a href="/viewprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Your Profile</span>
+								</a>
+								<a href="/changeprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Update Profile</span>
+								</a>
+							</li>
+
+							<li class="separator"></li>
+							<li>
+								<a href="/search" role="menuitem">
+									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>	
+	
+													</ul>
+					</div>
+				</li>
+												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
+					<a class="nav-link" href="/userhome">Forums</a>
+				</li>
+											</ul>
+			<ul class="rightside" role="menu">
+								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
+						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
 					</a>
 				</li>
-			</ul>
+					<li class="tab logout"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/home" title="Login" accesskey="x" role="menuitem">Logout</a></li>
+																	</ul>
 		</div>
 	</div>
 </div>
-	<div class="navbar secondary">
-		<ul role="menubar">
-			<li><a href="/search"><img src="../styles/elegance/themes/images/search.png" alt="Search">Search</a></li>
-			<li><a href="/login" title="Login"><img src="../styles/elegance/themes/images/user.png" alt="Login">Login</a></li>
-			<li><a href="/register"><img src="../styles/elegance/themes/images/register.png" alt="Register">Register</a></li>
-				</ul>
+
+<div class="navbar secondary">
+	<ul role="menubar">
+
+									
+			</ul>
+</div>
+
 	</div>
 
-		</div>
 <div id="wrap" class="page-width">
+
+	
 	<a id="start_here" class="top-anchor"></a>
 	<div id="page-body" class="page-body" role="main">
 		<div class="navbar">
-	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">	
-		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">		
-						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="./index.php" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">FreeCAD forum</span></a><meta itemprop="position" content="1" /></span>		
-		</li>	
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+			
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/userhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Forum</span></a><meta itemprop="position" content="1" /></span>
+
+			
+			
+		</li>
+
+		
+		
 			<li class="rightside responsive-search">
-				<a href="./search.php" title="View the advanced search options" role="menuitem">
+				<a href="/search" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
 				</a>
 			</li>
-				<li class="rightside dropdown-container icon-only">
-			<a href="#" class="dropdown-trigger time" title="It is currently Wed Dec 13, 2023 3:43 am"><i class="fa fa-clock-o"></i></a>
-			<div class="dropdown">
-				<div class="pointer"><div class="pointer-inner"></div></div>
-				<ul class="dropdown-contents">
-					<li>It is currently Wed Dec 13, 2023 3:43 am</li>
-					<li>All times are <span title="UTC">UTC</span></li>
-				</ul>
-			</div>
-		</li>
 	</ul>
 </div>
 <div class="action-bar bar-top">
@@ -220,11 +240,13 @@ button[type="submit"]:hover {
 			</div>
 			
 		</div>
-		  <div class="like-dislike-buttons">
-        <button class="like-button" onclick="likePost()">Like</button>
-        <button class="dislike-button" onclick="dislikePost()">Dislike</button>
-    	</div>
-		</div>
+			<button class="like-button" onclick="likePost()">
+			<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i>
+  			</button>
+  			<button class="dislike-button" onclick="dislikePost()">
+			<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i>
+			 </button>
+		</div>	
 		
 		<div id="p728756" class="post has-profile bg1" props="accountcomments, post">
 			<% accountcomments.forEach(function (accountcomment, index) { %>
@@ -238,17 +260,8 @@ button[type="submit"]:hover {
 					</div>
 					<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
 				</dt>
-				<dd class="profile-rank">Veteran</dd>			
-				<dd class="profile-posts">
-					<strong>Posts:</strong>
-					<a href="./search.php?author_id=19098&amp;sr=posts">3254</a>
-				</dd>
-				<dd class="profile-joined">
-					<strong>Joined:</strong> Thu Mar 22, 2018 3:02 am
-				</dd>		
-				<dd class="profile-custom-field profile-phpbb_location">
-					<strong>Location:</strong> Washington State, USA
-				</dd>						
+				<dd class="profile-rank">Thành viên</dd>			
+						
 			</dl>
 			<div class="postbody">
 				<div id="post_content728756">
@@ -275,22 +288,26 @@ button[type="submit"]:hover {
 			<br>
 			<%});%>
 		</div>
-<div class="reply-container">
-	<h2>Phản hồi</h2>
-	<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">
-	  <fieldset>
-		<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>
-		<label for="image-upload">Upload Image:</label>
-		<input type="file" id="image-upload" name="image" accept="image/*">
-
-		<!-- Add document upload field -->
-		<label for="document-upload">Upload Document:</label>
-		<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx, .txt">
-		<button type="submit" onclick="getPost('<%=post._id%>')">Submit Reply</button>
-		<input name="postid" value="<%=post._id%>" hidden>
-	  </fieldset>
-	</form>
-  </div>		
+		<div class="reply-container">
+			<h2>Phản hồi</h2>
+			<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">
+				<fieldset>
+					<label for="reply-content">Your Feedback:</label>
+					<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>
+		
+					<div class="file-upload">
+						<label for="image-upload">Upload Image:</label>
+						<input type="file" id="image-upload" name="image" accept="image/*">
+		
+						<label for="document-upload">Upload Document:</label>
+						<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx, .txt">
+					</div>
+		
+					<button type="submit" onclick="getPost('<%=post._id%>')">Submit Reply</button>
+					<input name="postid" value="<%=post._id%>" hidden>
+				</fieldset>
+			</form>
+		</div>		
 </body>
 
 </html>

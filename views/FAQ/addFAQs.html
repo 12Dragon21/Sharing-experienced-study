@@ -1,71 +1,163 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
+<html dir="ltr" lang="en-gb">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
-  <title>Add FAQ</title>
-  <style type="text/css">
-    /* Add your additional styles here */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    .page-width {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+<title>Forum học tập</title>
 
-    h1 {
-      color: #007acc;
-    }
 
-    form {
-      margin-top: 20px;
-    }
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #333;
+<link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="./assets/css/font-awesome.min.css?assets_version=41" rel="stylesheet">
+<link href="./styles/elegance/theme/stylesheet.css?assets_version=41" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css?assets_version=41" rel="stylesheet">
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=GDZ8-LSqX_3bc8ZbRMlUhIzeIJ5Xb7Ifhss48GLlmdOT-mrLQxCRMf0p5cKuPX0f45h7Qg88b_kmsUn9Q-1eS70ld-yQ4GvLOhWtD_G-QvYaCWByQxkg-_sDwIC7fTTE" charset="UTF-8"></script><style type="text/css">
+    .mention {
+        color: #008ae6;
     }
+</style>
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
 
-    button {
-      background-color: #007acc;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
+
+
+
 </head>
-<body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
-  <div id="wrap" class="page-width">
-    <div id="page-body" class="page-body" role="main">
-      <h1>Add FAQ</h1>
-      <form action="/addfaq" method="post">
-        <label for="question">Question:</label>
-        <input type="text" id="question" name="question" required>
-        <label for="answer">Answer:</label>
-        <textarea id="answer" name="answer" rows="4" required></textarea>
-        <button type="submit">Add FAQ</button>
-      </form>
-    </div>
-  </div>
-</body>
+<body id="phpbb" class="nojs notouch section-search ltr " data-online-text="Online">
 
+
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header" class="page-width">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+
+			<div id="site-description" class="site-description">
+				<a id="logo" class="logo"title="Forum học tập">
+				
+				<p class="sitename">FreeCAD Forum</p>
+				<p>The help and development forum of FreeCAD</p>
+				<p class="skiplink"><a href="#start_here">Skip to content</a></p>
+			</div>
+
+									
+			</div>
+					</div>
+
+
+				
+
+
+<div class="navbar tabbed not-static" role="navigation">
+	<div class="inner page-width">
+		<div class="nav-tabs" data-current-page="search">
+			<ul class="leftside">
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
+					<div class="dropdown">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<ul class="dropdown-contents" role="menu">
+								
+			<li class="separator"></li>
+													<li>
+								<a href="./search.php?search_id=unanswered" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Unanswered topics</span>
+								</a>
+							</li>
+							<li>
+								<a href="./search.php?search_id=active_topics" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-blue" aria-hidden="true"></i><span>Active topics</span>
+								</a>
+							</li>
+							<li class="separator"></li>
+							<li>
+								<a href="./search" role="menuitem">
+									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>	
+	
+													</ul>
+					</div>
+				</li>
+												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
+					<a class="nav-link" href="/home">Forums</a>
+				</li>
+											</ul>
+			<ul class="rightside" role="menu">
+								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
+						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+					</a>
+				</li>
+						<li class="tab login"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/login" title="Login" accesskey="x" role="menuitem">Login</a></li>
+						<li class="tab register" data-skip-responsive="true" data-select-match="register"><a class="nav-link" href="/register" role="menuitem">Register</a></li>
+						</ul>
+		</div>
+	</div>
+</div>
+
+<div class="navbar secondary">
+	<ul role="menubar">
+											<li class="small-icon icon-search"><a href="/search">Search</a></li>
+									
+			</ul>
+</div>
+
+	</div>
+
+<div id="wrap" class="page-width">
+
+	
+	<a id="start_here" class="top-anchor"></a>
+	<div id="page-body" class="page-body" role="main">
+		<div class="navbar">
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/adminhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">forum</span></a><meta itemprop="position" content="1" /></span>
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/addFAQs"><span itemprop="name">AddFAQs</span></a><meta itemprop="position" content="2" /></span>
+						
+			
+		</li>
+
+	</ul>
+</div>
+
+		
+		
+<h2 class="solo">AddFAQs</h2>
+
+<form method="post" action="/addfaq">
+  <div class="panel">
+      <div class="inner">
+          <fieldset>
+              <dl>
+                  <dt><label>Thêm câu hỏi</label></dt>
+                  <dd><input type="text" id="question" name="question" required size="40" /></dd>
+              </dl>
+              <dl>
+                  <dt><label>Câu trả lời</label></dt>
+                  <dd><input id="answer" name="answer" size="40" required/></dd>
+              </dl>
+          </fieldset>
+      </div>
+
+		<div class="inner">
+			<fieldset class="submit-buttons">
+				<input type="hidden" name="t" value="0" />
+				<input type="reset" value="Reset" name="reset" class="button2" />&nbsp;
+				<input type="submit" name="submit" value="Thêm" class="button1" />
+			</fieldset>
+		</div>
+  </div>
+
+
+</form>
+<script src="./styles/elegance/template/forum_fn.js?assets_version=41"></script>
+<script src="./styles/elegance/template/ajax.js?assets_version=41"></script>
+</body>
 </html>

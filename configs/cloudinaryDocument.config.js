@@ -21,10 +21,9 @@ const storage = new CloudinaryStorage({
             } else if (ext === 'docx' || ext === 'doc') {
               return 'docx';
             } else {
-              // Handle any other formats as needed
               return 'raw';
             }
-          }, // supports promises as well
+          },
     },
 });
 

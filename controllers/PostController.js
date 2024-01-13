@@ -42,23 +42,15 @@ async function getPost (req, res) {
 async function updatePost(req, res) {
   try {
     const postId = req.params.id;
-
-    // Check if postId is undefined or not a valid ObjectId
     if (!postId || !mongoose.Types.ObjectId.isValid(postId)) {
       return res.status(400).json({ message: 'Invalid post ID' });
     }
 
     const post = await PostSchema.findById(postId);
-
-    // Check if the post with the given ID exists
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
-
-    // Update the post
     await post.updateOne({ $set: req.body });
-
-    // Respond with the updated post or a success message
     return res.status(200).json({ message: 'Post updated successfully' });
   } catch (error) {
     console.error('Error updating post:', error);
@@ -77,17 +69,26 @@ async function likePost(req, res) {
   try {
     const postId = req.params.id;
     const post = await PostSchema.findById(postId);
-
-    // Check if the post with the given ID exists
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
-
-    // Update the like count
     post.PostLike += 1;
     await post.save();
-
-    // Respond with the updated post
+    return res.status(200).json({ message: 'Post liked successfully', post });
+  } catch (error) {
+    console.error('Error liking post:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+async function unlikePost(req, res) {
+  try {
+    const postId = req.params.id;
+    const post = await PostSchema.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    post.PostLike -= 1;
+    await post.save();
     return res.status(200).json({ message: 'Post liked successfully', post });
   } catch (error) {
     console.error('Error liking post:', error);
@@ -99,17 +100,27 @@ async function dislikePost(req, res) {
   try {
     const postId = req.params.id;
     const post = await PostSchema.findById(postId);
-
-    // Check if the post with the given ID exists
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }
-
-    // Update the dislike count
     post.PostDislike += 1;
     await post.save();
+    return res.status(200).json({ message: 'Post disliked successfully', post });
+  } catch (error) {
+    console.error('Error disliking post:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
 
-    // Respond with the updated post
+async function undislikePost(req, res) {
+  try {
+    const postId = req.params.id;
+    const post = await PostSchema.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    post.PostDislike -= 1;
+    await post.save();
     return res.status(200).json({ message: 'Post disliked successfully', post });
   } catch (error) {
     console.error('Error disliking post:', error);
@@ -124,4 +135,6 @@ module.exports = {
   deletePost,
   likePost,
   dislikePost,
+  unlikePost,
+  undislikePost,
 };

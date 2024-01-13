@@ -5,8 +5,8 @@ const ObjectId = Schema.ObjectId;
 const CommentSchema = new Schema({
   CmtContent: String,
   CmtDate: Date,
-  CmtLike: Number,
-  CmtDisLike: Number,
+  CmtLike: { type: Number, default: 0 },
+  CmtDislike: { type: Number, default: 0 },
   PostID: { type: ObjectId, ref: 'Post' },
 });
 

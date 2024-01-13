@@ -23,6 +23,8 @@ const {
   getPostWithUser,
   likePost,
   dislikePost,
+  undislikePost,
+  unlikePost,
 } = require('../controllers/PostController.js');
 
 const {
@@ -81,4 +83,6 @@ router.post('/addpost', async (req, res) => {
 });
 router.post('/like/:id', likePost);
 router.post('/dislike/:id', dislikePost);
+router.post('/unlike/:id', unlikePost);
+router.post('/undislike/:id', undislikePost);
 module.exports = router;

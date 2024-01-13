@@ -250,13 +250,13 @@ button {
 				<div class="content"><%=post.PostContent%><br></div>
 				<button class="like-button" onclick="likePost('<%= post._id %>')">
 					<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Like
-					<span class="like-count"><%= post.PostLike %></span>
-				  </button>
+					<span class="like-count" id="like-count-<%= post._id %>"><%= post.PostLike %></span>
+				</button>
 				  
-				  <button class="dislike-button" onclick="dislikePost('<%= post._id %>')">
+				<button class="dislike-button" onclick="dislikePost('<%= post._id %>')">
 					<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i> Dislike
-					<span class="dislike-count"><%= post.PostDislike %></span>
-				  </button>
+					<span class="dislike-count" id="dislike-count-<%= post._id %>"><%= post.PostDislike %></span>
+				</button>
 			</div>
 			
 		</div>
@@ -310,7 +310,6 @@ button {
 					</div>
 				<% } %>
 			<% }); %>
-			
 		</div>
 		<div class="reply-container">
 			<h2>Phản hồi</h2>
@@ -333,54 +332,135 @@ button {
 			</form>
 		</div>		
 		<script>
-			function likePost(postId) {
-  fetch(`/like/${postId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+	 function likePost(postId) {
+        const likedPosts = getLikedPosts();
+        const postIndex = likedPosts.indexOf(postId);
+        if (postIndex !== -1) {
+            likedPosts.splice(postIndex, 1);
+            fetch(`/unlike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const likeCountElement = document.querySelector(`#like-count-${postId}`);
+                    likeCountElement.textContent = data.post.PostLike;
+                    unmarkPostAsLiked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            fetch(`/like/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const likeCountElement = document.querySelector(`#like-count-${postId}`);
+                    likeCountElement.textContent = data.post.PostLike;
+                    markPostAsLiked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     }
-    return response.json();
-  })
-  .then(data => {
-    // Update the UI with the new like count
-    const likeCountElement = document.querySelector(`#like-count-${postId}`);
-    likeCountElement.textContent = data.post.PostLike;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    // Handle error or display a message to the user
-  });
+function getLikedPosts() {
+  const likedPostsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)likedPosts\s*=\s*([^;]*).*$)|^.*$/, "$1");
+  return likedPostsCookie ? likedPostsCookie.split(',') : [];
 }
 
-function dislikePost(postId) {
-  // Send a request to your server to handle the dislike action
-  fetch(`/dislike/${postId}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Update the UI with the new dislike count
-    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
-    dislikeCountElement.textContent = data.post.PostDislike;
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    // Handle error or display a message to the user
-  });
+function markPostAsLiked(postId) {
+  const likedPosts = getLikedPosts();
+  likedPosts.push(postId);
+  document.cookie = `likedPosts=${likedPosts.join(',')}; path=/`;
 }
+function unmarkPostAsLiked(postId) {
+        const likedPosts = getLikedPosts();
+        const updatedLikedPosts = likedPosts.filter(id => id !== postId);
+        document.cookie = `likedPosts=${updatedLikedPosts.join(',')}; path=/`;
+    }
+
+    function dislikePost(postId) {
+        const dislikedPosts = getDislikedPosts();
+        const postIndex = dislikedPosts.indexOf(postId);
+        if (postIndex !== -1) {
+            dislikedPosts.splice(postIndex, 1);
+            fetch(`/undislike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
+                    dislikeCountElement.textContent = data.post.PostDislike;
+                    unmarkPostAsDisliked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            fetch(`/dislike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
+                    dislikeCountElement.textContent = data.post.PostDislike;
+                    markPostAsDisliked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+    function getDislikedPosts() {
+        const dislikedPostsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)dislikedPosts\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        return dislikedPostsCookie ? dislikedPostsCookie.split(',') : [];
+    }
+
+    function markPostAsDisliked(postId) {
+        const dislikedPosts = getDislikedPosts();
+        dislikedPosts.push(postId);
+        document.cookie = `dislikedPosts=${dislikedPosts.join(',')}; path=/`;
+    }
+
+    function unmarkPostAsDisliked(postId) {
+        const dislikedPosts = getDislikedPosts();
+        const updatedDislikedPosts = dislikedPosts.filter(id => id !== postId);
+        document.cookie = `dislikedPosts=${updatedDislikedPosts.join(',')}; path=/`;
+    }
 
 		</script>
 </body>

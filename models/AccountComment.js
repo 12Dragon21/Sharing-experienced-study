@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const AccountCommentSchema = new Schema({
-    ACLike: Number,
-    ACDislike: Number,
+    ACLike: { type: Number, default: 0 },
+    ACDislike: { type: Number, default: 0 },
     ACState: Number,
     AccountID: {type: ObjectId, ref: 'Account'},
     CommentID: {type: ObjectId, ref: 'Comment'},

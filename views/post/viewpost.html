@@ -296,15 +296,20 @@ button {
 									<time>Vào lúc <%=time%> ngày <%=date%></time>
 								</p>
 								<div class="content"><%=accountcomment.CommentID.CmtContent%></div>
-								<button class="like-button" onclick="likePost()">
+								<button class="like-button" onclick="likeComment('<%= accountcomment.CommentID._id %>')">
 									<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Like
-									<span class="like-count">25</span>
+									<span class="like-count" id="like-count-comment-<%= accountcomment.CommentID._id %>">
+										<%= accountcomment.CommentID.CmtLike %>
+									</span>
 								</button>
-			
-								<button class="dislike-button" onclick="dislikePost()">
-									<i class="icon fa-thumbs-down fa-fw" aria-hidden="true"></i> Dislike
-									<span class="dislike-count">10</span>
+								
+								<button class="dislike-button" onclick="dislikeComment('<%= accountcomment.CommentID._id %>')">
+									<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Undislike
+									<span class="dislike-count" id="dislike-count-comment-<%= accountcomment.CommentID._id %>">
+										<%= accountcomment.CommentID.CmtDislike %>
+									</span>
 								</button>
+								
 							</div>
 						</div>
 					</div>
@@ -461,6 +466,125 @@ function unmarkPostAsLiked(postId) {
         const updatedDislikedPosts = dislikedPosts.filter(id => id !== postId);
         document.cookie = `dislikedPosts=${updatedDislikedPosts.join(',')}; path=/`;
     }
+
+
+	async function likeComment(commentId) {
+    const likedComments = getLikedComments();
+    const commentIndex = likedComments.indexOf(commentId);
+
+    try {
+        let response;
+        if (commentIndex !== -1) {
+            likedComments.splice(commentIndex, 1);
+            response = await fetch(`/unlikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } else {
+            response = await fetch(`/likecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Data received:', data); 
+        const likeCountElement = document.querySelector(`#like-count-comment-${commentId}`);
+        likeCountElement.textContent = data.comment.CmtLike;
+
+        if (commentIndex !== -1) {
+            unmarkCommentAsLiked(commentId);
+        } else {
+            markCommentAsLiked(commentId);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+function getLikedComments() {
+    const likedCommentsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)likedComments\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return likedCommentsCookie ? likedCommentsCookie.split(',') : [];
+}
+
+function markCommentAsLiked(commentId) {
+    const likedComments = getLikedComments();
+    likedComments.push(commentId);
+    document.cookie = `likedComments=${likedComments.join(',')}; path=/`;
+}
+
+function unmarkCommentAsLiked(commentId) {
+    const likedComments = getLikedComments();
+    const updatedLikedComments = likedComments.filter(id => id !== commentId);
+    document.cookie = `likedComments=${updatedLikedComments.join(',')}; path=/`;
+}
+
+async function dislikeComment(commentId) {
+    const dislikedComments = getDislikedComments();
+    const commentIndex = dislikedComments.indexOf(commentId);
+
+    try {
+        let response;
+        if (commentIndex !== -1) {
+            dislikedComments.splice(commentIndex, 1);
+            response = await fetch(`/undislikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } else {
+            response = await fetch(`/dislikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Data received:', data);
+        const dislikeCountElement = document.querySelector(`#dislike-count-comment-${commentId}`);
+        dislikeCountElement.textContent = data.comment.CmtDislike;
+
+        if (commentIndex !== -1) {
+            unmarkCommentAsDisliked(commentId);
+        } else {
+            markCommentAsDisliked(commentId);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function getDislikedComments() {
+    const dislikedCommentsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)dislikedComments\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return dislikedCommentsCookie ? dislikedCommentsCookie.split(',') : [];
+}
+
+function markCommentAsDisliked(commentId) {
+    const dislikedComments = getDislikedComments();
+    dislikedComments.push(commentId);
+    document.cookie = `dislikedComments=${dislikedComments.join(',')}; path=/`;
+}
+
+function unmarkCommentAsDisliked(commentId) {
+    const dislikedComments = getDislikedComments();
+    const updatedDislikedComments = dislikedComments.filter(id => id !== commentId);
+    document.cookie = `dislikedComments=${updatedDislikedComments.join(',')}; path=/`;
+}
+
 
 		</script>
 </body>

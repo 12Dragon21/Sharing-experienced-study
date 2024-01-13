@@ -35,6 +35,10 @@ const {
   getComment,
   updateComment,
   deleteComment,
+  likeComment,
+  dislikeComment,
+  unlikeComment,
+  undislikeComment,
 } = require('../controllers/CommentController.js');
 const {
   getAllAccountComment,
@@ -62,5 +66,9 @@ const {
       res.status(500).send('Internal Server Error');
     }
   });
-  
+  router.post('/likecomment/:id', likeComment);
+  router.post('/unlikecomment/:id', unlikeComment);
+  router.post('/dislikecomment/:id', dislikeComment);
+router.post('/undislikecomment/:id', undislikeComment);
+
 module.exports = router;

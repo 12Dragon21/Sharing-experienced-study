@@ -53,72 +53,92 @@
     }
   }
 
-  async function likecmtPost(req, res) {
+
+  async function likeComment(req, res) {
     try {
-      const postId = req.params.id;
-      const post = await PostSchema.findById(postId);
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-      post.PostLike += 1;
-      await post.save();
-      return res.status(200).json({ message: 'Post liked successfully', post });
+        const commentId = req.params.id;
+        const comment = await CommentSchema.findById(commentId);
+        
+        if (!comment) {
+            return res.status(404).json({ message: 'Comment not found' });
+        }
+    
+        comment.CmtLike += 1;
+        await comment.save();
+    
+        return res.status(200).json({ message: 'Comment liked successfully', comment });
     } catch (error) {
-      console.error('Error liking post:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+        console.error('Error liking comment:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
-  }
-  async function unlikecmtPost(req, res) {
+}
+
+async function unlikeComment(req, res) {
     try {
-      const postId = req.params.id;
-      const post = await PostSchema.findById(postId);
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-      post.PostLike -= 1;
-      await post.save();
-      return res.status(200).json({ message: 'Post liked successfully', post });
+        const commentId = req.params.id;
+        const comment = await CommentSchema.findById(commentId);
+        
+        if (!comment) {
+            return res.status(404).json({ message: 'Comment not found' });
+        }
+    
+        comment.CmtLike -= 1;
+        await comment.save();
+    
+        return res.status(200).json({ message: 'Comment unliked successfully', comment });
     } catch (error) {
-      console.error('Error liking post:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+        console.error('Error unliking comment:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
     }
-  }
+}
+
+async function dislikeComment(req, res) {
+  try {
+      const commentId = req.params.id;
+      const comment = await CommentSchema.findById(commentId);
+      
+      if (!comment) {
+          return res.status(404).json({ message: 'Comment not found' });
+      }
   
-  async function dislikecmtPost(req, res) {
-    try {
-      const postId = req.params.id;
-      const post = await PostSchema.findById(postId);
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-      post.PostDislike += 1;
-      await post.save();
-      return res.status(200).json({ message: 'Post disliked successfully', post });
-    } catch (error) {
-      console.error('Error disliking post:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  }
+      comment.CmtDislike += 1;
+      await comment.save();
   
-  async function undislikecmtPost(req, res) {
-    try {
-      const postId = req.params.id;
-      const post = await PostSchema.findById(postId);
-      if (!post) {
-        return res.status(404).json({ message: 'Post not found' });
-      }
-      post.PostDislike -= 1;
-      await post.save();
-      return res.status(200).json({ message: 'Post disliked successfully', post });
-    } catch (error) {
-      console.error('Error disliking post:', error);
+      return res.status(200).json({ message: 'Comment disliked successfully', comment });
+  } catch (error) {
+      console.error('Error disliking comment:', error);
       res.status(500).json({ message: 'Internal Server Error' });
-    }
   }
+}
+
+async function undislikeComment(req, res) {
+  try {
+      const commentId = req.params.id;
+      const comment = await CommentSchema.findById(commentId);
+      
+      if (!comment) {
+          return res.status(404).json({ message: 'Comment not found' });
+      }
+  
+      comment.CmtDislike -= 1;
+      await comment.save();
+  
+      return res.status(200).json({ message: 'Comment undisliked successfully', comment });
+  } catch (error) {
+      console.error('Error undisliking comment:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+  }
+}
+
+  
   module.exports = {
     getAllComment,
     createComment,
     getComment,
     updateComment,
-    deleteComment
+    deleteComment,
+    likeComment,
+    unlikeComment,
+    dislikeComment,
+    undislikeComment,
   };

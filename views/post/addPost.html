@@ -201,17 +201,15 @@ button:hover {
 </div>
 			<div id="p306531" class="post has-profile bg2">
 		<div class="inner">
-		<dl class="postprofile" id="profile306531">
-			<dt class="has-profile-rank no-avatar">
-				<div class="avatar-container">
-																			</div>
-								<a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured">chrisb</a>							</dt>
-						<dd class="profile-rank">Veteran</dd>			
-		<dd class="profile-posts"><strong>Posts:</strong> <a href="./search.php?author_id=5646&amp;sr=posts">52246</a></dd>		<dd class="profile-joined"><strong>Joined:</strong> Tue Mar 17, 2015 9:14 am</dd>		
-		
-						
-						
-		</dl>
+			<dl class="postprofile" id="profile306531" props="account">
+				<dt class="has-profile-rank no-avatar">
+					<div class="avatar-container">
+						<img src="<%=account.ImageURL%>" alt="Avatar" class="avatar-container"/>
+					</div>
+						<a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
+				</dt>
+			<dd class="profile-rank">Thành viên </dd>					
+			</dl>
 		<form id="postForm" class="postbody" action="/addpost" method="post">
 			<div id="post_content306531">
 			  <h3 class="first" id="postName" name="postName" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">

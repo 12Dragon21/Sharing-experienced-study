@@ -10,12 +10,18 @@ const {
     updateDocument,
     deleteDocument
   } = require('../controllers/DocumentController.js');
-
+const  {
+  getAllAccessments,
+  createAccessment,
+  getAccessment,
+  updateAccessment,
+  deleteAccessment
+} = require('../controllers/AccessmentController.js');
   router.get('/viewdocument', async (req, res) => {
     try {
       // Xử lý yêu cầu GET ở đây
-      const documents = await getAllDocument();
-      res.render('document/viewdocument', { documents });
+      const accessments = await getAllAccessments();
+      res.render('document/viewdocument', { accessments });
     } catch (error) {
       console.error('Error:', error);
       res.status(500).send('Internal Server Error');
@@ -27,8 +33,8 @@ const {
     await connectdb();
     console.log('Connected to the database');
     const newDocument = await createDocument(req, res);
-    console.log(newDocument);
-    res.status(200).redirect('/home/home');
+    const newAccessment = await createAccessment(req, res, newDocument);
+    res.status(200).redirect('/userhome');
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

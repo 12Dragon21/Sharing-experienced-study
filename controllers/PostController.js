@@ -5,6 +5,7 @@ async function getAllPost(req, res, page = 1, postsPerPage = 5) {
   try {
     const skip = (page - 1) * postsPerPage;
     const Posts = await PostSchema.find().skip(skip).limit(postsPerPage);
+    Posts.sort((a,b) => (new Date(b.PostDate) - new Date(a.PostDate)))
     return Posts;
   } catch (error) {
     console.error('Error fetching Posts:', error);

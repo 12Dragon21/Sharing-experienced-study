@@ -65,8 +65,9 @@ router.post('/viewpost', async (req, res) => {
   res.render('viewpost', { postId });
 });
 
-router.get('/addPost', (req, res) => {
-  res.render('post/addPost');
+router.get('/addPost', async (req, res) => {
+  const account = await getAccountbyId(req.cookies.account);
+  res.render('post/addPost',{account});
 });
 
 router.post('/addpost', async (req, res) => {

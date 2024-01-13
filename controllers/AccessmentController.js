@@ -3,19 +3,20 @@ const mongoose = require('mongoose')
 
 async function getAllAccessments(req, res) {
   try {
-    const Accessments = await AccessmentSchema.find();
+    const Accessments = await AccessmentSchema.find({AcmState: 0}).populate("DocumentID").populate("AccountID");
     return Accessments;
   } catch (error) {
     console.error('Error fetching Accessments:', error);
   }
 }
 
-async function createAccessment(req, res) {
+async function createAccessment(req, res, newDocument) {
   try {
+    console.log(newDocument);
     const newAccessment = new AccessmentSchema({
-      AcmState: req.body.acmState,
-      AccountID: req.body.accountID,
-      DocumentID: req.body.documentID,
+      AcmState: 0,
+      AccountID: req.cookies.account,
+      DocumentID: newDocument._id,
     });
     const savedAccessment = await newAccessment.save();
     return newAccessment;

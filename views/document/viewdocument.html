@@ -189,26 +189,36 @@
       <div id="page-body" class="page-body" role="main">
         
         <!-- Add the document container div with a similar structure to the post div -->
-        <div class="inner" props="account, documents, amount">
+        <div class="inner" props="account, accessments, amount">
           
-          <div id="document-container" class="post has-profile bg1" props="documents">
+          <div id="document-container" class="post has-profile bg1" props="accessments">
             
-            <% documents.forEach(function (document, index) { %>
+            <% accessments.forEach(function (accessment, index) { %>
               <div class="inner">
                 <dl class="postprofile" id="profile306531">
                   <dt class="has-profile-rank no-avatar">
                     <div class="avatar-container">
-                      
+                      <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
                     </div>
-                                  
+                    <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
                   </dt>
-                <dd class="profile-rank">Veteran</dd>			
+                <dd class="profile-rank">Thành viên</dd>			
               
                 </dl>
                 <div class="postbody">
                   <div id="post_content<%= index %>">
                     <h3>
-                      <a href="<%=document.DcmPath%>" frameborder="0"><%=document.DcmName%></a>
+                      Tên tài liệu: <%=accessment.DocumentID.DcmName%>
+                      <br>
+                      <%var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
+                      var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds();%>
+                      <p class="author">
+                        <a class="unread" title="Post">
+                        <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+                        </a>
+                        <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
+                      </p>
+                      <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><U>LINK</U></a>
                     </h3>
                   </div>
                 </div>
@@ -216,8 +226,9 @@
               <br>
             <% }); %>
           </div>
-        </div>0
+        </div>
         <form id="document-form" enctype="multipart/form-data" action="/document" method="post">
+          Tên tài liệu:
           <fieldset>
             <textarea id="document-content" name="name" rows="4" cols="50" required></textarea>
             <label for="document-upload">Upload Document:</label>
@@ -230,3 +241,6 @@
     </div>
   </body>
   </html>
+<script>
+
+</script>

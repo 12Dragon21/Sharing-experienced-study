@@ -200,69 +200,51 @@ button {
     <div id="wrap" class="page-width">
       <div id="page-body" class="page-body" role="main">
         <div class="inner" props="account, accessments, amount">
-          
-          <div id="document-container" class="post has-profile bg1" props="accessments">
-            
-            <% accessments.forEach(function (accessment, index) { %>
-              <div class="inner">
-                <dl class="postprofile" id="profile306531">
-                  <dt class="has-profile-rank no-avatar">
-                    <div class="avatar-container">
-                      <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+            <div id="document-container" class="post has-profile bg1" props="accessments">
+              <% accessments.forEach(function (accessment, index) { %>
+                <div class="inner">
+                  <dl class="postprofile" id="profile306531">
+                    <dt class="has-profile-rank no-avatar">
+                      <div class="avatar-container">
+                        <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+                      </div>
+                      <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
+                    </dt>
+                    <dd class="profile-rank">Thành viên</dd>			
+                  </dl>
+                  <div class="postbody">
+                    <div id="post_content<%= index %>">
+                      <h3>
+                        Tên tài liệu: <%=accessment.DocumentID.DcmName%>
+                        <br>
+                        <ul class="post-buttons">
+                          <button id="like-button" class="like-button" data-document-id="<%= accessment.DocumentID._id %>" onclick="toggleFavoriteStatus(this)">
+                            <i class="icon fa-save fa-fw" aria-hidden="true"></i>
+                            <span id="like-button-text" data-is-favorited="<%= accessment.isFavorited %>">
+                              <%= accessment.isFavorited ? 'Unsave' : 'Save' %>
+                            </span>
+                          </button>  
+                        </ul>
+                        <% var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
+                           var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds(); %>
+                        <p class="author">
+                          <a class="unread" title="Post">
+                            <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+                          </a>
+                          <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span>
+                          <time>Vào lúc <%=time%> ngày <%=date%></time>
+                        </p>
+                        <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><u>LINK</u></a>
+                      </h3>
                     </div>
-                    <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
-                  </dt>
-                <dd class="profile-rank">Thành viên</dd>			
-              
-                </dl>
-                <div class="postbody">
-                  <div id="post_content<%= index %>">
-                    <h3>
-                      Tên tài liệu: <%=accessment.DocumentID.DcmName%>
-                      <br>
-                      <ul class="post-buttons">
-                        <button id="like-button" class="like-button" data-document-id="<%= accessment.DocumentID._id %>" onclick="toggleFavoriteStatus(this)">
-                          <i class="icon fa-save fa-fw" aria-hidden="true"></i>
-                          <span id="like-button-text" data-is-favorited="<%= accessment.isFavorited %>">
-                            <%= accessment.isFavorited ? 'Unsave' : 'Save' %>
-                          </span>
-                        </button>  
-                      </ul>
-                      <%var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
-                      var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds();%>
-                      <p class="author">
-                        <a class="unread" title="Post">
-                        <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-                        </a>
-                        <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
-                      </p>
-                      <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><U>LINK</U></a>
-                      
-                    </h3>
                   </div>
                 </div>
-              </div>
-              <br>
-            <% }); %>
+                <br>
+              <% }); %>
+            </div>
           </div>
-         
-        </div>
+          
       
-      </div>
-      <div class="reply-container">
-        <h2>Phản hồi</h2>
-        <form id="document-form" enctype="multipart/form-data" action="/document" method="post">
-          Tên tài liệu:
-          <fieldset>
-            
-            <textarea id="document-content" name="message" rows="4" cols="50" required></textarea>
-            <div class="file-upload">
-              <label for="document-upload">Upload Document:</label>
-              <input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx, .txt">
-          </div>
-            <button type="submit">Submit Document</button>
-          </fieldset>
-        </form>    
       </div>
     </div>
    <script>

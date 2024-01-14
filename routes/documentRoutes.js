@@ -1,34 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const connectdb = require('../connectdb.js');
-const imageUploader = require('../configs/cloudinary.config.js');
 const documentUploader = require('../configs/cloudinaryDocument.config.js');
 const {
-    getAllDocument,
-    createDocument,
-    getDocument,
-    updateDocument,
-    deleteDocument
-  } = require('../controllers/DocumentController.js');
-const  {
+  getAllDocument,
+  createDocument,
+  getDocument,
+  updateDocument,
+  deleteDocument,
+  toggleFavoriteStatus,
+  getAllDocumentS,
+} = require('../controllers/DocumentController.js');
+const {
   getAllAccessments,
   createAccessment,
-  getAccessment,
-  updateAccessment,
-  deleteAccessment
 } = require('../controllers/AccessmentController.js');
-  router.get('/viewdocument', async (req, res) => {
-    try {
-      // Xử lý yêu cầu GET ở đây
-      const accessments = await getAllAccessments();
-      res.render('document/viewdocument', { accessments });
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
- router.post('/document', documentUploader.single('document'), async (req, res) =>
-{
+
+router.get('/viewdocument', async (req, res) => {
+  try {
+    const accessments = await getAllAccessments();
+    res.render('document/viewdocument', { accessments });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.post('/document', documentUploader.single('document'), async (req, res) => {
   try {
     await connectdb();
     console.log('Connected to the database');
@@ -40,4 +38,16 @@ const  {
     res.status(500).send('Internal Server Error');
   }
 });
+
+router.post('/documents/:documentId/togglefavorite', toggleFavoriteStatus);
+router.get('/favorites', async (req, res) => {
+  try {
+    const favoriteDocuments = await getAllDocumentS();
+    res.render('document/favorites', { documents: favoriteDocuments });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 module.exports = router;

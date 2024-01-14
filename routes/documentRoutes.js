@@ -10,6 +10,7 @@ const {
   deleteDocument,
   toggleFavoriteStatus,
   getAllDocumentS,
+  getFavoriteDocuments,
 } = require('../controllers/DocumentController.js');
 const {
   getAllAccessments,
@@ -25,6 +26,7 @@ router.get('/viewdocument', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+router.get('/viewfavourite', getAllDocumentS);
 
 router.post('/document', documentUploader.single('document'), async (req, res) => {
   try {
@@ -40,14 +42,5 @@ router.post('/document', documentUploader.single('document'), async (req, res) =
 });
 
 router.post('/documents/:documentId/togglefavorite', toggleFavoriteStatus);
-router.get('/favorites', async (req, res) => {
-  try {
-    const favoriteDocuments = await getAllDocumentS();
-    res.render('document/favorites', { documents: favoriteDocuments });
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
 
 module.exports = router;

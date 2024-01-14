@@ -79,15 +79,26 @@ async function toggleFavoriteStatus(req, res) {
   }
   
 }
-const getAllDocumentS = async () => {
+async function getAllDocumentS(req, res) {
   try {
-    const documents = await Document.find({ isFavourite: true }).exec();
-    return documents;
+    const favoritedAccessments = await Accessment.find({ isFavorited: true }).populate('DocumentID');
+    const favoriteDocuments = favoritedAccessments.map(accessment => accessment.DocumentID);
+    
+    // Pass 'accessments' variable to the view
+    res.render('document/viewfavourite', { accessments: favoritedAccessments });
   } catch (error) {
-    throw new Error(error);
+    console.error('Error fetching favorite Documents:', error);
+    res.status(500).send('Internal Server Error');
   }
-};
-
+}
+async function getFavoriteDocuments(req, res) {
+  try {
+    const favoriteDocuments = await DocumentSchema.find({ isFavourite: true });
+    return favoriteDocuments;
+  } catch (error) {
+    console.error('Error fetching favorite Documents:', error);
+  }
+}
 module.exports = {
   getAllDocument,
   createDocument,
@@ -96,4 +107,5 @@ module.exports = {
   deleteDocument,
   toggleFavoriteStatus,
   getAllDocumentS,
+  getFavoriteDocuments,
 };

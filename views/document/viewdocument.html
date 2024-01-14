@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en-gb">
 <head>
@@ -101,16 +100,16 @@ button {
 					<a href="/search" class="button button-search-end" title="Advanced search">
 						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
 					</a>
-					
+
 				</fieldset>
 				</form>
 			</div>
-									
+
 			</div>
 					</div>
 
 
-				
+
 
 
 <div class="navbar tabbed not-static" role="navigation">
@@ -122,7 +121,7 @@ button {
 					<div class="dropdown">
 						<div class="pointer"><div class="pointer-inner"></div></div>
 						<ul class="dropdown-contents" role="menu">
-								
+
 			<li class="separator"></li>
 													<li>
 								<a href="/viewprofile" role="menuitem">
@@ -139,7 +138,7 @@ button {
 									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
 								</a>
 							</li>	
-	
+
 													</ul>
 					</div>
 				</li>
@@ -162,7 +161,7 @@ button {
 <div class="navbar secondary">
 	<ul role="menubar">
 
-									
+
 			</ul>
 </div>
 
@@ -170,24 +169,24 @@ button {
 
 <div id="wrap" class="page-width">
 
-	
+
 	<a id="start_here" class="top-anchor"></a>
 	<div id="page-body" class="page-body" role="main">
 		<div class="navbar">
 	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
-				
-		
+
+
 		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-			
+
 						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/userhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Forum</span></a><meta itemprop="position" content="1" /></span>
 
-			
-			
+
+
 		</li>
 
-		
-		
+
+
 			<li class="rightside responsive-search">
 				<a href="/search" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
@@ -200,73 +199,55 @@ button {
     <div id="wrap" class="page-width">
       <div id="page-body" class="page-body" role="main">
         <div class="inner" props="account, accessments, amount">
-          
-          <div id="document-container" class="post has-profile bg1" props="accessments">
-            
-            <% accessments.forEach(function (accessment, index) { %>
-              <div class="inner">
-                <dl class="postprofile" id="profile306531">
-                  <dt class="has-profile-rank no-avatar">
-                    <div class="avatar-container">
-                      <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+            <div id="document-container" class="post has-profile bg1" props="accessments">
+              <% accessments.forEach(function (accessment, index) { %>
+                <div class="inner">
+                  <dl class="postprofile" id="profile306531">
+                    <dt class="has-profile-rank no-avatar">
+                      <div class="avatar-container">
+                        <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+                      </div>
+                      <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
+                    </dt>
+                    <dd class="profile-rank">Thành viên</dd>			
+                  </dl>
+                  <div class="postbody">
+                    <div id="post_content<%= index %>">
+                      <h3>
+                        Tên tài liệu: <%=accessment.DocumentID.DcmName%>
+                        <br>
+                        <ul class="post-buttons">
+                          <button id="like-button" class="like-button" data-document-id="<%= accessment.DocumentID._id %>" onclick="toggleFavoriteStatus(this)">
+                            <i class="icon fa-save fa-fw" aria-hidden="true"></i>
+                            <span id="like-button-text" data-is-favorited="<%= accessment.isFavorited %>">
+                              <%= accessment.isFavorited ? 'Unsave' : 'Save' %>
+                            </span>
+                          </button>  
+                        </ul>
+                        <% var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
+                           var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds(); %>
+                        <p class="author">
+                          <a class="unread" title="Post">
+                            <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+                          </a>
+                          <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span>
+                          <time>Vào lúc <%=time%> ngày <%=date%></time>
+                        </p>
+                        <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><u>LINK</u></a>
+                      </h3>
                     </div>
-                    <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
-                  </dt>
-                <dd class="profile-rank">Thành viên</dd>			
-              
-                </dl>
-                <div class="postbody">
-                  <div id="post_content<%= index %>">
-                    <h3>
-                      Tên tài liệu: <%=accessment.DocumentID.DcmName%>
-                      <br>
-                      <ul class="post-buttons">
-                        <button id="like-button" class="like-button" data-document-id="<%= accessment.DocumentID._id %>" onclick="toggleFavoriteStatus(this)">
-                          <i class="icon fa-save fa-fw" aria-hidden="true"></i>
-                          <span id="like-button-text" data-is-favorited="<%= accessment.isFavorited %>">
-                            <%= accessment.isFavorited ? 'Unsave' : 'Save' %>
-                          </span>
-                        </button>  
-                      </ul>
-                      <%var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
-                      var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds();%>
-                      <p class="author">
-                        <a class="unread" title="Post">
-                        <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
-                        </a>
-                        <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
-                      </p>
-                      <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><U>LINK</U></a>
-                      
-                    </h3>
                   </div>
                 </div>
-              </div>
-              <br>
-            <% }); %>
+                <br>
+              <% }); %>
+            </div>
           </div>
-         
-        </div>
-      
-      </div>
-      <div class="reply-container">
-        <h2>Phản hồi</h2>
-        <form id="document-form" enctype="multipart/form-data" action="/document" method="post">
-          Tên tài liệu:
-          <fieldset>
-            
-            <textarea id="document-content" name="message" rows="4" cols="50" required></textarea>
-            <div class="file-upload">
-              <label for="document-upload">Upload Document:</label>
-              <input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx, .txt">
-          </div>
-            <button type="submit">Submit Document</button>
-          </fieldset>
-        </form>    
+
+
       </div>
     </div>
    <script>
-    
+
   async function toggleFavoriteStatus(button) {
       try {
         const documentId = button.getAttribute('data-document-id'); 
@@ -286,7 +267,7 @@ button {
         console.error('Error during fetch:', error);
       }
     }
-    
+
     function updateFavoriteStatusUI(button, isFavorited) {
       const iconElement = button.querySelector('.icon');
       const buttonTextElement = button.querySelector('#like-button-text');
@@ -303,6 +284,6 @@ button {
 
 </head>
   </body>
- 
+
 
   </html>

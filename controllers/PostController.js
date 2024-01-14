@@ -72,21 +72,21 @@ async function deletePost (req, res) {
     res.status(500).json(err);
   }
 }
-async function likePost(req, res) {
-  try {
-    const postId = req.params.id;
-    const post = await PostSchema.findById(postId);
-    if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
+  async function likePost(req, res) {
+    try {
+      const postId = req.params.id;
+      const post = await PostSchema.findById(postId);
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+      post.PostLike += 1;
+      await post.save();
+      return res.status(200).json({ message: 'Post liked successfully', post });
+    } catch (error) {
+      console.error('Error liking post:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-    post.PostLike += 1;
-    await post.save();
-    return res.status(200).json({ message: 'Post liked successfully', post });
-  } catch (error) {
-    console.error('Error liking post:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
   }
-}
 async function unlikePost(req, res) {
   try {
     const postId = req.params.id;

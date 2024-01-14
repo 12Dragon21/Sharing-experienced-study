@@ -28,6 +28,7 @@ app.use('/', homeRoutes);
 
 app.use('/', documentRoutes);
 app.use('/posts', documentRoutes);
+app.use('/api', documentRoutes);
 
 app.use('/', accountRoutes);
 app.use('/posts', accountRoutes);

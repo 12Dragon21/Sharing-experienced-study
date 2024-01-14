@@ -6,6 +6,7 @@ const AccessmentSchema = new Schema({
     AcmState: Number,
     AccountID: {type: ObjectId, ref: 'Account'},
     DocumentID: {type: ObjectId, ref: 'Document'},
+    isFavorited: { type: Boolean, default: false }, 
 });
 
-module.exports = mongoose.model("Accessment", AccessmentSchema)
+module.exports = mongoose.model("Accessment", AccessmentSchema) 

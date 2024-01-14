@@ -9,6 +9,7 @@ const PostSchema = new Schema({
   PostDislike: { type: Number, default: 0 },
   PostDate: Date,
   PostState: Number,
+  ImageURL: String,
 });
 
 module.exports = mongoose.model("Post", PostSchema)

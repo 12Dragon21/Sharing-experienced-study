@@ -70,11 +70,10 @@ router.get('/addPost', async (req, res) => {
   res.render('post/addPost',{account});
 });
 
-router.post('/addpost', async (req, res) => {
+router.post('/addpost', imageUploader.single('avatar'), async (req, res) => {
   try {
-    console.log(req.body);
-    console.log(req.cookies.account);
-    newPost = await createPost(req, res);
+    await connectdb();
+    const newPost = await createPost(req, res);
     await createAccountPost(req, res, newPost);
     res.status(200).redirect('userhome');
   } catch (error) {

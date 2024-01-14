@@ -30,6 +30,7 @@ router.post('/register', imageUploader.single('avatar'), async (req, res) =>
     try {
       await connectdb();
       console.log('Connected to the database');
+      console.log(req.body.avatar);
       console.log(req.file);
       const newAccount = await createAccount(req, res);
       res.status(200).redirect('/home');

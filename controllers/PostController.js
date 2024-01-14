@@ -23,6 +23,12 @@ async function createPost(req, res) {
         PostDate: new Date(),
         PostState: 0
     });
+    if(req.file?.path!=null && req.file?.path!=""){
+      newPost.ImageURL = req.file?.path;
+    }
+    else{
+      newPost.ImageURL="";
+    }
     const savedPost = await newPost.save();
     return savedPost;
   } catch (error) {

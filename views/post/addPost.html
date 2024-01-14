@@ -210,7 +210,7 @@ button:hover {
 				</dt>
 			<dd class="profile-rank">Thành viên </dd>					
 			</dl>
-		<form id="postForm" class="postbody" action="/addpost" method="post">
+		<form id="postForm" class="postbody" enctype="multipart/form-data"  action="/addpost" method="post">
 			<div id="post_content306531">
 			  <h3 class="first" id="postName" name="postName" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
 				Nhập tiêu đề
@@ -218,6 +218,17 @@ button:hover {
 			  <div class="content" id="postContent" name="postContent" contenteditable="true" onclick="clearText(this)" onblur="restoreText(this)">
 				Nhập nội dung
 			  </div>
+			  <fieldset>
+				<dl>
+					<dt><label for="avatar"></label></dt>
+					<dd>
+						<dd>
+							<p class="note">Thêm hình ảnh vào bài đăng</p>
+							<input type="file" name="avatar" id="avatar" accept="image/*" />
+						</dd>
+					</dd>
+				</dl>
+			  </fieldset>
 			</div>
 			<div class="jumpbox dropdown-container dropdown-container-right dropdown-up dropdown-left dropdown-button-control">
 			  <button type="button" class="button button-secondary dropdown-trigger dropdown-select" onclick="submitForm()">

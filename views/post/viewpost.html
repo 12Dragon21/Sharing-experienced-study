@@ -248,6 +248,13 @@ button {
 					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
 				</p>
 				<div class="content"><%=post.PostContent%><br></div>
+                <dl class="file">
+                    <dt class="attach-image">
+                        <% if (post.ImageURL) { %>
+                            <img src="<%= post.ImageURL %>" class="postimage" alt="Screenshot">
+                        <% } %>
+                    </dt>
+                </dl>
 				<button class="like-button" onclick="likePost('<%= post._id %>')">
 					<i class="icon fa-thumbs-up fa-fw" aria-hidden="true"></i> Like
 					<span class="like-count" id="like-count-<%= post._id %>"><%= post.PostLike %></span>

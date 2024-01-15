@@ -37,37 +37,33 @@ async function createPost(req, res) {
   }
 }
 
-async function getPost (req, res) {
+async function getPost (req, res, postId) {
   try {
-    const Post = await PostSchema.findById(req.query.postid);
+    const Post = await PostSchema.findById(postId);
     return Post;
   } catch (err) {
     res.status(500).json(err);
   }
 }
 
-async function updatePost(req, res) {
+async function updatePost(req, res, postid) {
   try {
-    const postId = req.params.id;
-    if (!postId || !mongoose.Types.ObjectId.isValid(postId)) {
-      return res.status(400).json({ message: 'Invalid post ID' });
+    await PostSchema.findByIdAndUpdate({"_id": postid},
+    {"PostName": req.body.postName,
+    "PostContent": req.body.postContent});
+    if(req.file?.path!=null && req.file?.path!=""){
+      await PostSchema.findByIdAndUpdate({"_id": postid},
+    {"ImageURL": req.file?.path});
     }
-
-    const post = await PostSchema.findById(postId);
-    if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
-    }
-    await post.updateOne({ $set: req.body });
-    return res.status(200).json({ message: 'Post updated successfully' });
   } catch (error) {
     console.error('Error updating post:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
 
-async function deletePost (req, res) {
+async function deletePost (req, res, post) {
   try {
-    await PostSchema.findByIdAndDelete(req.params.id);
+    await PostSchema.findByIdAndUpdate({"_id": post._id}, {"PostState": 1});
   } catch (err) {
     res.status(500).json(err);
   }

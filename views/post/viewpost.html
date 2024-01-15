@@ -217,7 +217,7 @@ button {
 	</div>
 		</div>
 			<div id="p306531" class="post has-profile bg2">
-		<div class="inner" props="account, post, amount">
+		<div class="inner" props="account, post, amount, currentaccount, checkOwnPost">
 
 		<dl class="postprofile" id="profile306531">
 			<dt class="has-profile-rank no-avatar">
@@ -236,13 +236,28 @@ button {
 				<h3 class="first">
 					<%=post.PostName%>
 				</h3>
-				<ul class="post-buttons">
-					<a href="./posting.php?mode=quote&amp;p=306531" title="Reply with quote" class="button button-icon-only">
-						<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i><span class="sr-only">Quote</span>
-					</a>
-				</ul>
+                <% if (checkOwnPost||currentaccount.Role=="Admin") { %>
+                    <ul class="post-buttons">
+                        <form action="/delete" method="post">
+                            <input type="text" name="postid" id="postid" value="<%= post._id %>" hidden>
+                            <a title="Delete" class="button button-icon-only">
+                                <button class="icon fa-quote-left fa-fw" aria-hidden="true" type="submit"></button><span class="sr-only">Quote</span>
+                            </a>
+                        </form>
+				    </ul>
+                <% } %>
+                <% if (checkOwnPost) { %>
+                    <ul>
+                        <form action="/edit" method="get">
+                            <input type="text" name="postid" id="postid" value="<%= post._id %>" hidden>
+                            <a title="Edit" class="button button-icon-only">
+                                <button class="icon fa-quote-left fa-fw" aria-hidden="true" type="submit"></button><span class="sr-only">Quote</span>
+                            </a>
+                        </form>
+				    </ul>
+                <% } %>
 				<p class="author">
-					<a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
+					<a class="unread" title="Post" >
 					<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
 					</a>
 					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>

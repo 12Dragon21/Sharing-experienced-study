@@ -20,6 +20,7 @@ async function createAccount(req, res) {
       Phone: req.body.phone,
       ImageURL: req.file?.path,
       Years: req.body.academic_year,
+      Role: "User",
     });
     const savedAccount = await newAccount.save();
     return newAccount;

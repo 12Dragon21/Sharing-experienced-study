@@ -63,11 +63,33 @@ router.get('/viewpost', async (req, res) => {
 
   res.render('post/viewpost', { post, account, amount, accountcomments, currentaccount, checkOwnPost });
 });
+router.get('/viewpostnolog', async (req, res) => {
+  // Xử lý yêu cầu GET ở đây
+  const postId = req.query.postid;
+  console.log('Received GET request for post ID:', postId);
+  const post = await getPost(req, res, postId);
+  const accountId = await getIdOwnPost(req, res);
+  const account = await getAccountbyId(accountId);
+  const currentaccount = await getAccountbyId(req.cookies.account);
+  var checkOwnPost = false;
+  if (accountId.toString()==currentaccount._id.toString())
+  {
+    checkOwnPost = true;
+  }
+  const amount = await getAmountPostByAccountId(accountId);
+  const accountcomments = await getAllAccountCommentWithPostId(req, res, post._id);
+
+  res.render('post/viewpostnolog', { post, account, amount, accountcomments, currentaccount, checkOwnPost });
+});
+router.post('/viewpostnolog', async (req, res) => {
+  const postId = req.body.postid;
+  console.log('Received POST request for post ID:', postId);
+  res.render('viewpostnolog', { postId });
+});
 
 router.post('/viewpost', async (req, res) => {
   const postId = req.body.postid;
   console.log('Received POST request for post ID:', postId);
-  // Xử lý logic POST ở đây
   res.render('viewpost', { postId });
 });
 

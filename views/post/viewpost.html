@@ -80,8 +80,19 @@ button {
 .like-count, .dislike-count {
     margin-left: 5px;
     font-weight: bold;
+}.edit-delete-form {
+    display: inline-block;
+    margin-right: 10px;
 }
-
+.delete-button,
+.edit-button {
+    background-color: #008ae6;
+    color: #fff;
+    padding: 10px;
+    border: none; 
+    cursor: pointer;
+    border-radius: 0;
+}
 </style>
 
 
@@ -236,25 +247,19 @@ button {
 				<h3 class="first">
 					<%=post.PostName%>
 				</h3>
-                <% if (checkOwnPost||currentaccount.Role=="Admin") { %>
+                <% if (checkOwnPost || currentaccount.Role == "Admin") { %>
                     <ul class="post-buttons">
-                        <form action="/delete" method="post">
+                        <form action="/delete" method="post" class="edit-delete-form">
                             <input type="text" name="postid" id="postid" value="<%= post._id %>" hidden>
-                            <a title="Delete" class="button button-icon-only">
-                                <button class="icon fa-quote-left fa-fw" aria-hidden="true" type="submit"></button><span class="sr-only">Quote</span>
-                            </a>
+                            <button type="submit" class="button delete-button" title="Delete"><i class="fas fa-trash"></i></button>
                         </form>
-				    </ul>
-                <% } %>
-                <% if (checkOwnPost) { %>
-                    <ul>
-                        <form action="/edit" method="get">
-                            <input type="text" name="postid" id="postid" value="<%= post._id %>" hidden>
-                            <a title="Edit" class="button button-icon-only">
-                                <button class="icon fa-quote-left fa-fw" aria-hidden="true" type="submit"></button><span class="sr-only">Quote</span>
-                            </a>
-                        </form>
-				    </ul>
+                        <% if (checkOwnPost) { %>
+                            <form action="/edit" method="get" class="edit-delete-form">
+                                <input type="text" name="postid" id="postid" value="<%= post._id %>" hidden>
+                                <button type="submit" class="button edit-button" title="Edit"><i class="fas fa-edit"></i></button>
+                            </form>
+                        <% } %>
+                    </ul>
                 <% } %>
 				<p class="author">
 					<a class="unread" title="Post" >
@@ -284,7 +289,7 @@ button {
 		</div>
 		</div>	
 		
-		<div id="p728756" class="post has-profile bg1" props="accountcomments, post">
+		<div id="comments-container" id="comments-container" class="post has-profile bg1" props="accountcomments, post">
 			<% accountcomments.forEach(function (accountcomment, index) { %>
 				<% if (accountcomment && accountcomment.CommentID && accountcomment.CommentID.CmtDate) { %>
 					<% var date = accountcomment.CommentID.CmtDate.getDate() + '-' + (accountcomment.CommentID.CmtDate.getMonth() + 1) + '-' + accountcomment.CommentID.CmtDate.getFullYear(); %>
@@ -338,6 +343,7 @@ button {
 				<% } %>
 			<% }); %>
 		</div>
+        <button id="load-more-comments" onclick="loadMoreComments()">Load More Comments</button>
 		<div class="reply-container">
 			<h2>Phản hồi</h2>
 			<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">
@@ -359,6 +365,46 @@ button {
 			</form>
 		</div>		
 		<script>
+            let currentPage = 1;
+
+async function loadMoreComments() {
+    try {
+        const postId = '<%=post._id%>';  // Assuming you can get the post ID from the server-side template
+        const response = await fetch(`/loadcomments/${postId}?page=${currentPage}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const commentsContainer = document.getElementById('comments-container');
+
+        // Check if there are more comments
+        if (data.hasMore) {
+            const commentsHTML = data.comments.map(comment => getCommentHTML(comment)).join('');
+            commentsContainer.innerHTML += commentsHTML;
+            currentPage += 1;
+        } else {
+            document.getElementById('load-more-comments').style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function getCommentHTML(comment) {
+    // Modify this based on your existing comment structure
+    return `
+        <div class="inner">
+            <!-- HTML structure for a comment -->
+            <dl class="postprofile" id="profile${comment._id}">
+                <!-- Your comment profile information here -->
+            </dl>
+            <div class="postbody">
+                <!-- Your comment content here -->
+            </div>
+        </div>
+    `;
+}
 	 function likePost(postId) {
         const likedPosts = getLikedPosts();
         const postIndex = likedPosts.indexOf(postId);

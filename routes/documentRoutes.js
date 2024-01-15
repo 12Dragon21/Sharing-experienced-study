@@ -26,6 +26,15 @@ router.get('/viewdocument', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+router.get('/viewdocumentnolog', async (req, res) => {
+  try {
+    const accessments = await getAllAccessments();
+    res.render('document/viewdocumentnolog', { accessments });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 router.get('/viewfavourite', getAllDocumentS);
 
 router.post('/document', documentUploader.single('document'), async (req, res) => {

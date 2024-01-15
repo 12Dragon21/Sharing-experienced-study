@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en-gb">
 <head>
@@ -19,6 +18,56 @@
     .mention {
         color: #008ae6;
     }
+    .reply-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.reply-container h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+#comment-form {
+    margin-top: 15px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.file-upload {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+button {
+    background-color: #008ae6;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.login-message {
+    color: red;
+  }
 </style>
 
 
@@ -34,8 +83,6 @@
 	<div id="page-header" class="page-width">
 		<div class="headerbar" role="banner">
 					<div class="inner">
-
-
 
 			<div id="site-description" class="site-description">
 				<a id="logo" class="logo" href="/userhome" title="forum">
@@ -56,16 +103,16 @@
 					<a href="/search" class="button button-search-end" title="Advanced search">
 						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
 					</a>
-					
+
 				</fieldset>
 				</form>
 			</div>
-									
+
 			</div>
 					</div>
 
 
-				
+
 
 
 <div class="navbar tabbed not-static" role="navigation">
@@ -77,7 +124,7 @@
 					<div class="dropdown">
 						<div class="pointer"><div class="pointer-inner"></div></div>
 						<ul class="dropdown-contents" role="menu">
-								
+
 			<li class="separator"></li>
 													<li>
 								<a href="/viewprofile" role="menuitem">
@@ -85,12 +132,6 @@
 								</a>
 								<a href="/changeprofile" role="menuitem">
 									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Update Profile</span>
-								</a>
-								<a href="/viewfavourite" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Your saved</span>
-								</a>
-								<a href="/addFAQs" role="menuitem">
-									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>addFAQs</span>
 								</a>
 							</li>
 
@@ -100,7 +141,7 @@
 									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
 								</a>
 							</li>	
-	
+
 													</ul>
 					</div>
 				</li>
@@ -114,7 +155,6 @@
 						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
 					</a>
 				</li>
-				
 					<li class="tab logout"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/home" title="Login" accesskey="x" role="menuitem">Logout</a></li>
 																	</ul>
 		</div>
@@ -124,7 +164,7 @@
 <div class="navbar secondary">
 	<ul role="menubar">
 
-									
+
 			</ul>
 </div>
 
@@ -132,24 +172,24 @@
 
 <div id="wrap" class="page-width">
 
-	
+
 	<a id="start_here" class="top-anchor"></a>
 	<div id="page-body" class="page-body" role="main">
 		<div class="navbar">
 	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
-				
-		
+
+
 		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
 
-			
+
 						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/userhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Forum</span></a><meta itemprop="position" content="1" /></span>
 
-			
-			
+
+
 		</li>
 
-		
-		
+
+
 			<li class="rightside responsive-search">
 				<a href="/search" title="View the advanced search options" role="menuitem">
 					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
@@ -157,124 +197,91 @@
 			</li>
 	</ul>
 </div>
-			<div class="forabg category-7 elegant">
-			<div class="inner">
-			<ul class="topiclist">
-				<li class="header">
-					
-					<div class="list-inner qa-link" onc	lick="navigateToAddPost()">
-						<a>Hỏi đáp</a>
-						<i class="fa fa-plus-circle" onclick="navigateToAddPost()"></i>
-					</div>
-									</li>
-			</ul>
-			<form id="postForm" action="/viewpost" method="get">
-			<ul class="topiclist forums">	
-				<dl class="faq" props="posts">	
-				<% if (!posts.length > 0) { %>
-					<p>No FAQs available.</p>
-				  <% } else { %>
-					<% posts.forEach(function (post, index) { %>
-					<li class="row forum-3">
-						<div class="post-id" data-postid="<%= post._id %>">
 
-							<dl class="row-item forum_read elegant-row" >
-						<dt title="No unread posts">
-							<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
-						var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
-				<div class="list-inner">
-					<a onclick="getPost('<%= post._id %>')" class="forumtitle"><%= post.PostName %></a>
-						<div class="forum-description"><%= post.PostContent%></div>
-						<div class="forum-statistics">
-					<span class="dfn">Lượt trả lời</span>: <span class="value">3</span><span class="comma">, </span>
-					<span class="dfn">Được đăng vào ngày</span>: <span class="value"><%= date%></span><span class="dfn"> tại</span>: <span class="value"><%= time%></span>
-				</div>					
-								<div class="forum-lastpost" style="display: none;">
-							</div>
-																		</div>
-				</dt>
-							</dl>
-						</div>
-					</li>	
-					<% }); %>
-					<% } %>
-				</dl>
-				</ul>
-				<div class="pagination">
-					<% if (currentPage > 1) { %>
-					  <a href="/userhome?page=<%= currentPage - 1 %>">Trang trước</a>
-					<% } %>
-					<span>Trang <%= currentPage %></span>
-			</form>
-	
-			  
-				<a href="/userhome?page=<%= currentPage + 1 %>">Trang sau</a>
-			  </div>
-			</div>
-		</div>
-	
-				<div class="forabg category-6 elegant" data-hide-description="1">
-			<div class="inner">
-			<ul class="topiclist">
-				<li class="header">
-										<dl class="row-item">
-						<dt><div class="list-inner"><a data-id="6">Tài liệu học tập</a></div></dt>
-												
-					</dl>
-									</li>
-			</ul>
-			<ul class="topiclist forums">
-				<li class="row forum-10">
-									<dl class="row-item forum_read elegant-row">
-				<dt title="No unread posts">
-										<div class="list-inner">
-									<a href="/viewdocument" class="forumtitle" data-id="10">Tài liệu</a>
-						<div class="forum-description">Nơi lưu trữ tài liệu học tập</div>													<div class="forum-statistics">
-				</div>
+  <body class="nojs notouch section-viewtopic ltr" data-online-text="Online">
+    <div id="wrap" class="page-width">
+      <div id="page-body" class="page-body" role="main">
+        <div class="inner" props="account, accessments, amount">
+            <div id="document-container" class="post has-profile bg1" props="accessments">
+              <% accessments.forEach(function (accessment, index) { %>
+                <div class="inner">
+                  <dl class="postprofile" id="profile306531">
+                    <dt class="has-profile-rank no-avatar">
+                      <div class="avatar-container">
+                        <img src="<%=accessment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container"/>
+                      </div>
+                      <a href="./viewprofile" style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a>          
+                    </dt>
+                    <dd class="profile-rank">Thành viên</dd>			
+                  </dl>
+                  <div class="postbody">
+                    <div id="post_content<%= index %>">
+                      <h3>
+                        Tên tài liệu: <%=accessment.DocumentID.DcmName%>
+                        <br>
+                        <% var date = accessment.DocumentID.DcmDate.getDate()+'-'+(accessment.DocumentID.DcmDate.getMonth()+1)+'-'+accessment.DocumentID.DcmDate.getFullYear();
+                           var time = accessment.DocumentID.DcmDate.getHours() + ":" + accessment.DocumentID.DcmDate.getMinutes() + ":" + accessment.DocumentID.DcmDate.getSeconds(); %>
+                        <p class="author">
+                          <a class="unread" title="Post">
+                            <i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+                          </a>
+                          <span class="responsive-hide">bởi <strong><a style="color: #BF00BF;" class="username-coloured"><%=accessment.AccountID.Username%></a></strong> &raquo; </span>
+                          <time>Vào lúc <%=time%> ngày <%=date%></time>
+                        </p>
+                        <a href="<%=accessment.DocumentID.DcmPath%>" frameborder="0"><u>LINK</u></a>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              <% }); %>
+            </div>
+          </div>
+          <div class="reply-container">
+            <h2><span class="login-message">Để thêm tài liệu, vui lòng đăng nhập</span></h2>
+          </div>
+        </div>
 
-																		</div>
-				</dt>
-							</dl>
-					</li>
-			
-	
-	
-			
-				
-			
-	
-				</ul>
+      </div>
+    </div>
+   <script>
 
-			</div>
-		</div>
-	
-
-<script src="./assets/javascript/jquery-3.6.0.min.js?assets_version=41"></script>
-<script src="./assets/javascript/core.js?assets_version=41"></script>
-<script src="./styles/elegance/template/forum_fn.js?assets_version=41"></script>
-<script src="./styles/elegance/template/ajax.js?assets_version=41"></script>
-
-
-<script>
-	function getPost(postId) {
-	   console.log('Clicked post ID:', postId);
-	   var form = document.createElement('form');
-	   form.method = 'GET';
-	   form.action = '/viewpost';
- 
-	   var hiddenPostIdInput = document.createElement("input");
-	   hiddenPostIdInput.type = "hidden";
-	   hiddenPostIdInput.name = "postid";
-	   hiddenPostIdInput.value = postId;
- 
-	   form.appendChild(hiddenPostIdInput);
- 
-	   document.body.appendChild(form);
-	   form.submit();
-	}
-	function navigateToAddPost() {
-        window.location.href = '/addpost'; 
+  async function toggleFavoriteStatus(button) {
+      try {
+        const documentId = button.getAttribute('data-document-id'); 
+        const response = await fetch(`/documents/${documentId}/togglefavorite`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }   
+        const data = await response.json();
+        console.log('Data received:', data);
+        updateFavoriteStatusUI(button, data.document.isFavorited);
+      } catch (error) {
+        console.error('Error during fetch:', error);
+      }
     }
- </script>
-</body>
-</html>
+
+    function updateFavoriteStatusUI(button, isFavorited) {
+      const iconElement = button.querySelector('.icon');
+      const buttonTextElement = button.querySelector('#like-button-text');
+      const newClassName = isFavorited ? 'icon fa-save fa-fw' : 'icon fa-save fa-fw';
+      iconElement.className = newClassName;
+      const newText = isFavorited ? 'Unsave' : 'Save';
+      buttonTextElement.innerText = newText;
+      buttonTextElement.setAttribute('data-is-favorited', isFavorited);
+    }
+    document.getElementById('like-button').addEventListener('click', function() {
+      toggleFavoriteStatus(this);
+    }); 
+    </script>
+
+</head>
+  </body>
+
+
+  </html>

@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-gb">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Forum</title>
+
+
+
+<link href="../styles/elegance/themes/stylesheet.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="./assets/css/font-awesome.min.css?assets_version=41" rel="stylesheet">
+<link href="./styles/elegance/theme/stylesheet.css?assets_version=41" rel="stylesheet">
+<link href="./assets/cookieconsent/cookieconsent.min.css?assets_version=41" rel="stylesheet">				
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=lymOwHGVHVQPhxOo897DE49OmRZu6x3vNPPBEPs_1SxQoqrzUuJGtjJL75NZDEhSNXTwKaP_KsVNTRvqLvS-UA" charset="UTF-8"></script>
+<style type="text/css">
+    .mention {
+        color: #008ae6;
+    }
+	.reply-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.reply-container h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+#comment-form {
+    margin-top: 15px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.login-message {
+    color: red;
+  }
+.file-upload {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    margin-top: 5px;
+}
+
+button {
+    background-color: #008ae6;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.like-button, .dislike-button {
+    color: #008ae6; 
+    padding: 10px 15px;
+    border: none; 
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    background: none; 
+}
+
+.like-count, .dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+</style>
+
+
+<link href="./ext/paul999/mention/styles/all/theme/mention.css?assets_version=41" rel="stylesheet" media="screen">
+
+
+
+</head>
+<body id="phpbb" class="nojs notouch section-index ltr " data-online-text="Online">
+
+
+	<a id="top" class="top-anchor" accesskey="t"></a>
+	<div id="page-header" class="page-width">
+		<div class="headerbar" role="banner">
+					<div class="inner">
+
+			<div id="site-description" class="site-description">
+				<a id="logo" class="logo" href="/userhome" title="forum">
+					<img src="../styles/elegance/themes/images/uit.jpg" width="120" height="80" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="Forum"/>
+				</a>
+				<p class="sitename">Forum</p>
+				<p>forum </p>
+				<p class="skiplink"><a href="/userhome">Skip to content</a></p>
+			</div>
+
+															<div id="search-box" class="search-box search-header" role="search">
+				<form action="/search" method="get" id="search">
+				<fieldset>
+					<input name="keywords" id="keywords" type="search" maxlength="128" title="Search for keywords" class="inputbox search tiny" size="20" value="" placeholder="Search…" />
+					<button class="button button-search" type="submit" title="Search">
+						<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
+					</button>
+					<a href="/search" class="button button-search-end" title="Advanced search">
+						<i class="icon fa-cog fa-fw" aria-hidden="true"></i><span class="sr-only">Advanced search</span>
+					</a>
+					
+				</fieldset>
+				</form>
+			</div>
+									
+			</div>
+					</div>
+
+
+				
+
+
+<div class="navbar tabbed not-static" role="navigation">
+	<div class="inner page-width">
+		<div class="nav-tabs" data-current-page="index">
+			<ul class="leftside">
+				<li id="quick-links" class="quick-links tab responsive-menu dropdown-container">
+					<a href="#" class="nav-link dropdown-trigger">Quick links</a>
+					<div class="dropdown">
+						<div class="pointer"><div class="pointer-inner"></div></div>
+						<ul class="dropdown-contents" role="menu">
+								
+			<li class="separator"></li>
+													<li>
+								<a href="/viewprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Your Profile</span>
+								</a>
+								<a href="/changeprofile" role="menuitem">
+									<i class="icon fa-file-o fa-fw icon-gray" aria-hidden="true"></i><span>Update Profile</span>
+								</a>
+							</li>
+
+							<li class="separator"></li>
+							<li>
+								<a href="/search" role="menuitem">
+									<i class="icon fa-search fa-fw" aria-hidden="true"></i><span>Search</span>
+								</a>
+							</li>	
+	
+													</ul>
+					</div>
+				</li>
+												<li class="tab forums selected" data-responsive-class="small-icon icon-forums">
+					<a class="nav-link" href="/userhome">Forums</a>
+				</li>
+											</ul>
+			<ul class="rightside" role="menu">
+								<li class="tab faq" data-select-match="faq" data-responsive-class="small-icon icon-faq">
+					<a class="nav-link" href="/question" rel="help" title="Frequently Asked Questions" role="menuitem">
+						<i class="icon fa-question-circle fa-fw" aria-hidden="true"></i><span>FAQ</span>
+					</a>
+				</li>
+					<li class="tab logout"  data-skip-responsive="true" data-select-match="login"><a class="nav-link" href="/home" title="Login" accesskey="x" role="menuitem">Logout</a></li>
+																	</ul>
+		</div>
+	</div>
+</div>
+
+<div class="navbar secondary">
+	<ul role="menubar">
+
+									
+			</ul>
+</div>
+
+	</div>
+
+<div id="wrap" class="page-width">
+
+	
+	<a id="start_here" class="top-anchor"></a>
+	<div id="page-body" class="page-body" role="main">
+		<div class="navbar">
+	<ul id="nav-breadcrumbs" class="nav-breadcrumbs linklist navlinks" role="menubar">
+				
+		
+		<li class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+			
+						<span class="crumb" itemtype="https://schema.org/ListItem" itemprop="itemListElement" itemscope><a itemprop="item" href="/userhome" accesskey="h" data-navbar-reference="index"><i class="icon fa-home fa-fw"></i><span itemprop="name">Forum</span></a><meta itemprop="position" content="1" /></span>
+
+			
+			
+		</li>
+
+		
+		
+			<li class="rightside responsive-search">
+				<a href="/search" title="View the advanced search options" role="menuitem">
+					<i class="icon fa-search fa-fw" aria-hidden="true"></i><span class="sr-only">Search</span>
+				</a>
+			</li>
+	</ul>
+</div>
+<div class="action-bar bar-top">
+	</div>
+		</div>
+			<div id="p306531" class="post has-profile bg2">
+		<div class="inner" props="account, post, amount">
+
+		<dl class="postprofile" id="profile306531">
+			<dt class="has-profile-rank no-avatar">
+				<div class="avatar-container">
+					<img src="<%=account.ImageURL%>" alt="Avatar" class="avatar-container"/>
+				</div>
+					<a href="./viewotherprofile/<%=account._id%>" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
+			</dt>
+		<dd class="profile-rank">Thành viên </dd>			
+		<dd class="profile-posts"><strong>Posts:</strong><%=amount%></dd>		<dd class="profile-joined"><strong>Joined:</strong> Tue Mar 17, 2015 9:14 am</dd>						
+		</dl>
+		<div class="postbody">
+			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+			var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
+			<div id="post_content306531">
+				<h3 class="first">
+					<%=post.PostName%>
+				</h3>
+				<ul class="post-buttons">
+					<a href="./posting.php?mode=quote&amp;p=306531" title="Reply with quote" class="button button-icon-only">
+						<i class="icon fa-quote-left fa-fw" aria-hidden="true"></i><span class="sr-only">Quote</span>
+					</a>
+				</ul>
+				<p class="author">
+					<a class="unread" href="./viewtopic.php?p=306531#p306531" title="Post">
+					<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i><span class="sr-only">Post</span>
+					</a>
+					<span class="responsive-hide">bởi <strong><a href="./memberlist.php?mode=viewprofile&amp;u=5646" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a></strong> &raquo; </span><time>Vào lúc <%=time%> ngày <%=date%></time>
+				</p>
+				<div class="content"><%=post.PostContent%><br></div>
+                <dl class="file">
+                    <dt class="attach-image">
+                        <% if (post.ImageURL) { %>
+                            <img src="<%= post.ImageURL %>" class="postimage" alt="Screenshot">
+                        <% } %>
+                    </dt>
+                </dl>
+			</div>
+			
+		</div>
+		</div>	
+		
+		<div id="p728756" class="post has-profile bg1" props="accountcomments, post">
+			<% accountcomments.forEach(function (accountcomment, index) { %>
+				<% if (accountcomment && accountcomment.CommentID && accountcomment.CommentID.CmtDate) { %>
+					<% var date = accountcomment.CommentID.CmtDate.getDate() + '-' + (accountcomment.CommentID.CmtDate.getMonth() + 1) + '-' + accountcomment.CommentID.CmtDate.getFullYear(); %>
+					<% var time = accountcomment.CommentID.CmtDate.getHours() + ":" + accountcomment.CommentID.CmtDate.getMinutes() + ":" + accountcomment.CommentID.CmtDate.getSeconds(); %>
+					<div class="inner">
+						<dl class="postprofile" id="profile728756">
+							<dt class="has-profile-rank no-avatar">
+								<div class="avatar-container">
+									<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container" />
+								</div>
+								<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
+							</dt>
+							<dd class="profile-rank">Thành viên</dd>
+						</dl>
+						<div class="postbody">
+							<div id="post_content728756">
+								<h3>
+									<a href="./viewtopic.php?p=728756#p728756">Re: <%=post.PostName%></a>
+								</h3>
+								<ul class="post-buttons">
+								</ul>
+								<p class="author">
+									<a class="unread" href="./viewtopic.php?p=728756#p728756" title="Post">
+										<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true">
+										</i>
+										<span class="sr-only">Post</span>
+									</a>
+									<span class="responsive-hide">bởi
+										<strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a></strong> &raquo;
+									</span>
+									<time>Vào lúc <%=time%> ngày <%=date%></time>
+								</p>
+								<div class="content"><%=accountcomment.CommentID.CmtContent%></div>
+								
+							</div>
+						</div>
+					</div>
+				<% } %>
+			<% }); %>
+		</div>
+		<div class="reply-container">
+            <div class="reply-container">
+                <h2><span class="login-message">Để thêm tài liệu, vui lòng đăng nhập</span></h2>
+              </div>
+		</div>		
+		<script>
+	 function likePost(postId) {
+        const likedPosts = getLikedPosts();
+        const postIndex = likedPosts.indexOf(postId);
+        if (postIndex !== -1) {
+            likedPosts.splice(postIndex, 1);
+            fetch(`/unlike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const likeCountElement = document.querySelector(`#like-count-${postId}`);
+                    likeCountElement.textContent = data.post.PostLike;
+                    unmarkPostAsLiked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            fetch(`/like/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const likeCountElement = document.querySelector(`#like-count-${postId}`);
+                    likeCountElement.textContent = data.post.PostLike;
+                    markPostAsLiked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+function getLikedPosts() {
+  const likedPostsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)likedPosts\s*=\s*([^;]*).*$)|^.*$/, "$1");
+  return likedPostsCookie ? likedPostsCookie.split(',') : [];
+}
+
+function markPostAsLiked(postId) {
+  const likedPosts = getLikedPosts();
+  likedPosts.push(postId);
+  document.cookie = `likedPosts=${likedPosts.join(',')}; path=/`;
+}
+function unmarkPostAsLiked(postId) {
+        const likedPosts = getLikedPosts();
+        const updatedLikedPosts = likedPosts.filter(id => id !== postId);
+        document.cookie = `likedPosts=${updatedLikedPosts.join(',')}; path=/`;
+    }
+
+    function dislikePost(postId) {
+        const dislikedPosts = getDislikedPosts();
+        const postIndex = dislikedPosts.indexOf(postId);
+        if (postIndex !== -1) {
+            dislikedPosts.splice(postIndex, 1);
+            fetch(`/undislike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
+                    dislikeCountElement.textContent = data.post.PostDislike;
+                    unmarkPostAsDisliked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            fetch(`/dislike/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const dislikeCountElement = document.querySelector(`#dislike-count-${postId}`);
+                    dislikeCountElement.textContent = data.post.PostDislike;
+                    markPostAsDisliked(postId);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+    function getDislikedPosts() {
+        const dislikedPostsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)dislikedPosts\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        return dislikedPostsCookie ? dislikedPostsCookie.split(',') : [];
+    }
+
+    function markPostAsDisliked(postId) {
+        const dislikedPosts = getDislikedPosts();
+        dislikedPosts.push(postId);
+        document.cookie = `dislikedPosts=${dislikedPosts.join(',')}; path=/`;
+    }
+
+    function unmarkPostAsDisliked(postId) {
+        const dislikedPosts = getDislikedPosts();
+        const updatedDislikedPosts = dislikedPosts.filter(id => id !== postId);
+        document.cookie = `dislikedPosts=${updatedDislikedPosts.join(',')}; path=/`;
+    }
+
+
+	async function likeComment(commentId) {
+    const likedComments = getLikedComments();
+    const commentIndex = likedComments.indexOf(commentId);
+
+    try {
+        let response;
+        if (commentIndex !== -1) {
+            likedComments.splice(commentIndex, 1);
+            response = await fetch(`/unlikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } else {
+            response = await fetch(`/likecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Data received:', data); 
+        const likeCountElement = document.querySelector(`#like-count-comment-${commentId}`);
+        likeCountElement.textContent = data.comment.CmtLike;
+
+        if (commentIndex !== -1) {
+            unmarkCommentAsLiked(commentId);
+        } else {
+            markCommentAsLiked(commentId);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+function getLikedComments() {
+    const likedCommentsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)likedComments\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return likedCommentsCookie ? likedCommentsCookie.split(',') : [];
+}
+
+function markCommentAsLiked(commentId) {
+    const likedComments = getLikedComments();
+    likedComments.push(commentId);
+    document.cookie = `likedComments=${likedComments.join(',')}; path=/`;
+}
+
+function unmarkCommentAsLiked(commentId) {
+    const likedComments = getLikedComments();
+    const updatedLikedComments = likedComments.filter(id => id !== commentId);
+    document.cookie = `likedComments=${updatedLikedComments.join(',')}; path=/`;
+}
+
+async function dislikeComment(commentId) {
+    const dislikedComments = getDislikedComments();
+    const commentIndex = dislikedComments.indexOf(commentId);
+
+    try {
+        let response;
+        if (commentIndex !== -1) {
+            dislikedComments.splice(commentIndex, 1);
+            response = await fetch(`/undislikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        } else {
+            response = await fetch(`/dislikecomment/${commentId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Data received:', data);
+        const dislikeCountElement = document.querySelector(`#dislike-count-comment-${commentId}`);
+        dislikeCountElement.textContent = data.comment.CmtDislike;
+
+        if (commentIndex !== -1) {
+            unmarkCommentAsDisliked(commentId);
+        } else {
+            markCommentAsDisliked(commentId);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+function getDislikedComments() {
+    const dislikedCommentsCookie = document.cookie.replace(/(?:(?:^|.*;\s*)dislikedComments\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return dislikedCommentsCookie ? dislikedCommentsCookie.split(',') : [];
+}
+
+function markCommentAsDisliked(commentId) {
+    const dislikedComments = getDislikedComments();
+    dislikedComments.push(commentId);
+    document.cookie = `dislikedComments=${dislikedComments.join(',')}; path=/`;
+}
+
+function unmarkCommentAsDisliked(commentId) {
+    const dislikedComments = getDislikedComments();
+    const updatedDislikedComments = dislikedComments.filter(id => id !== commentId);
+    document.cookie = `dislikedComments=${updatedDislikedComments.join(',')}; path=/`;
+}
+
+
+		</script>
+</body>
+
+</html>

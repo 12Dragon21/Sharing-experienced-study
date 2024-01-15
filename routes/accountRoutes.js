@@ -47,4 +47,26 @@ router.post('/login', async (req, res) => {
       res.status(500).send('Internal Server Error');
     }
   });
+  router.get('/viewotherprofile/:id', async (req, res) => {
+    try {
+      const otherUserProfile = await getAccountbyId(req.params.id);
+  
+      if (!otherUserProfile) {
+        res.status(404).send('User not found');
+      } else {
+        res.render('profile/viewotherprofile', {
+          username: otherUserProfile.Username,
+          email: otherUserProfile.Email,
+          role: otherUserProfile.Role,
+          phone: otherUserProfile.Phone,
+          ImageURL: otherUserProfile.ImageURL,
+          Years: otherUserProfile.Years,
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching other user account:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
 module.exports = router;

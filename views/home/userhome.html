@@ -35,6 +35,8 @@
 		<div class="headerbar" role="banner">
 					<div class="inner">
 
+
+
 			<div id="site-description" class="site-description">
 				<a id="logo" class="logo" href="/userhome" title="forum">
 					<img src="../styles/elegance/themes/images/uit.jpg" width="120" height="80" data-src-hd="./styles/elegance/theme/images/logo_hd.png" alt="Forum"/>
@@ -156,7 +158,7 @@
 			<ul class="topiclist">
 				<li class="header">
 					
-					<div class="list-inner qa-link" onclick="navigateToAddPost()">
+					<div class="list-inner qa-link" onc	lick="navigateToAddPost()">
 						<a>Hỏi đáp</a>
 						<i class="fa fa-plus-circle" onclick="navigateToAddPost()"></i>
 					</div>
@@ -268,6 +270,9 @@
 	   document.body.appendChild(form);
 	   form.submit();
 	}
+	function navigateToAddPost() {
+        window.location.href = '/addpost'; 
+    }
  </script>
 </body>
 </html>

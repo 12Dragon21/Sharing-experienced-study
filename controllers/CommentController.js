@@ -4,6 +4,7 @@
   async function getAllComment(req, res) {
     try {
       const Comments = await CommentSchema.find();
+      Comments.sort((a,b) => (new Date(b.CmtDate) - new Date(a.CmtDate)));
       return Comments;
     } catch (error) {
       console.error('Error fetching Comments:', error);

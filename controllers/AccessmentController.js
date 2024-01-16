@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 async function getAllAccessments(req, res) {
   try {
     const Accessments = await AccessmentSchema.find({AcmState: 0}).populate("DocumentID").populate("AccountID");
+    Accessments.sort((a,b) => (new Date(b.DocumentID.DcmDate) - new Date(a.DocumentID.DcmDate)));
     return Accessments;
   } catch (error) {
     console.error('Error fetching Accessments:', error);

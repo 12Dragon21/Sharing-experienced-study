@@ -154,39 +154,40 @@
 									</li>
 			</ul>
 			<form id="postForm" action="/viewpost" method="get">
-				<ul class="topiclist forums">	
-					<dl class="faq" props="posts">	
-					<% if (!posts.length > 0) { %>
-						<p>No Post available.</p>
-					  <% } else { %>
-						<% posts.forEach(function (post, index) { %>
-							<% if (!post.PostState) { %>
-								<li class="row forum-3">
-									<div class="post-id" data-postid="<%= post._id %>">
-			
-										<dl class="row-item forum_read elegant-row" >
-									<dt title="No unread posts">
-										<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
-									var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
-							<div class="list-inner">
-								<a onclick="getPost('<%= post._id %>')" class="forumtitle"><%= post.PostName %></a>
-									<div class="forum-description"><%= post.PostContent%></div>
-									<div class="forum-statistics">
-								<span class="dfn">Lượt trả lời</span>: <span class="value">3</span><span class="comma">, </span>
-								<span class="dfn">Được đăng vào ngày</span>: <span class="value"><%= date%></span><span class="dfn"> tại</span>: <span class="value"><%= time%></span>
-							</div>					
-											<div class="forum-lastpost" style="display: none;">
-										</div>
-																					</div>
-							</dt>
-										</dl>
+				
+			<ul class="topiclist forums">	
+				<dl class="faq" props="posts">	
+				<% if (!posts.length > 0) { %>
+					<p>No Post available.</p>
+				  <% } else { %>
+					<% posts.forEach(function (post, index) { %>
+						<% if (!post.PostState) { %>
+							<li class="row forum-3">
+								<div class="post-id" data-postid="<%= post._id %>">
+		
+									<dl class="row-item forum_read elegant-row" >
+								<dt title="No unread posts">
+									<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
+								var time = post.PostDate.getHours() + ":" + post.PostDate.getMinutes() + ":" + post.PostDate.getSeconds();%>
+						<div class="list-inner">
+							<a onclick="getPost('<%= post._id %>')" class="forumtitle"><%= post.PostName %></a>
+								<div class="forum-description"><%= post.PostContent%></div>
+								<div class="forum-statistics">
+							<span class="dfn">Lượt trả lời</span>: <span class="value">3</span><span class="comma">, </span>
+							<span class="dfn">Được đăng vào ngày</span>: <span class="value"><%= date%></span><span class="dfn"> tại</span>: <span class="value"><%= time%></span>
+						</div>					
+										<div class="forum-lastpost" style="display: none;">
 									</div>
-								</li>	
-							  <% } %>
-						<% }); %>
-						<% } %>
-					</dl>
-					</ul>
+																				</div>
+						</dt>
+									</dl>
+								</div>
+							</li>	
+						  <% } %>
+					<% }); %>
+					<% } %>
+				</dl>
+				</ul>
 				<div class="pagination">
 					<% if (currentPage > 1) { %>
 					  <a href="/home?page=<%= currentPage - 1 %>">Trang trước</a>

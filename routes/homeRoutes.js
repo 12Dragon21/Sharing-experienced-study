@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     await connectdb();
     console.log('Connected to the database');
     const page = parseInt(req.query.page) || 1;
-    const postsPerPage = 5;
+    const postsPerPage = 8;
     const posts = await getAllPost(req, res, page, postsPerPage);
     res.render('home/home', { posts, currentPage: page });
   } catch (error) {
@@ -48,9 +48,10 @@ router.get('/home', async (req, res) => {
 router.get('/userhome', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const postsPerPage = 5;
+    const postsPerPage = 8;
     const posts = await getAllPost(req, res, page, postsPerPage);
-    res.render('home/userhome', { posts, currentPage: page });
+    const currentaccount = await getAccountbyId(req.cookies.account);
+    res.render('home/userhome', { posts, currentPage: page, currentaccount });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');

@@ -7,6 +7,7 @@ async function searchPostsByName(query) {
     const posts = await PostSchema.find({
       PostName: { $regex: query, $options: 'i' } 
     });
+    posts.sort((a,b) => (new Date(b.PostDate) - new Date(a.PostDate)));
     return posts;
   } catch (error) {
     console.error('Error searching posts by name:', error);

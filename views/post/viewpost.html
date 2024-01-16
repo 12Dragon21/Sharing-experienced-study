@@ -238,7 +238,7 @@ button {
 					<a href="./viewotherprofile/<%=account._id%>" style="color: #BF00BF;" class="username-coloured"><%=account.Username%></a>							
 			</dt>
 		<dd class="profile-rank">Thành viên </dd>			
-		<dd class="profile-posts"><strong>Posts:</strong><%=amount%></dd>		<dd class="profile-joined"><strong>Joined:</strong> Tue Mar 17, 2015 9:14 am</dd>						
+		<dd class="profile-posts"><strong>Posts:</strong><%=amount%></dd>							
 		</dl>
 		<div class="postbody">
 			<%var date = post.PostDate.getDate()+'-'+(post.PostDate.getMonth()+1)+'-'+post.PostDate.getFullYear();
@@ -300,7 +300,7 @@ button {
 								<div class="avatar-container">
 									<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container" />
 								</div>
-								<a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a>
+                                	<a href="./viewotherprofile/<%=account._id%>" ><%=account.Username%></a>							
 							</dt>
 							<dd class="profile-rank">Thành viên</dd>
 						</dl>
@@ -318,7 +318,9 @@ button {
 										<span class="sr-only">Post</span>
 									</a>
 									<span class="responsive-hide">bởi
-										<strong><a href="./memberlist.php?mode=viewprofile&amp;u=19098" class="username"><%=accountcomment.AccountID.Username%></a></strong> &raquo;
+                                        
+										<strong>	<a href="./viewotherprofile/<%=account._id%>"  class="username-coloured"><%=account.Username%></a>							
+			</dt> 
 									</span>
 									<time>Vào lúc <%=time%> ngày <%=date%></time>
 								</p>
@@ -343,6 +345,7 @@ button {
 				<% } %>
 			<% }); %>
 		</div>
+        
         <button id="load-more-comments" onclick="loadMoreComments()">Load More Comments</button>
 		<div class="reply-container">
 			<h2>Phản hồi</h2>
@@ -365,11 +368,11 @@ button {
 			</form>
 		</div>		
 		<script>
-            let currentPage = 1;
+        let currentPage = 1;
 
 async function loadMoreComments() {
     try {
-        const postId = '<%=post._id%>';  // Assuming you can get the post ID from the server-side template
+        const postId = '<%=post._id%>';
         const response = await fetch(`/loadcomments/${postId}?page=${currentPage}`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -389,21 +392,6 @@ async function loadMoreComments() {
     } catch (error) {
         console.error('Error:', error);
     }
-}
-
-function getCommentHTML(comment) {
-    // Modify this based on your existing comment structure
-    return `
-        <div class="inner">
-            <!-- HTML structure for a comment -->
-            <dl class="postprofile" id="profile${comment._id}">
-                <!-- Your comment profile information here -->
-            </dl>
-            <div class="postbody">
-                <!-- Your comment content here -->
-            </div>
-        </div>
-    `;
 }
 	 function likePost(postId) {
         const likedPosts = getLikedPosts();

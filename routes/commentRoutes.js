@@ -70,5 +70,19 @@ const {
   router.post('/unlikecomment/:id', unlikeComment);
   router.post('/dislikecomment/:id', dislikeComment);
 router.post('/undislikecomment/:id', undislikeComment);
+router.get('/loadcomments/:postId', async (req, res) => {
+  try {
+      const { page } = req.query;
+      const commentsPerPage = 1;
+      const skip = (page - 1) * commentsPerPage;
+      const postId = req.params.postId;
+      const comments = await getAllAccountCommentWithPostId(req, res, postId, commentsPerPage, skip);
+      const hasMore = comments.length === commentsPerPage;
 
+      res.json({ comments, hasMore });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
 module.exports = router;

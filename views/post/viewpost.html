@@ -354,14 +354,6 @@ button {
 					<label for="reply-content">Your Feedback:</label>
 					<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>
 		
-					<div class="file-upload">
-						<label for="image-upload">Upload Image:</label>
-						<input type="file" id="image-upload" name="image" accept="image/*">
-		
-						<label for="document-upload">Upload Document:</label>
-						<input type="file" id="document-upload" name="document" accept=".pdf, .doc, .docx, .txt">
-					</div>
-		
 					<button type="submit" onclick="getPost('<%=post._id%>')">Submit Reply</button>
 					<input name="postid" value="<%=post._id%>" hidden>
 				</fieldset>

@@ -300,7 +300,7 @@ button {
 								<div class="avatar-container">
 									<img src="<%=accountcomment.AccountID.ImageURL%>" alt="Avatar" class="avatar-container" />
 								</div>
-                                	<a href="./viewotherprofile/<%=account._id%>" ><%=account.Username%></a>							
+                                	<a href="./viewotherprofile/<%=account._id%>" ><%=accountcomment.AccountID.Username%></a>							
 							</dt>
 							<dd class="profile-rank">Thành viên</dd>
 						</dl>
@@ -349,7 +349,7 @@ button {
         <button id="load-more-comments" onclick="loadMoreComments()">Load More Comments</button>
 		<div class="reply-container">
 			<h2>Phản hồi</h2>
-			<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get">
+			<form id="comment-form" enctype="multipart/form-data" action="/addcomment" method="get" props="accountcomments, post">
 				<fieldset>
 					<label for="reply-content">Your Feedback:</label>
 					<textarea id="reply-content" name="message" rows="4" cols="50" required></textarea>

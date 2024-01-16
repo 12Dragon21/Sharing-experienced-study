@@ -13,7 +13,7 @@ async function getAllDocument(req, res) {
 async function createDocument(req, res) {
   try {
     const newDocument = new DocumentSchema({
-        DcmName: req.body.name,
+        DcmName: req.body.message,
         DcmType: 0,
         DcmDownload: 0,
         DcmDate: new Date(),

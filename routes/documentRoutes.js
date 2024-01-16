@@ -41,6 +41,7 @@ router.post('/document', documentUploader.single('document'), async (req, res) =
   try {
     await connectdb();
     console.log('Connected to the database');
+    console.log(req.body.message);
     const newDocument = await createDocument(req, res);
     const newAccessment = await createAccessment(req, res, newDocument);
     res.status(200).redirect('/userhome');

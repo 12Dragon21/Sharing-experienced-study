@@ -55,12 +55,12 @@ const {
       console.log(req.query);  
       const newComment = await createComment(req, res);
       await createAccountComment(req, res, newComment);
-      const post = await getPost(req, res);
+      const post = await getPost(req, res, req.query.postid);
       const accountId = await getIdOwnPost(req, res);
       const account = await getAccountbyId(accountId);
       const amount = await getAmountPostByAccountId(accountId);
       const accountcomments = await getAllAccountCommentWithPostId(req, res, post._id);
-      res.render('post/viewpost', { post, account, amount, accountcomments});
+      res.status(200).redirect('userhome');
     } catch (error) {
       console.error('Error:', error);
       res.status(500).send('Internal Server Error');
